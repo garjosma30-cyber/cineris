@@ -157,13 +157,20 @@
         '<div><div class="hc-title">' + esc(n.title) + '</div>' +
         '<div class="hc-count">' + (cc ? cc + (cc === 1 ? " apartado" : " apartados") : "Mundo") + "</div></div></a>";
     }).join("");
-    return '<div class="view">' +
-      '<div class="hero">' +
-        '<div class="aquila-big">' + icon("aquila", true) + "</div>" +
-        "<h1>" + esc(WORLD.name) + "</h1>" +
-        (WORLD.subtitle ? '<div class="subtitle">' + esc(WORLD.subtitle) + "</div>" : "") +
-        (WORLD.intro ? '<div class="intro prose">' + md(WORLD.intro) + "</div>" : "") +
-      "</div>" +
+    var heroTop = WORLD.image
+      ? '<div class="home-hero-img"><img src="' + esc(WORLD.image) + '" alt="' + esc(WORLD.name) + '">' +
+          '<div class="hhi-titles"><div class="aquila-sm">' + icon("aquila", true) + "</div>" +
+          "<h1>" + esc(WORLD.name) + "</h1>" +
+          (WORLD.subtitle ? '<div class="subtitle">' + esc(WORLD.subtitle) + "</div>" : "") +
+          "</div></div>" +
+          (WORLD.intro ? '<div class="hero hero-intro"><div class="intro prose">' + md(WORLD.intro) + "</div></div>" : "")
+      : '<div class="hero">' +
+          '<div class="aquila-big">' + icon("aquila", true) + "</div>" +
+          "<h1>" + esc(WORLD.name) + "</h1>" +
+          (WORLD.subtitle ? '<div class="subtitle">' + esc(WORLD.subtitle) + "</div>" : "") +
+          (WORLD.intro ? '<div class="intro prose">' + md(WORLD.intro) + "</div>" : "") +
+        "</div>";
+    return '<div class="view">' + heroTop +
       (q ? '<div class="banner-quote"><div class="q">«' + esc(q.text) + '»</div>' +
            (q.source ? '<div class="src">' + esc(q.source) + "</div>" : "") + "</div>" : rule()) +
       '<div class="home-grid">' + cards +

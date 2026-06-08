@@ -27,6 +27,7 @@
 window.WORLD = {
   name: "SISTEMA CINERIS",
   subtitle: "Crónicas de un sistema perdido en el Maelstrom",
+  image: "assets/portada.png",
   intro: `El **Sistema Cineris** nació como una promesa: un **puerto franco**
 fundado por un **Rogue Trader** en los confines del espacio, lejos de toda
 amenaza, lejos del **Maelstrom**.
@@ -38,6 +39,11 @@ disformidad.
 Sus planetas **no son mundos demonio** —no todavía—, pero el sistema guarda más
 de un secreto: una estrella que no es solo una estrella, y un **túnel de
 disformidad** que conduce a mundos malditos.
+
+Hace mil años, Cineris fue **bastión de los Puños Imperiales**. Hoy sus
+fortalezas son ruinas: los **Iron Warriors** los expulsaron, y desde entonces el
+**Maelstrom** niega al Imperio toda ruta segura para el contraataque. El sistema
+está solo, y en manos del hierro.
 
 Esta es la crónica de Cineris: de sus mundos, de quienes los dominan y de lo que
 se oculta a plena luz.`,
@@ -327,6 +333,15 @@ window.TIMELINE = {
       caption: "El Maelstrom lo reclama",
       events: [
         { date: "La Deriva", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris por completo. El sistema queda aislado, rodeado de tormentas, olvidado por la galaxia." }
+      ]
+    },
+    {
+      name: "El Puño y el Hierro",
+      caption: "Hace un milenio",
+      events: [
+        { date: "Hace ~1000 años", title: "Bastión de los Puños Imperiales", text: "El sistema es una plaza fuerte del Imperio, sembrada de fortalezas y guarnecida por los Puños Imperiales." },
+        { date: "La Caída", title: "El hierro expulsa al puño", text: "Los Iron Warriors arrebatan Cineris a los Puños Imperiales y los expulsan del sistema tras una guerra brutal." },
+        { date: "Desde entonces", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris." }
       ]
     },
     {
