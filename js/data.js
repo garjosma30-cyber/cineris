@@ -107,11 +107,43 @@ sistema— saben dónde se ocultan en verdad los señores de Cineris.
 > Para el resto de la galaxia, Cineris es un mundo olvidado del Maelstrom. Esa es
 > exactamente la idea.
 
-*(Su Gran Compañía y su Maestre de Forja aún no tienen nombre en la crónica —
-cuéntamelos y los añado.)*`,
+A su mando está el **Herrero Disforme**, su Maestre de Forja. *(La Gran Compañía
+aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
         related: [
           { to: "cineris/cinturon-asteroides", label: "El Cinturón de Asteroides" },
           { to: "cineris/batallas", label: "Batallas en Cineris" }
+        ],
+        childrenLabel: "Señores de hierro",
+        children: [
+          {
+            id: "herrero-disforme",
+            title: "Herrero Disforme",
+            icon: "skull",
+            image: "assets/herrero-disforme.png",
+            epithet: "Maestre de Forja de los Iron Warriors de Cineris",
+            tags: ["Personaje", "Iron Warriors", "Maestre de Forja"],
+            quote: {
+              text: "Cada cadena que forjo es una promesa. Cada promesa, una condena.",
+              source: "El Herrero Disforme"
+            },
+            body: `Nadie recuerda —o nadie se atreve a pronunciar— su verdadero nombre.
+En Cineris solo se le conoce como el **Herrero Disforme**: el **Maestre de Forja**
+que gobierna a los Iron Warriors del sistema.
+
+## Fundido con la máquina
+Encerrado en una **armadura de Exterminador** marcada con las franjas de peligro de
+su Legión, hace tiempo que dejó de ser solo un hombre. De su espalda brotan
+**servo-brazos y mecadendritas**, y su rostro es una **máscara mortuoria** de acero
+presidida por un único ojo carmesí.
+
+## El señor de hierro
+Empuña un **martillo de asedio** capaz de derribar murallas y carga cadenas y
+cráneos como trofeos. Bajo su mando, Cineris es a un tiempo fortaleza y cantera de
+guerra.`,
+            related: [
+              { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
+            ]
+          }
         ]
       },
       {
