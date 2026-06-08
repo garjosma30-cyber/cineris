@@ -1,0 +1,7 @@
+Pon aquí tus imágenes (jpg, png, webp).
+
+Luego, en js/data.js, añade a cualquier ficha la línea:
+    image: "assets/nombre-de-tu-imagen.jpg",
+
+Si una ficha no tiene imagen, la web muestra automáticamente un emblema
+temático, así que no es obligatorio.
