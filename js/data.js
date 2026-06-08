@@ -203,6 +203,7 @@ tecnoherejes obran sus designios sin que nadie sospeche su existencia.
     id: "hybri",
     title: "Sistema Hybri",
     icon: "portal",
+    image: "assets/tunel-hybri.png",
     epithet: "Más allá del Túnel Hybri",
     tags: ["Sistema", "Disformidad", "Caballeros del Caos"],
     quote: {
