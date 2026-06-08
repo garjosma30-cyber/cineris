@@ -231,7 +231,8 @@
       return '<div class="era"><div class="era-head"><span class="numeral">' + (romans[idx] || idx + 1) + "</span>" +
         "<h2>" + esc(era.name) + "</h2>" + (era.caption ? '<span class="caption">' + esc(era.caption) + "</span>" : "") + "</div>" + events + "</div>";
     }).join("");
-    return '<div class="view">' + crumb([["Inicio", "#/"], [TIMELINE.title, null]]) +
+    var bg = TIMELINE.image ? '<div class="timeline-bg"><img src="' + esc(TIMELINE.image) + '" alt=""></div>' : "";
+    return bg + '<div class="view timeline-view">' + crumb([["Inicio", "#/"], [TIMELINE.title, null]]) +
       '<div class="section-head"><h1><span class="icon-badge">' + icon("hourglass") + "</span>" + esc(TIMELINE.title) + "</h1>" +
       (TIMELINE.blurb ? '<div class="blurb">' + esc(TIMELINE.blurb) + "</div>" : "") + "</div>" +
       '<div class="timeline">' + eras + "</div></div>";

@@ -337,6 +337,13 @@ img { max-width: 100%; display: block; }
 .event .ev-title { font-family: var(--font-display); font-size: 19px; color: var(--bone); margin: 2px 0 4px; }
 .event .ev-text { color: var(--muted); font-size: 16px; }
 
+/* fondo de la página de cronología (atenuado, texto legible encima) */
+.timeline-bg { position: fixed; top: var(--topbar-h); left: var(--sidebar-w); right: 0; bottom: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.timeline-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: .16; }
+.timeline-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,12,.80), rgba(10,10,12,.93)); }
+.timeline-view { position: relative; z-index: 1; }
+.foot { position: relative; z-index: 1; }
+
 /* --------------------------------------------------------------- results */
 .results-info { color: var(--muted); font-style: italic; margin-bottom: 18px; }
 .result-row {
@@ -380,6 +387,7 @@ img { max-width: 100%; display: block; }
   .main { margin-left: 0; }
   .view { padding: 28px 18px 60px; }
   .home-hero-img { margin: -28px -18px 24px; height: 260px; }
+  .timeline-bg { left: 0; }
   .search { width: 200px; }
   .brand .world-sub { display: none; }
   .entry h1 { font-size: 32px; }

@@ -319,6 +319,7 @@ window.TIMELINE = {
   id: "cronologia",
   title: "Cronología",
   blurb: "La historia del sistema Cineris, era a era.",
+  image: "assets/fondo-cronologia.png",
   eras: [
     {
       name: "La Fundación",
