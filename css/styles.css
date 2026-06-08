@@ -142,6 +142,24 @@ img { max-width: 100%; display: block; }
 .nav-link.active svg { color: var(--gold); opacity: 1; }
 .nav-sep { height: 1px; margin: 14px 22px; background: linear-gradient(90deg, var(--line), transparent); }
 
+/* sub-navegación (nivel 2, con sangría) */
+.nav-link { position: relative; }
+.nav-link.sub { padding: 7px 22px 7px 52px; font-size: 13px; color: var(--muted-2); letter-spacing: .05em; }
+.nav-link.sub svg { width: 15px; height: 15px; }
+.nav-link.sub::before { content: ""; position: absolute; left: 34px; top: 50%; width: 8px; height: 1px; background: var(--muted-2); opacity: .7; }
+.nav-link.sub:hover { color: var(--bone); background: rgba(201,162,39,.05); }
+.nav-link.sub:hover::before { background: var(--gold-soft); opacity: 1; }
+.nav-link.sub.active { color: var(--gold); background: linear-gradient(90deg, rgba(201,162,39,.10), transparent); }
+.nav-link.sub.active::before { background: var(--gold); opacity: 1; }
+
+/* encabezado de sub-sección dentro de una página */
+.section-head.sub { margin: 0 0 4px; }
+.section-head.sub h2 { font-family: var(--font-display); font-size: 22px; color: var(--bone); letter-spacing: .03em; margin: 0; }
+.section-head.sub h2::before { content: "⟡ "; color: var(--gold); font-size: 16px; }
+
+/* nota del estado vacío (batallas) */
+.empty-note { max-width: 520px; margin: 12px auto 0; color: var(--muted); font-size: 16px; }
+
 /* ------------------------------------------------------------------- main */
 .main {
   margin-left: var(--sidebar-w); padding-top: var(--topbar-h);

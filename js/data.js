@@ -4,19 +4,24 @@
    Para añadir o cambiar lore solo se edita ESTE archivo. La web se actualiza
    sola al recargar.
 
-   Estructura rápida:
+   MODELO EN ÁRBOL:
      WORLD     -> nombre del sistema, lema, introducción y cita de portada.
-     SECTIONS  -> cada MUNDO del sistema (aparece en la barra lateral).
-                  Cada mundo tiene "entries" (fichas: descripción, facción,
-                  lugares, personajes...).
+     NAV       -> árbol de la barra lateral. Cada nodo puede tener:
+                    id, title, icon, epithet, tags, quote, image, body
+                    children: [ ...más nodos ]   (sub-pestañas)
+                    kind: "batallas"             (página-registro de partidas)
+                    related: [ { to:"ruta/de/ids", label:"..." } ]
      TIMELINE  -> la cronología (eras con eventos).
 
-   En los textos largos ("body") se puede usar formato sencillo:
-     ## Subtítulo      ### Sub-subtítulo
-     **negrita**   *cursiva*
-     - elemento de lista
-     > Cita o frase destacada
-     ---  (separador)     [texto](https://...)  (enlace)
+   Las RUTAS son el camino de ids: p.ej. el nodo "iron-warriors" dentro de
+   "cineris" vive en  #/cineris/iron-warriors
+
+   Formato de texto en "body":
+     ## Subtítulo   ### Sub-subtítulo   **negrita**  *cursiva*
+     - lista        > cita        ---  (separador)   [texto](url)
+
+   Iconos disponibles: planet, sun, shield, swords, gem, cog, portal,
+     chaosstar, person, book, claw, banner, helm, hourglass, skull, home.
    ========================================================================== */
 
 window.WORLD = {
@@ -27,12 +32,12 @@ fundado por un **Rogue Trader** en los confines del espacio, lejos de toda
 amenaza, lejos del **Maelstrom**.
 
 El tiempo y las mareas de la disformidad traicionaron esa promesa. Hoy Cineris
-yace **completamente sumergido en el Maelstrom**, atrapado entre tormentas de
-disformidad que lo aíslan del resto de la galaxia.
+yace **completamente sumergido en el Maelstrom**, aislado entre tormentas de
+disformidad.
 
-Sus planetas **no son mundos demonio** —no todavía—, pero el sistema guarda un
-secreto que ni sus propios habitantes conocen: *su estrella no es solo una
-estrella.*
+Sus planetas **no son mundos demonio** —no todavía—, pero el sistema guarda más
+de un secreto: una estrella que no es solo una estrella, y un **túnel de
+disformidad** que conduce a mundos malditos.
 
 Esta es la crónica de Cineris: de sus mundos, de quienes los dominan y de lo que
 se oculta a plena luz.`,
@@ -43,28 +48,22 @@ se oculta a plena luz.`,
 };
 
 /* ──────────────────────────────────────────────────────────────────────────
-   MUNDOS DEL SISTEMA  (cada uno aparece en la barra lateral)
+   NAV — árbol de la barra lateral (los MUNDOS y sus sub-pestañas)
    ────────────────────────────────────────────────────────────────────────── */
-window.SECTIONS = [
+window.NAV = [
 
-  /* ═══════════════════ 1 · PLANETA PRINCIPAL CINERIS ═══════════════════ */
+  /* ═══════════════════ 1 · PLANETA CINERIS ═══════════════════ */
   {
     id: "cineris",
     title: "Planeta Cineris",
     icon: "planet",
-    blurb: "Mundo principal del sistema — feudo y cantera de los Iron Warriors.",
-    layout: "grid",
-    entries: [
-      {
-        id: "mundo-cineris",
-        title: "El Mundo de Cineris",
-        epithet: "Puerto franco de estepas asoladas",
-        tags: ["Mundo principal", "Puerto franco", "Ciudades colmena"],
-        quote: {
-          text: "Cineris da hijos y da hierro. Eso es cuanto se le pide.",
-          source: "Proverbio de capataz de colmena"
-        },
-        body: `Visto desde la órbita, **Cineris** aún conserva la silueta de lo que un
+    epithet: "Mundo principal del sistema",
+    tags: ["Mundo principal", "Puerto franco", "Ciudades colmena"],
+    quote: {
+      text: "Cineris da hijos y da hierro. Eso es cuanto se le pide.",
+      source: "Proverbio de capataz de colmena"
+    },
+    body: `Visto desde la órbita, **Cineris** aún conserva la silueta de lo que un
 día fue: un **puerto independiente**, un punto de paso libre en el filo de la
 galaxia. Pero su superficie cuenta otra historia.
 
@@ -77,18 +76,20 @@ hacina una población incontable.
 Todo el hemisferio **sur es inhabitable**: una tierra muerta donde nadie pone el
 pie y de la que nadie habla.
 
+## El puerto del cinturón
+En el **cinturón de asteroides** del sistema, los amos de Cineris mantienen un
+**puerto** a la vista de todos. Es el rostro visible de su poder; su verdadera
+fortaleza permanece en secreto.
+
 ## Cantera de carne y hierro
 Por encima de todo, Cineris es el principal punto de **reclutamiento y
-abastecimiento** de los Iron Warriors que dominan el sistema. Sus colmenas
-entregan reclutas; sus estepas, recursos.`,
-        related: [
-          { section: "cineris", entry: "iron-warriors", label: "Los Iron Warriors" },
-          { section: "cineris", entry: "cinturon-asteroides", label: "El Cinturón de Asteroides" }
-        ]
-      },
+abastecimiento** de los Iron Warriors que dominan el sistema.`,
+    childrenLabel: "En este mundo",
+    children: [
       {
         id: "iron-warriors",
-        title: "Los Iron Warriors",
+        title: "Iron Warriors",
+        icon: "shield",
         epithet: "Los amos de hierro de Cineris",
         tags: ["Facción", "Marines del Caos", "Iron Warriors"],
         quote: {
@@ -103,31 +104,28 @@ Del planeta extraen reclutas y suministros sin descanso: las estepas y las
 colmenas de Cineris alimentan su incansable maquinaria de guerra.
 
 ## Una fortaleza en las sombras
-Mantienen un **puerto a la vista**, en el cinturón de asteroides del sistema,
-pero su **base principal es un secreto** celosamente guardado. Pocos —dentro o
-fuera del sistema— saben dónde se ocultan en verdad los señores de Cineris.
+Mantienen su **puerto** a la vista, en el cinturón de asteroides, pero su **base
+principal es un secreto** celosamente guardado. Pocos —dentro o fuera del
+sistema— saben dónde se ocultan en verdad los señores de Cineris.
 
-> Para el resto de la galaxia, Cineris es un mundo olvidado del Maelstrom. Esa
-> es exactamente la idea.`,
+> Para el resto de la galaxia, Cineris es un mundo olvidado del Maelstrom. Esa es
+> exactamente la idea.
+
+*(Su Gran Compañía y su Maestre de Forja aún no tienen nombre en la crónica —
+cuéntamelos y los añado.)*`,
         related: [
-          { section: "cineris", entry: "cinturon-asteroides", label: "El Cinturón de Asteroides" },
-          { section: "cineris", entry: "mundo-cineris", label: "El Mundo de Cineris" }
+          { to: "cineris/batallas", label: "Batallas en Cineris" }
         ]
       },
       {
-        id: "cinturon-asteroides",
-        title: "El Cinturón de Asteroides",
-        epithet: "El puerto de los amos de hierro",
-        tags: ["Localización", "Puerto", "Iron Warriors"],
-        body: `Orbitando el sistema, un **cinturón de asteroides** alberga el **puerto**
-de los Iron Warriors: el rostro visible de su poder, donde atracan sus naves y
-fluye todo su abastecimiento.
-
-Es cuanto el sistema **puede ver** de ellos. Su verdadera fortaleza —la base
-principal— permanece oculta en otra parte, lejos de ojos curiosos.`,
-        related: [
-          { section: "cineris", entry: "iron-warriors", label: "Los Iron Warriors" }
-        ]
+        id: "batallas",
+        title: "Batallas",
+        icon: "swords",
+        kind: "batallas",
+        epithet: "Crónica de partidas — Frente de Cineris",
+        body: `Aquí se inmortaliza cada **partida jugada** en el frente de Cineris:
+asedios, incursiones y guerras por el dominio del sistema.`,
+        children: []   /* ← cada partida que juegues se añade aquí */
       }
     ]
   },
@@ -137,27 +135,21 @@ principal— permanece oculta en otra parte, lejos de ojos curiosos.`,
     id: "estrella-d31",
     title: "Estrella D31",
     icon: "sun",
-    blurb: "La estrella del sistema — y la herejía que arde en su núcleo.",
-    layout: "grid",
-    entries: [
-      {
-        id: "estrella",
-        title: "La Estrella D31",
-        epithet: "El sol de Cineris",
-        tags: ["Estrella", "Sistema Cineris"],
-        body: `Catalogada como **D31**, es la estrella en torno a la cual gira todo el
+    epithet: "El sol de Cineris",
+    tags: ["Estrella", "Sistema Cineris", "Secreto"],
+    body: `Catalogada como **D31**, es la estrella en torno a la cual gira todo el
 sistema Cineris. Para los millones que pueblan las colmenas no es más que el sol
-pálido que asoma sobre las estepas, día tras día.
+pálido que asoma sobre las estepas.
 
-No tienen motivo para pensar otra cosa. Y en esa ignorancia descansa el secreto
-mejor guardado del sistema.`,
-        related: [
-          { section: "estrella-d31", entry: "mechanicus-oscuro", label: "El Mechanicus Oscuro" }
-        ]
-      },
+Pero D31 guarda **dos secretos**. En su seno arde una herejía oculta. Y bajo
+ella se abre el **Túnel Hybri**, una garganta de disformidad que lleva a los
+mundos malditos de [Hybri](#/hybri).`,
+    childrenLabel: "Lo que oculta la estrella",
+    children: [
       {
         id: "mechanicus-oscuro",
-        title: "El Mechanicus Oscuro",
+        title: "Mechanicus Oscuro",
+        icon: "cog",
         epithet: "La herejía en el corazón del sol",
         tags: ["Facción", "Mechanicus Oscuro", "Secreto"],
         quote: {
@@ -165,8 +157,7 @@ mejor guardado del sistema.`,
           source: "Axioma del Mechanicus Oscurus"
         },
         body: `Lo que **nadie sabe** —ni los señores de hierro de Cineris, ni los
-enjambres de las colmenas, ni nave alguna que cruce el sistema— es que la
-estrella **D31** no es solo una estrella.
+enjambres de las colmenas— es que la estrella **D31** no es solo una estrella.
 
 ## La forja oculta
 En su seno, el **Mechanicus Oscuro** (*Mechanicus Oscurus*) ha establecido una
@@ -174,10 +165,81 @@ En su seno, el **Mechanicus Oscuro** (*Mechanicus Oscurus*) ha establecido una
 tecnoherejes obran sus designios sin que nadie sospeche su existencia.
 
 > "Levantaron su templo en el único lugar donde nadie osaría mirar: dentro del
-> sol."`,
-        related: [
-          { section: "estrella-d31", entry: "estrella", label: "La Estrella D31" }
-        ]
+> sol."`
+      }
+    ]
+  },
+
+  /* ═══════════════════════ 3 · SISTEMA HYBRI ═══════════════════════════ */
+  {
+    id: "hybri",
+    title: "Sistema Hybri",
+    icon: "portal",
+    epithet: "Más allá del Túnel Hybri",
+    tags: ["Sistema", "Disformidad", "Caballeros del Caos"],
+    quote: {
+      text: "El túnel no se cruza dos veces con la misma fe.",
+      source: "Advertencia grabada a la entrada del Túnel Hybri"
+    },
+    body: `Bajo la estrella **D31**, oculta donde nadie mira, se abre la boca del
+**Túnel Hybri**: una garganta de pura **disformidad** que atraviesa la realidad y
+desemboca en un racimo de mundos malditos.
+
+## Los mundos caballero del Caos
+Al otro lado aguardan los mundos de **Hybri**: feudos de **Casas Caballero**
+entregadas al Caos, donde colosales andadores de guerra braman entre la ceniza y
+el fuego.
+
+## Lucha y alianza eternas
+Son tres —**Hybri 1**, **Hybri 2** y **Hybri 4**— enzarzados en una **eterna
+lucha y alianza**: hoy hermanos de sangre, mañana enemigos a muerte, en un ciclo
+que no termina jamás.
+
+*(De Hybri 3, la crónica aún calla. Cuéntame su historia cuando quieras.)*`,
+    childrenLabel: "Mundos del sistema Hybri",
+    children: [
+      {
+        id: "hybri-1",
+        title: "Hybri 1",
+        icon: "chaosstar",
+        epithet: "Mundo caballero del Caos",
+        tags: ["Mundo Caballero", "Caos"],
+        body: `El primero de los mundos al otro lado del túnel. Su Casa Caballero se
+reclama la **más antigua** de Hybri, y con ello, dueña por derecho del resto.
+
+*Cuéntame el nombre de su Casa, su señor y su historia, y lo detallo.*`
+      },
+      {
+        id: "hybri-2",
+        title: "Hybri 2",
+        icon: "chaosstar",
+        epithet: "Mundo caballero del Caos",
+        tags: ["Mundo Caballero", "Caos"],
+        body: `El segundo mundo de Hybri, cuya Casa presume de ser la **más numerosa**:
+una marea de andadores que ningún rival iguala en número.
+
+*Cuéntame el nombre de su Casa, su señor y su historia, y lo detallo.*`
+      },
+      {
+        id: "hybri-4",
+        title: "Hybri 4",
+        icon: "chaosstar",
+        epithet: "Mundo caballero del Caos",
+        tags: ["Mundo Caballero", "Caos"],
+        body: `El cuarto mundo de Hybri, hogar de la Casa **más temida**: crueles incluso
+para los cánones del Caos, sus alianzas nunca duran y su rencor no se olvida.
+
+*Cuéntame el nombre de su Casa, su señor y su historia, y lo detallo.*`
+      },
+      {
+        id: "batallas",
+        title: "Batallas",
+        icon: "swords",
+        kind: "batallas",
+        epithet: "Crónica de partidas — Mundos de Hybri",
+        body: `Aquí se inmortaliza cada **partida jugada** en los mundos de Hybri:
+las guerras de los Caballeros del Caos, sus alianzas rotas y sus venganzas.`,
+        children: []   /* ← cada partida que juegues se añade aquí */
       }
     ]
   }
@@ -211,7 +273,8 @@ window.TIMELINE = {
       caption: "El presente",
       events: [
         { date: "Era reciente", title: "Los Iron Warriors se asientan", text: "Una Gran Compañía de Iron Warriors hace de Cineris su coto de reclutamiento y abastecimiento. Levantan un puerto en el cinturón de asteroides; su verdadera base permanece en secreto." },
-        { date: "Secreto", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro instala una base que nadie, ni siquiera los señores de Cineris, llega a sospechar." }
+        { date: "Secreto", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro instala una base que nadie llega a sospechar." },
+        { date: "Secreto", title: "Se abre el Túnel Hybri", text: "Bajo la estrella se descubre una garganta de disformidad que conecta Cineris con los mundos caballero del Caos de Hybri." }
       ]
     }
   ]
