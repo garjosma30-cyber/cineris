@@ -77,11 +77,6 @@ hacina una población incontable.
 Todo el hemisferio **sur es inhabitable**: una tierra muerta donde nadie pone el
 pie y de la que nadie habla.
 
-## El puerto del cinturón
-En el **cinturón de asteroides** del sistema, los amos de Cineris mantienen un
-**puerto** a la vista de todos. Es el rostro visible de su poder; su verdadera
-fortaleza permanece en secreto.
-
 ## Cantera de carne y hierro
 Por encima de todo, Cineris es el principal punto de **reclutamiento y
 abastecimiento** de los Iron Warriors que dominan el sistema.`,
@@ -115,7 +110,38 @@ sistema— saben dónde se ocultan en verdad los señores de Cineris.
 *(Su Gran Compañía y su Maestre de Forja aún no tienen nombre en la crónica —
 cuéntamelos y los añado.)*`,
         related: [
+          { to: "cineris/cinturon-asteroides", label: "El Cinturón de Asteroides" },
           { to: "cineris/batallas", label: "Batallas en Cineris" }
+        ]
+      },
+      {
+        id: "cinturon-asteroides",
+        title: "Cinturón de Asteroides",
+        icon: "asteroid",
+        image: "assets/cinturon-asteroides.png",
+        epithet: "El puerto de los amos de hierro",
+        tags: ["Localización", "Puerto", "Iron Warriors"],
+        quote: {
+          text: "Cada roca, una fortaleza. Cada cadena, una advertencia.",
+          source: "Dicho entre los tripulantes del puerto"
+        },
+        body: `Entre las rocas que orbitan Cineris, los Iron Warriors han forjado su
+**puerto**: un archipiélago de **fortalezas** alzadas sobre asteroides, unidas
+por **cadenas colosales** y erizadas de cañones.
+
+## El rostro visible del poder
+Aquí atracan las naves de guerra, se acumula el botín y fluye el abastecimiento
+del sistema. Baluartes de hierro con franjas de peligro vigilan cada aproximación:
+nada entra ni sale sin que los amos de Cineris lo permitan.
+
+## Lo que el puerto oculta
+Por imponente que parezca, esto es solo lo que los Iron Warriors **dejan ver**.
+Su verdadera fortaleza —la base principal— permanece en secreto, lejos de estas
+rocas.
+
+> Cadenas para unir mundos. Cañones para recordarte de quién son.`,
+        related: [
+          { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
         ]
       },
       {
