@@ -177,6 +177,7 @@ mundos malditos de [Hybri](#/hybri).`,
         id: "mechanicus-oscuro",
         title: "Mechanicus Oscuro",
         icon: "cog",
+        image: "assets/mechanicus-oscuro.png",
         epithet: "La herejía en el corazón del sol",
         tags: ["Facción", "Mechanicus Oscuro", "Secreto"],
         quote: {
