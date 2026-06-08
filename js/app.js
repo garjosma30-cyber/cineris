@@ -22,6 +22,7 @@
     shield: '<path d="M12 3.2l7 2.6v4.7c0 5-3 7.8-7 9.3-4-1.5-7-4.3-7-9.3V5.8z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/>',
     person: '<circle cx="12" cy="8" r="3.6"/><path d="M5.4 20a6.6 6.6 0 0 1 13.2 0"/>',
     planet: '<circle cx="12" cy="12" r="6.4"/><ellipse cx="12" cy="12" rx="10" ry="3.4" transform="rotate(-22 12 12)"/>',
+    sun:    '<circle cx="12" cy="12" r="4.3"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.1 5.1l1.85 1.85M17.05 17.05 18.9 18.9M18.9 5.1l-1.85 1.85M6.95 17.05 5.1 18.9"/>',
     swords: '<path d="M6.6 6.6 17 17"/><path d="M17.4 6.6 7 17"/><path d="M4 5h3v3"/><path d="M20 5h-3v3"/><path d="M4 19h3v-3"/><path d="M20 19h-3v-3"/>',
     gem:    '<path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4 6 9l6 11 6-11-3-5"/>',
     claw:   '<path d="M6 3.5c1.1 4 1.1 8.5 0 12.5"/><path d="M11 3c1.1 4.5 1.1 9.5 0 13.5"/><path d="M16 4c1.1 4 1.1 8.2 0 11.5"/><path d="M4 17c3.2 3 12.8 3 16 0"/>',
@@ -269,7 +270,7 @@
       navLink("home", "#/", icon("home"), "Inicio") +
       (TIMELINE ? navLink("cronologia", "#/cronologia", icon("hourglass"), TIMELINE.title) : "") +
       '<div class="nav-sep"></div>' +
-      '<div class="nav-group-label">Archivo</div>' +
+      '<div class="nav-group-label">Mundos</div>' +
       SECTIONS.map(function (s) {
         var n = (s.entries || []).length;
         return navLink("s:" + s.id, "#/s/" + s.id, icon(s.icon), s.title, n);
