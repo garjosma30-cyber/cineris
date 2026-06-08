@@ -57,6 +57,7 @@ window.NAV = [
     id: "cineris",
     title: "Planeta Cineris",
     icon: "planet",
+    image: "assets/cineris.png",
     epithet: "Mundo principal del sistema",
     tags: ["Mundo principal", "Puerto franco", "Ciudades colmena"],
     quote: {
