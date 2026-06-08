@@ -185,7 +185,13 @@
     var crumbs = [["Inicio", "#/"]], acc = [];
     trail.forEach(function (n, i) { acc.push(n.id); crumbs.push([n.title, i < trail.length - 1 ? "#/" + acc.join("/") : null]); });
 
-    var fig = node.image ? '<div class="e-figure"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' : "";
+    var fig = "";
+    if (node.image) {
+      fig = '<figure class="e-figure' + (node.imageContain ? " contain" : "") + '">' +
+              '<div class="e-frame"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' +
+              (node.imageCaption ? "<figcaption>" + esc(node.imageCaption) + "</figcaption>" : "") +
+            "</figure>";
+    }
     var pq = node.quote ? '<div class="pull-quote"><div class="q">«' + esc(node.quote.text) + '»</div>' +
       (node.quote.source ? '<div class="src">' + esc(node.quote.source) + "</div>" : "") + "</div>" : "";
     var bodyHtml = node.body ? '<div class="prose">' + md(node.body) + "</div>" : "";
