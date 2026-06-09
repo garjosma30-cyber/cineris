@@ -8,26 +8,27 @@
      WORLD     -> nombre del sistema, lema, introducción y cita de portada.
      NAV       -> árbol de la barra lateral. Cada nodo puede tener:
                     id, title, icon, epithet, tags, quote, image, body
+                    imageContain: true  -> muestra la imagen ENTERA (cuadro)
+                    imageCaption: "..." -> pie de foto / placa
                     children: [ ...más nodos ]   (sub-pestañas)
                     kind: "batallas"             (página-registro de partidas)
                     related: [ { to:"ruta/de/ids", label:"..." } ]
-     TIMELINE  -> la cronología (eras con eventos).
+     TIMELINE  -> la cronología (eras con eventos, fechas en notación 40k).
 
-   Las RUTAS son el camino de ids: p.ej. el nodo "iron-warriors" dentro de
-   "cineris" vive en  #/cineris/iron-warriors
+   Convención: la "quote" de cada ficha es su PRESENTACIÓN, y es siempre una
+   voz de los Lok: una anotación del diario de un Rogue Trader (Sir Lok II/III/IV)
+   o una ley/soflama del actual Gran Señor de los Lok.
 
-   Formato de texto en "body":
-     ## Subtítulo   ### Sub-subtítulo   **negrita**  *cursiva*
-     - lista        > cita        ---  (separador)   [texto](url)
+   Año actual del setting: 001.M42.
 
-   Iconos disponibles: planet, sun, shield, swords, gem, cog, portal,
-     chaosstar, person, book, claw, banner, helm, hourglass, skull, home.
+   Iconos: planet, sun, shield, swords, gem, cog, portal, chaosstar, asteroid,
+     eye, crown, aquila, person, book, claw, banner, helm, hourglass, skull, home.
    ========================================================================== */
 
 window.WORLD = {
   name: "SISTEMA CINERIS",
   subtitle: "Crónicas de un sistema perdido en el Maelstrom",
-  image: "assets/portada.png",
+  image: "assets/portada.jpg",
   intro: `El **Sistema Cineris** nació como una promesa: un **puerto franco**
 fundado por el **Rogue Trader Sir Lok II** en los confines del espacio, lejos de
 toda amenaza, lejos del **Maelstrom**.
@@ -48,8 +49,8 @@ está solo, y en manos del hierro.
 Esta es la crónica de Cineris: de sus mundos, de quienes los dominan y de lo que
 se oculta a plena luz.`,
   quote: {
-    text: "Nos fundaron lejos de toda tormenta. La tormenta vino a buscarnos.",
-    source: "Dicho de las ciudades colmena de Cineris"
+    text: "Anoto estas coordenadas con mano temblorosa: he hallado el sistema que mi linaje persiguió. Que nadie más conozca jamás esta ruta.",
+    source: "Sir Lok II · Diario de a bordo, Tomo I"
   }
 };
 
@@ -63,12 +64,12 @@ window.NAV = [
     id: "cineris",
     title: "Planeta Cineris",
     icon: "planet",
-    image: "assets/cineris.png",
+    image: "assets/cineris.jpg",
     epithet: "Mundo principal del sistema",
     tags: ["Mundo principal", "Puerto franco", "Ciudades colmena"],
     quote: {
-      text: "Cineris da hijos y da hierro. Eso es cuanto se le pide.",
-      source: "Proverbio de capataz de colmena"
+      text: "Un mundo de estepas sin fin y cielos de ceniza. Pobre en belleza, rico en hombres y en metal. Servirá.",
+      source: "Sir Lok II · Diario de a bordo, Tomo II"
     },
     body: `Visto desde la órbita, **Cineris** aún conserva la silueta de lo que un
 día fue: un **puerto independiente**, un punto de paso libre en el filo de la
@@ -99,14 +100,14 @@ una [rebelión en ciernes](#/cineris/rebelion).`,
         id: "gran-senor-lok",
         title: "El Gran Señor de los Lok",
         icon: "crown",
-        image: "assets/gran-senor-lok.png",
+        image: "assets/gran-senor-lok.jpg",
         imageContain: true,
         imageCaption: "«El Gran Señor de los Lok» · 801.M41",
         epithet: "Gobernante de Cineris",
         tags: ["Facción", "Gobernante", "Hechicero del Caos", "Dinastía Lok"],
         quote: {
-          text: "Los Lok siempre regresan. Y esta vez, hemos traído el Maelstrom con nosotros.",
-          source: "El Gran Señor de los Lok"
+          text: "Yo soy el principio y el regreso de esta dinastía. Cineris fue de los Lok, es de los Lok, y de los Lok será mientras el Maelstrom ruja.",
+          source: "Primera Soflama del Gran Señor de los Lok"
         },
         body: `El **Gran Señor de los Lok** es el amo y gobernante de Cineris. No es un
 Marine, sino un **hechicero del Caos** surgido del Maelstrom, que se reclama heredero
@@ -134,14 +135,14 @@ añado.)*`,
         id: "iron-warriors",
         title: "Iron Warriors",
         icon: "shield",
-        image: "assets/marius-rubigo.png",
+        image: "assets/marius-rubigo.jpg",
         imageContain: true,
         imageCaption: "Dominus Marius Rubīgō, Filius Ferri",
         epithet: "Los amos de hierro de Cineris",
         tags: ["Facción", "Marines del Caos", "Iron Warriors"],
         quote: {
-          text: "El hierro no perdona. Nosotros tampoco.",
-          source: "Lema de los amos de Cineris"
+          text: "Dad al hierro su tributo de carne y dejadle hacer la guerra. Mientras el muro aguante, no preguntéis qué se esconde tras él.",
+          source: "Ley del Gran Señor de los Lok"
         },
         body: `Una **Gran Compañía de Iron Warriors** ha echado raíces en el sistema
 Cineris y lo gobierna como su feudo particular.
@@ -170,12 +171,12 @@ aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
             id: "herrero-disforme",
             title: "Herrero Disforme",
             icon: "skull",
-            image: "assets/herrero-disforme.png",
+            image: "assets/herrero-disforme.jpg",
             epithet: "Maestre de Forja de los Iron Warriors de Cineris",
             tags: ["Personaje", "Iron Warriors", "Maestre de Forja"],
             quote: {
-              text: "Cada cadena que forjo es una promesa. Cada promesa, una condena.",
-              source: "El Herrero Disforme"
+              text: "Mi Maestre de Forja no duerme, no perdona y no falla. Temedle como me temeríais a mí.",
+              source: "Edicto del Gran Señor de los Lok"
             },
             body: `Nadie recuerda —o nadie se atreve a pronunciar— su verdadero nombre.
 En Cineris solo se le conoce como el **Herrero Disforme**: el **Maestre de Forja**
@@ -201,12 +202,12 @@ guerra.`,
         id: "cinturon-asteroides",
         title: "Cinturón de Asteroides",
         icon: "asteroid",
-        image: "assets/cinturon-asteroides.png",
+        image: "assets/cinturon-asteroides.jpg",
         epithet: "El puerto de los amos de hierro",
         tags: ["Localización", "Puerto", "Iron Warriors"],
         quote: {
-          text: "Cada roca, una fortaleza. Cada cadena, una advertencia.",
-          source: "Dicho entre los tripulantes del puerto"
+          text: "Hemos fortificado las rocas. Ahora ninguna nave entra en Cineris sin nuestro permiso, ni sale sin nuestro diezmo.",
+          source: "Sir Lok III · Diario de a bordo, Tomo IV"
         },
         body: `Entre las rocas que orbitan Cineris, los Iron Warriors han forjado su
 **puerto**: un archipiélago de **fortalezas** alzadas sobre asteroides, unidas
@@ -231,13 +232,13 @@ rocas.
         id: "rebelion",
         title: "Rebelión en Ciernes",
         icon: "eye",
-        image: "assets/nomadas-desierto.png",
+        image: "assets/nomadas-desierto.jpg",
         imageContain: true,
         epithet: "Disidencia contra el régimen del Lok",
         tags: ["Facción", "Rebelión", "El Sur", "Colmenas"],
         quote: {
-          text: "Todos van enmascarados y harapientos. Imposible saber quién reza al Emperador y quién a algo mucho peor.",
-          source: "Informe de un capataz de colmena"
+          text: "Que recen a quien quieran en sus agujeros. El día que dejen de pagar tributo, dejarán de respirar.",
+          source: "Edicto del Gran Señor de los Lok"
         },
         body: `Bajo el yugo del Gran Señor de los Lok crece la disidencia. Sus
 seguidores vagan por los páramos y las cavernas como **nómadas del desierto**:
@@ -256,8 +257,8 @@ distintas**: una aún leal al Emperador, otra entregada a los demonios.`,
             epithet: "Exconvictos leales al Emperador",
             tags: ["Rebelión", "Leales", "El Sur"],
             quote: {
-              text: "Nos encerraron, nos olvidaron y nos dieron por muertos. Y aun así, seguimos siendo del Emperador.",
-              source: "Grabado en una caverna del Sur"
+              text: "Bajo el Sur se pudren unos fieles de un dios muerto. Dejadlos pudrirse: su fe no da de comer ni paga tributo.",
+              source: "Soflama del Gran Señor de los Lok"
             },
             body: `En las **cavernas** de los páramos del Sur pervive un pueblo
 descendiente de los **penados** de la era de los Puños Imperiales: presos y exiliados
@@ -278,8 +279,8 @@ toscos, supersticiosos y desconfiados, pero su fe es de hierro.`,
             epithet: "El culto que convoca demonios",
             tags: ["Rebelión", "Caos", "Demonios", "Herejía"],
             quote: {
-              text: "Dicen amar al Emperador. Pero los nombres que susurran en la oscuridad no son el suyo.",
-              source: "Informe de un capataz de colmena"
+              text: "Convocad lo que oséis convocar. Pero recordad: en Cineris, el único demonio con trono soy yo.",
+              source: "Edicto del Gran Señor de los Lok"
             },
             body: `En lo más hondo de las colmenas y los páramos se oculta un **culto
 esotérico** que se proclama leal al antiguo Emperador... pero cuyos ritos han derivado
@@ -303,6 +304,10 @@ de verdad, y ahí reside su mayor peligro.
         icon: "swords",
         kind: "batallas",
         epithet: "Crónica de partidas — Frente de Cineris",
+        quote: {
+          text: "Que cada batalla quede grabada. Quiero que los siglos sepan, sin lugar a duda, a quién pertenecía Cineris.",
+          source: "Soflama del Gran Señor de los Lok"
+        },
         body: `Aquí se inmortaliza cada **partida jugada** en el frente de Cineris:
 asedios, incursiones y guerras por el dominio del sistema.`,
         children: []   /* ← cada partida que juegues se añade aquí */
@@ -317,6 +322,10 @@ asedios, incursiones y guerras por el dominio del sistema.`,
     icon: "sun",
     epithet: "El sol de Cineris",
     tags: ["Estrella", "Sistema Cineris", "Secreto"],
+    quote: {
+      text: "La estrella del sistema arde pálida y constante. La catalogo como D31. Un sol sin más misterio que su silencio.",
+      source: "Sir Lok II · Diario de a bordo, Tomo II"
+    },
     body: `Catalogada como **D31**, es la estrella en torno a la cual gira todo el
 sistema Cineris. Para los millones que pueblan las colmenas no es más que el sol
 pálido que asoma sobre las estepas.
@@ -330,12 +339,12 @@ mundos malditos de [Hybri](#/hybri).`,
         id: "mechanicus-oscuro",
         title: "Mechanicus Oscuro",
         icon: "cog",
-        image: "assets/mechanicus-oscuro.png",
+        image: "assets/mechanicus-oscuro.jpg",
         epithet: "La herejía en el corazón del sol",
         tags: ["Facción", "Mechanicus Oscuro", "Secreto"],
         quote: {
-          text: "La carne es débil. El fuego de una estrella, eterno.",
-          source: "Axioma del Mechanicus Oscurus"
+          text: "Hay luces en mi estrella que yo no encendí. Algún día sabré quién mora en ese fuego... o él sabrá de mí.",
+          source: "Anotación del Gran Señor de los Lok"
         },
         body: `Lo que **nadie sabe** —ni los señores de hierro de Cineris, ni los
 enjambres de las colmenas— es que la estrella **D31** no es solo una estrella.
@@ -356,12 +365,12 @@ tecnoherejes obran sus designios sin que nadie sospeche su existencia.
     id: "hybri",
     title: "Sistema Hybri",
     icon: "portal",
-    image: "assets/tunel-hybri.png",
+    image: "assets/tunel-hybri.jpg",
     epithet: "Más allá del Túnel Hybri",
     tags: ["Sistema", "Disformidad", "Caballeros del Caos"],
     quote: {
-      text: "El túnel no se cruza dos veces con la misma fe.",
-      source: "Advertencia grabada a la entrada del Túnel Hybri"
+      text: "El túnel bajo la estrella es mi puerta trasera al infierno. Por él llegué; por él llamo a mis perros cuando los necesito.",
+      source: "Soflama del Gran Señor de los Lok"
     },
     body: `Bajo la estrella **D31**, oculta donde nadie mira, se abre la boca del
 **Túnel Hybri**: una garganta de pura **disformidad** que atraviesa la realidad y
@@ -386,6 +395,10 @@ que no termina jamás.
         icon: "chaosstar",
         epithet: "Mundo caballero del Caos",
         tags: ["Mundo Caballero", "Caos"],
+        quote: {
+          text: "La Primera Casa se cree dueña de las demás. Dejad que lo crea: un perro orgulloso muerde más fuerte.",
+          source: "Edicto del Gran Señor de los Lok"
+        },
         body: `El primero de los mundos al otro lado del túnel. Su Casa Caballero se
 reclama la **más antigua** de Hybri, y con ello, dueña por derecho del resto.
 
@@ -397,6 +410,10 @@ reclama la **más antigua** de Hybri, y con ello, dueña por derecho del resto.
         icon: "chaosstar",
         epithet: "Mundo caballero del Caos",
         tags: ["Mundo Caballero", "Caos"],
+        quote: {
+          text: "La Segunda Casa es una marea de hierro. No se cuentan sus andadores; se cuentan los mundos que dejan en ceniza.",
+          source: "Edicto del Gran Señor de los Lok"
+        },
         body: `El segundo mundo de Hybri, cuya Casa presume de ser la **más numerosa**:
 una marea de andadores que ningún rival iguala en número.
 
@@ -408,6 +425,10 @@ una marea de andadores que ningún rival iguala en número.
         icon: "chaosstar",
         epithet: "Mundo caballero del Caos",
         tags: ["Mundo Caballero", "Caos"],
+        quote: {
+          text: "A la Cuarta Casa no se la llama: se la suelta. Y luego se reza por haber apuntado en la dirección correcta.",
+          source: "Edicto del Gran Señor de los Lok"
+        },
         body: `El cuarto mundo de Hybri, hogar de la Casa **más temida**: crueles incluso
 para los cánones del Caos, sus alianzas nunca duran y su rencor no se olvida.
 
@@ -419,6 +440,10 @@ para los cánones del Caos, sus alianzas nunca duran y su rencor no se olvida.
         icon: "swords",
         kind: "batallas",
         epithet: "Crónica de partidas — Mundos de Hybri",
+        quote: {
+          text: "Las guerras de Hybri son mi teatro predilecto. Tomad asiento, y tomad nota.",
+          source: "Soflama del Gran Señor de los Lok"
+        },
         body: `Aquí se inmortaliza cada **partida jugada** en los mundos de Hybri:
 las guerras de los Caballeros del Caos, sus alianzas rotas y sus venganzas.`,
         children: []   /* ← cada partida que juegues se añade aquí */
@@ -429,56 +454,56 @@ las guerras de los Caballeros del Caos, sus alianzas rotas y sus venganzas.`,
 ];
 
 /* ──────────────────────────── CRONOLOGÍA ──────────────────────────────
-   Reconstruida con lo que me has contado. Dame fechas/eventos y la amplío. */
+   Fechas en notación imperial 40k (año.Milenio). Año actual: 001.M42. */
 window.TIMELINE = {
   id: "cronologia",
   title: "Cronología",
-  blurb: "La historia del sistema Cineris, era a era.",
-  image: "assets/fondo-cronologia.png",
+  blurb: "La historia del sistema Cineris, era a era. (Año actual: 001.M42)",
+  image: "assets/fondo-cronologia.jpg",
   eras: [
     {
       name: "La Fundación",
-      caption: "Hace 5000 años — el Libre Mercader Lok",
+      caption: "~M37 · el Libre Mercader Lok",
       events: [
-        { date: "Hace 5000 años", title: "Sir Lok II reclama Cineris", text: "Con las cartas de ruta que heredó para hallar el sistema, el Rogue Trader Sir Lok II lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio." },
-        { date: "La dinastía Lok", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios." }
+        { date: "~001.M37", title: "Sir Lok II reclama Cineris", text: "Con las cartas de ruta que heredó para hallar el sistema, el Rogue Trader Sir Lok II lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio." },
+        { date: "M37", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios." }
       ]
     },
     {
       name: "La Mácula de los Lok",
-      caption: "Hace 4000 años — el heredero traidor",
+      caption: "~M38 · el heredero traidor",
       events: [
-        { date: "Hace 4000 años", title: "El tercer heredero, traitor xenos", text: "El tercer heredero de la dinastía Lok es declarado traidor y xenos. La mancha de la herejía cae sobre todo el sistema." },
-        { date: "La respuesta del Imperio", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris." },
-        { date: "El exilio", title: "La dinastía Lok huye al Maelstrom", text: "Perseguidos, los Lok huyen al corazón del Maelstrom. No hallan allí grandes glorias: su dinastía se pierde y se desvanece durante milenios." }
+        { date: "~001.M38", title: "El tercer heredero, traitor xenos", text: "El tercer heredero de la dinastía Lok es declarado traidor y xenos. La mancha de la herejía cae sobre todo el sistema." },
+        { date: "~015.M38", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris." },
+        { date: "~020.M38", title: "La dinastía Lok huye al Maelstrom", text: "Perseguidos, los Lok huyen al corazón del Maelstrom. No hallan allí grandes glorias: su dinastía se pierde y se desvanece durante milenios." }
       ]
     },
     {
       name: "El Yugo del Puño",
-      caption: "Tres milenios bajo los Puños Imperiales",
+      caption: "M38 – M41 · tres milenios imperiales",
       events: [
-        { date: "Durante 3000 años", title: "Pocos marines, larga vigilia", text: "Un puñado de Puños Imperiales sucesores conserva el sistema durante tres milenios, guarneciendo sus fortalezas." },
-        { date: "La herencia Lok", title: "Las viejas estructuras se consolidan", text: "Pese a la vigilancia imperial, las redes piratescas de los Lok arraigan y se consolidan en las ciudades colmena." }
+        { date: "M38 – M41", title: "Pocos marines, larga vigilia", text: "Un puñado de Puños Imperiales sucesores conserva el sistema durante tres milenios, guarneciendo sus fortalezas." },
+        { date: "M39", title: "Las viejas estructuras se consolidan", text: "Pese a la vigilancia imperial, las redes piratescas de los Lok arraigan y se consolidan en las ciudades colmena." }
       ]
     },
     {
       name: "La Inmersión y la Caída",
-      caption: "Hace ~1000 años — el retorno de los Lok",
+      caption: "~M41 · el retorno de los Lok",
       events: [
-        { date: "La Deriva", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia." },
-        { date: "El retorno", title: "Reaparece el Gran Señor de los Lok", text: "Del Maelstrom emerge un hechicero del Caos que se proclama Gran Señor de los Lok y reclama el gobierno del sistema. Su campaña dura apenas unos meses." },
-        { date: "La Caída", title: "Llega el hierro", text: "Tras la campaña del hechicero llegan los Iron Warriors. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal." },
-        { date: "Desde entonces", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris." }
+        { date: "~001.M41", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia." },
+        { date: "~001.M41", title: "Reaparece el Gran Señor de los Lok", text: "Del Maelstrom emerge un hechicero del Caos que se proclama Gran Señor de los Lok y reclama el gobierno del sistema. Su campaña dura apenas unos meses." },
+        { date: "~002.M41", title: "Llega el hierro", text: "Tras la campaña del hechicero llegan los Iron Warriors. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal." },
+        { date: "desde M41", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris." }
       ]
     },
     {
       name: "El Dominio Oculto",
-      caption: "El presente",
+      caption: "M41 – M42 · el presente",
       events: [
-        { date: "Hoy", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo." },
-        { date: "Secreto", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar." },
-        { date: "Secreto", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri." },
-        { date: "En ciernes", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios." }
+        { date: "001.M42", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo." },
+        { date: "M41 (secreto)", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar." },
+        { date: "M41 (secreto)", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri." },
+        { date: "001.M42", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios." }
       ]
     }
   ]
