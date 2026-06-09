@@ -77,7 +77,8 @@ galaxia. Pero su superficie cuenta otra historia.
 ## Estepas y colmenas
 Sus vastas **estepas asoladas** se extienden hasta el horizonte, erizadas de
 **ciudades colmena**. **Tres grandes colmenas** dominan el planeta, y las tres
-**pagan tributo** a los Iron Warriors que gobiernan el sistema.
+**pagan tributo** al [Gran Señor de los Lok](#/cineris/gran-senor-lok) que gobierna
+el sistema.
 
 ## El Sur prohibido
 Todo el hemisferio **sur es inhabitable**: una tierra muerta donde nadie pone el
@@ -89,6 +90,38 @@ Warriors. Pero bajo su yugo, en lo más hondo de las colmenas, **algo se gesta**
 una [rebelión en ciernes](#/cineris/rebelion).`,
     childrenLabel: "En este mundo",
     children: [
+      {
+        id: "gran-senor-lok",
+        title: "El Gran Señor de los Lok",
+        icon: "crown",
+        epithet: "Gobernante de Cineris",
+        tags: ["Facción", "Gobernante", "Hechicero del Caos", "Dinastía Lok"],
+        quote: {
+          text: "Los Lok siempre regresan. Y esta vez, hemos traído el Maelstrom con nosotros.",
+          source: "El Gran Señor de los Lok"
+        },
+        body: `El **Gran Señor de los Lok** es el amo y gobernante de Cineris. No es un
+Marine, sino un **hechicero del Caos** surgido del Maelstrom, que se reclama heredero
+de la perdida dinastía Lok —aunque "Gran Señor de los Lok" suena más a **título** que
+a nombre, y bien podría tratarse de toda una sucesión de ellos.
+
+## El gobierno de los IV
+Gobierna a través de **los IV**: un círculo de **consejeros oscuros y secretos**, una
+**parodia siniestra de los Altos Señores de Terra**. Tras su trono se adivina la mano
+de los Iron Warriors, la IV Legión.
+
+## La cultura del Maelstrom
+Ha traído al sistema la **cultura del Maelstrom**: deja que los **cultos proliferen**
+—o que se extingan— sin reparo alguno, siempre y cuando **paguen su tributo**. Bajo
+esa tolerancia corsaria germinan por igual la riqueza y la herejía.
+
+*(El Gran Señor de los Lok y los IV aún no tienen nombres propios — dímelos y los
+añado.)*`,
+        related: [
+          { to: "cineris/iron-warriors", label: "Los Iron Warriors" },
+          { to: "cineris/rebelion", label: "La Rebelión en Ciernes" }
+        ]
+      },
       {
         id: "iron-warriors",
         title: "Iron Warriors",
@@ -357,7 +390,7 @@ window.TIMELINE = {
       name: "La Fundación",
       caption: "Hace 5000 años — el Libre Mercader Lok",
       events: [
-        { date: "Hace 5000 años", title: "Sir Lok II descubre Cineris", text: "El Rogue Trader Sir Lok II halla el sistema. Sin derecho legal a gobernar los mundos que descubre, los asienta de todos modos y empieza a pagar tributo al Imperio." },
+        { date: "Hace 5000 años", title: "Sir Lok II reclama Cineris", text: "Con las cartas de ruta que heredó para hallar el sistema, el Rogue Trader Sir Lok II lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio." },
         { date: "La dinastía Lok", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios." }
       ]
     },
@@ -366,7 +399,8 @@ window.TIMELINE = {
       caption: "Hace 4000 años — el heredero traidor",
       events: [
         { date: "Hace 4000 años", title: "El tercer heredero, traitor xenos", text: "El tercer heredero de la dinastía Lok es declarado traidor y xenos. La mancha de la herejía cae sobre todo el sistema." },
-        { date: "La respuesta del Imperio", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris." }
+        { date: "La respuesta del Imperio", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris." },
+        { date: "El exilio", title: "La dinastía Lok huye al Maelstrom", text: "Perseguidos, los Lok huyen al corazón del Maelstrom. No hallan allí grandes glorias: su dinastía se pierde y se desvanece durante milenios." }
       ]
     },
     {
@@ -379,10 +413,11 @@ window.TIMELINE = {
     },
     {
       name: "La Inmersión y la Caída",
-      caption: "Hace ~1000 años — llega el hierro",
+      caption: "Hace ~1000 años — el retorno de los Lok",
       events: [
         { date: "La Deriva", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia." },
-        { date: "La Caída", title: "El hierro expulsa al puño", text: "Aprovechando el aislamiento, los Iron Warriors arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal." },
+        { date: "El retorno", title: "Reaparece el Gran Señor de los Lok", text: "Del Maelstrom emerge un hechicero del Caos que se proclama Gran Señor de los Lok y reclama el gobierno del sistema. Su campaña dura apenas unos meses." },
+        { date: "La Caída", title: "Llega el hierro", text: "Tras la campaña del hechicero llegan los Iron Warriors. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal." },
         { date: "Desde entonces", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris." }
       ]
     },
@@ -390,7 +425,7 @@ window.TIMELINE = {
       name: "El Dominio Oculto",
       caption: "El presente",
       events: [
-        { date: "Hoy", title: "El tributo de las colmenas", text: "Las tres grandes ciudades colmena pagan tributo a los Iron Warriors, que gobiernan el sistema como su feudo." },
+        { date: "Hoy", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo." },
         { date: "Secreto", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar." },
         { date: "Secreto", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri." },
         { date: "En ciernes", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios." }
