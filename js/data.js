@@ -231,58 +231,70 @@ rocas.
         id: "rebelion",
         title: "Rebelión en Ciernes",
         icon: "eye",
-        epithet: "Los leales al antiguo Emperador",
-        tags: ["Facción", "Culto", "Rebelión", "Demonios"],
-        quote: {
-          text: "Juran lealtad a un trono que el sistema olvidó hace mil años. Y para honrarlo, abren puertas que jamás debieron abrirse.",
-          source: "Informe de un capataz de colmena"
-        },
-        body: `En lo más hondo de las tres ciudades colmena se gesta una **rebelión**
-contra el yugo de los Iron Warriors.
-
-## Fe y herejía
-Sus miembros se proclaman **leales al antiguo Emperador**, nostálgicos del Imperio
-que un día gobernó Cineris. Pero su culto ha derivado en algo **extraño y
-esotérico**: ritos prohibidos, símbolos imposibles y, en lo más profundo, la
-**convocación de demonios**.
-
-## Una amenaza en ciernes
-Todavía son pocos y se esconden, pero crecen. Ni los Iron Warriors ni el Mechanicus
-Oscuro sospechan aún hasta dónde llega el veneno que anida en las colmenas.
-
-*(Este culto aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
-        related: [
-          { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
-        ]
-      },
-      {
-        id: "nomadas-desierto",
-        title: "Los Nómadas del Desierto",
-        icon: "tent",
         image: "assets/nomadas-desierto.png",
         imageContain: true,
-        epithet: "Moradores de los páramos del Sur",
-        tags: ["Facción", "El Sur", "Nómadas", "Parias"],
+        epithet: "Disidencia contra el régimen del Lok",
+        tags: ["Facción", "Rebelión", "El Sur", "Colmenas"],
         quote: {
-          text: "El desierto no perdona a los blandos. Por eso seguimos aquí cuando todo lo demás ha muerto.",
-          source: "Dicho de los Nómadas del Desierto"
+          text: "Todos van enmascarados y harapientos. Imposible saber quién reza al Emperador y quién a algo mucho peor.",
+          source: "Informe de un capataz de colmena"
         },
-        body: `Allí donde el **Sur** parece muerto, ellos caminan. Los **Nómadas del
-Desierto** son los pueblos errantes de los páramos de Cineris: tribus harapientas
-que cruzan las dunas de ceniza y se refugian en las cavernas.
+        body: `Bajo el yugo del Gran Señor de los Lok crece la disidencia. Sus
+seguidores vagan por los páramos y las cavernas como **nómadas del desierto**:
+enmascarados contra el aire muerto, harapientos, armados con rifles remendados.
 
-## Hijos del aire muerto
-Cubren sus rostros con **máscaras y respiradores** —el aire de los páramos mata a
-quien lo respira sin filtro— y se envuelven en sudarios y chatarra. Portan rifles
-remendados, cadenas y **estandartes deshilachados**.
+## Una sola cara, dos almas
+Desde fuera todos parecen lo mismo —parias del desierto—, y **nadie sabe quién es de
+un bando y quién del otro**. Pero bajo esas máscaras conviven **dos rebeliones muy
+distintas**: una aún leal al Emperador, otra entregada a los demonios.`,
+        childrenLabel: "Las dos rebeliones",
+        children: [
+          {
+            id: "habitantes-cavernas",
+            title: "Los Habitantes de las Cavernas",
+            icon: "aquila",
+            epithet: "Exconvictos leales al Emperador",
+            tags: ["Rebelión", "Leales", "El Sur"],
+            quote: {
+              text: "Nos encerraron, nos olvidaron y nos dieron por muertos. Y aun así, seguimos siendo del Emperador.",
+              source: "Grabado en una caverna del Sur"
+            },
+            body: `En las **cavernas** de los páramos del Sur pervive un pueblo
+descendiente de los **penados** de la era de los Puños Imperiales: presos y exiliados
+que jamás renegaron de su fe.
 
-## ¿Amigos o enemigos?
-Errantes y desconfiados, recorren un mundo que los olvidó. Su lealtad es un enigma.
+## Fieles en la oscuridad
+Generación tras generación, estos **exconvictos** se mantienen **leales al Emperador**
+de la Humanidad, custodiando una llama de devoción en el mundo que los abandonó. Son
+toscos, supersticiosos y desconfiados, pero su fe es de hierro.`,
+            related: [
+              { to: "cineris/rebelion/cultistas-demoniacos", label: "Los Cultistas Demoníacos" }
+            ]
+          },
+          {
+            id: "cultistas-demoniacos",
+            title: "Los Cultistas Demoníacos",
+            icon: "chaosstar",
+            epithet: "El culto que convoca demonios",
+            tags: ["Rebelión", "Caos", "Demonios", "Herejía"],
+            quote: {
+              text: "Dicen amar al Emperador. Pero los nombres que susurran en la oscuridad no son el suyo.",
+              source: "Informe de un capataz de colmena"
+            },
+            body: `En lo más hondo de las colmenas y los páramos se oculta un **culto
+esotérico** que se proclama leal al antiguo Emperador... pero cuyos ritos han derivado
+en algo monstruoso.
 
-*(¿Quiénes son para ti: los mutantes y degenerados de las cavernas, el culto de
-exconvictos leal al Emperador, o un pueblo aparte? Cuéntamelo y afino su historia.)*`,
-        related: [
-          { to: "cineris/rebelion", label: "La Rebelión en Ciernes" }
+## La puerta que no debió abrirse
+Entre símbolos imposibles y plegarias corrompidas, practican la **convocación de
+demonios**. Se camuflan entre los parias del desierto, indistinguibles de los fieles
+de verdad, y ahí reside su mayor peligro.
+
+*(Este culto aún no tiene nombre propio — dímelo y lo añado.)*`,
+            related: [
+              { to: "cineris/rebelion/habitantes-cavernas", label: "Los Habitantes de las Cavernas" }
+            ]
+          }
         ]
       },
       {
