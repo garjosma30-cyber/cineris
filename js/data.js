@@ -29,8 +29,8 @@ window.WORLD = {
   subtitle: "Crónicas de un sistema perdido en el Maelstrom",
   image: "assets/portada.png",
   intro: `El **Sistema Cineris** nació como una promesa: un **puerto franco**
-fundado por un **Rogue Trader** en los confines del espacio, lejos de toda
-amenaza, lejos del **Maelstrom**.
+fundado por el **Rogue Trader Sir Lok II** en los confines del espacio, lejos de
+toda amenaza, lejos del **Maelstrom**.
 
 El tiempo y las mareas de la disformidad traicionaron esa promesa. Hoy Cineris
 yace **completamente sumergido en el Maelstrom**, aislado entre tormentas de
@@ -76,16 +76,17 @@ galaxia. Pero su superficie cuenta otra historia.
 
 ## Estepas y colmenas
 Sus vastas **estepas asoladas** se extienden hasta el horizonte, erizadas de
-**ciudades colmena** que se alzan como montañas de acero y óxido. En ellas se
-hacina una población incontable.
+**ciudades colmena**. **Tres grandes colmenas** dominan el planeta, y las tres
+**pagan tributo** a los Iron Warriors que gobiernan el sistema.
 
 ## El Sur prohibido
 Todo el hemisferio **sur es inhabitable**: una tierra muerta donde nadie pone el
 pie y de la que nadie habla.
 
 ## Cantera de carne y hierro
-Por encima de todo, Cineris es el principal punto de **reclutamiento y
-abastecimiento** de los Iron Warriors que dominan el sistema.`,
+Cineris es el principal punto de **reclutamiento y abastecimiento** de los Iron
+Warriors. Pero bajo su yugo, en lo más hondo de las colmenas, **algo se gesta**:
+una [rebelión en ciernes](#/cineris/rebelion).`,
     childrenLabel: "En este mundo",
     children: [
       {
@@ -181,6 +182,34 @@ Su verdadera fortaleza —la base principal— permanece en secreto, lejos de es
 rocas.
 
 > Cadenas para unir mundos. Cañones para recordarte de quién son.`,
+        related: [
+          { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
+        ]
+      },
+      {
+        id: "rebelion",
+        title: "Rebelión en Ciernes",
+        icon: "eye",
+        epithet: "Los leales al antiguo Emperador",
+        tags: ["Facción", "Culto", "Rebelión", "Demonios"],
+        quote: {
+          text: "Juran lealtad a un trono que el sistema olvidó hace mil años. Y para honrarlo, abren puertas que jamás debieron abrirse.",
+          source: "Informe de un capataz de colmena"
+        },
+        body: `En lo más hondo de las tres ciudades colmena se gesta una **rebelión**
+contra el yugo de los Iron Warriors.
+
+## Fe y herejía
+Sus miembros se proclaman **leales al antiguo Emperador**, nostálgicos del Imperio
+que un día gobernó Cineris. Pero su culto ha derivado en algo **extraño y
+esotérico**: ritos prohibidos, símbolos imposibles y, en lo más profundo, la
+**convocación de demonios**.
+
+## Una amenaza en ciernes
+Todavía son pocos y se esconden, pero crecen. Ni los Iron Warriors ni el Mechanicus
+Oscuro sospechan aún hasta dónde llega el veneno que anida en las colmenas.
+
+*(Este culto aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
         related: [
           { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
         ]
@@ -326,25 +355,34 @@ window.TIMELINE = {
   eras: [
     {
       name: "La Fundación",
-      caption: "La promesa de un puerto franco",
+      caption: "Hace 5000 años — el Libre Mercader Lok",
       events: [
-        { date: "Tiempos de la fundación", title: "Un Rogue Trader funda Cineris", text: "Un Libre Mercader establece el sistema como puerto independiente, lejos del Maelstrom: próspero, libre y bien comunicado." },
-        { date: "Auge", title: "El puerto franco", text: "Cineris florece como punto de paso. Sus estepas se cubren de ciudades colmena y su población se dispara." }
+        { date: "Hace 5000 años", title: "Sir Lok II descubre Cineris", text: "El Rogue Trader Sir Lok II halla el sistema. Sin derecho legal a gobernar los mundos que descubre, los asienta de todos modos y empieza a pagar tributo al Imperio." },
+        { date: "La dinastía Lok", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios." }
       ]
     },
     {
-      name: "La Inmersión",
-      caption: "El Maelstrom lo reclama",
+      name: "La Mácula de los Lok",
+      caption: "Hace 4000 años — el heredero traidor",
       events: [
-        { date: "La Deriva", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris por completo. El sistema queda aislado, rodeado de tormentas, olvidado por la galaxia." }
+        { date: "Hace 4000 años", title: "El tercer heredero, traitor xenos", text: "El tercer heredero de la dinastía Lok es declarado traidor y xenos. La mancha de la herejía cae sobre todo el sistema." },
+        { date: "La respuesta del Imperio", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris." }
       ]
     },
     {
-      name: "El Puño y el Hierro",
-      caption: "Hace un milenio",
+      name: "El Yugo del Puño",
+      caption: "Tres milenios bajo los Puños Imperiales",
       events: [
-        { date: "Hace ~1000 años", title: "Bastión de los Puños Imperiales", text: "El sistema es una plaza fuerte del Imperio, sembrada de fortalezas y guarnecida por los Puños Imperiales." },
-        { date: "La Caída", title: "El hierro expulsa al puño", text: "Los Iron Warriors arrebatan Cineris a los Puños Imperiales y los expulsan del sistema tras una guerra brutal." },
+        { date: "Durante 3000 años", title: "Pocos marines, larga vigilia", text: "Un puñado de Puños Imperiales sucesores conserva el sistema durante tres milenios, guarneciendo sus fortalezas." },
+        { date: "La herencia Lok", title: "Las viejas estructuras se consolidan", text: "Pese a la vigilancia imperial, las redes piratescas de los Lok arraigan y se consolidan en las ciudades colmena." }
+      ]
+    },
+    {
+      name: "La Inmersión y la Caída",
+      caption: "Hace ~1000 años — llega el hierro",
+      events: [
+        { date: "La Deriva", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia." },
+        { date: "La Caída", title: "El hierro expulsa al puño", text: "Aprovechando el aislamiento, los Iron Warriors arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal." },
         { date: "Desde entonces", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris." }
       ]
     },
@@ -352,9 +390,10 @@ window.TIMELINE = {
       name: "El Dominio Oculto",
       caption: "El presente",
       events: [
-        { date: "Era reciente", title: "Los Iron Warriors se asientan", text: "Una Gran Compañía de Iron Warriors hace de Cineris su coto de reclutamiento y abastecimiento. Levantan un puerto en el cinturón de asteroides; su verdadera base permanece en secreto." },
-        { date: "Secreto", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro instala una base que nadie llega a sospechar." },
-        { date: "Secreto", title: "Se abre el Túnel Hybri", text: "Bajo la estrella se descubre una garganta de disformidad que conecta Cineris con los mundos caballero del Caos de Hybri." }
+        { date: "Hoy", title: "El tributo de las colmenas", text: "Las tres grandes ciudades colmena pagan tributo a los Iron Warriors, que gobiernan el sistema como su feudo." },
+        { date: "Secreto", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar." },
+        { date: "Secreto", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri." },
+        { date: "En ciernes", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios." }
       ]
     }
   ]
