@@ -256,6 +256,36 @@ Oscuro sospechan aún hasta dónde llega el veneno que anida en las colmenas.
         ]
       },
       {
+        id: "nomadas-desierto",
+        title: "Los Nómadas del Desierto",
+        icon: "tent",
+        image: "assets/nomadas-desierto.png",
+        imageContain: true,
+        epithet: "Moradores de los páramos del Sur",
+        tags: ["Facción", "El Sur", "Nómadas", "Parias"],
+        quote: {
+          text: "El desierto no perdona a los blandos. Por eso seguimos aquí cuando todo lo demás ha muerto.",
+          source: "Dicho de los Nómadas del Desierto"
+        },
+        body: `Allí donde el **Sur** parece muerto, ellos caminan. Los **Nómadas del
+Desierto** son los pueblos errantes de los páramos de Cineris: tribus harapientas
+que cruzan las dunas de ceniza y se refugian en las cavernas.
+
+## Hijos del aire muerto
+Cubren sus rostros con **máscaras y respiradores** —el aire de los páramos mata a
+quien lo respira sin filtro— y se envuelven en sudarios y chatarra. Portan rifles
+remendados, cadenas y **estandartes deshilachados**.
+
+## ¿Amigos o enemigos?
+Errantes y desconfiados, recorren un mundo que los olvidó. Su lealtad es un enigma.
+
+*(¿Quiénes son para ti: los mutantes y degenerados de las cavernas, el culto de
+exconvictos leal al Emperador, o un pueblo aparte? Cuéntamelo y afino su historia.)*`,
+        related: [
+          { to: "cineris/rebelion", label: "La Rebelión en Ciernes" }
+        ]
+      },
+      {
         id: "batallas",
         title: "Batallas",
         icon: "swords",
