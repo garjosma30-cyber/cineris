@@ -187,12 +187,14 @@
     var crumbs = [["Inicio", "#/"]], acc = [];
     trail.forEach(function (n, i) { acc.push(n.id); crumbs.push([n.title, i < trail.length - 1 ? "#/" + acc.join("/") : null]); });
 
-    var fig = "";
-    if (node.image) {
-      fig = '<figure class="e-figure' + (node.imageContain ? " contain" : "") + '">' +
-              '<div class="e-frame"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' +
+    var fig = "", banner = "";
+    if (node.image && node.imageContain) {
+      fig = '<figure class="e-figure contain"><div class="e-frame"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' +
               (node.imageCaption ? "<figcaption>" + esc(node.imageCaption) + "</figcaption>" : "") +
             "</figure>";
+    } else if (node.image) {
+      banner = '<div class="entry-banner"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' +
+               (node.imageCaption ? '<div class="entry-cap">' + esc(node.imageCaption) + "</div>" : "");
     }
     var pq = node.quote ? '<div class="pull-quote"><div class="q">«' + esc(node.quote.text) + '»</div>' +
       (node.quote.source ? '<div class="src">' + esc(node.quote.source) + "</div>" : "") + "</div>" : "";
@@ -217,7 +219,7 @@
         }).join("") + "</div></div>";
     }
 
-    return '<div class="view">' + crumb(crumbs) + '<div class="entry">' +
+    return '<div class="view">' + crumb(crumbs) + banner + '<div class="entry">' +
       (parent.length ? '<a class="back-link" href="#/' + pathOf(parent) + '">' + icon("back") + "Volver a " + esc(parent[parent.length - 1].title) + "</a>" : "") +
       fig +
       "<h1>" + esc(node.title) + "</h1>" +

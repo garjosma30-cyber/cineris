@@ -277,6 +277,11 @@ img { max-width: 100%; display: block; }
 .entry .e-figure.contain .e-frame { max-height: none; background: #0a0a0c; border-color: var(--gold-dim); text-align: center; padding: 10px; }
 .entry .e-figure.contain .e-frame img { width: auto; height: auto; max-width: 100%; max-height: 640px; object-fit: contain; display: inline-block; }
 .entry .e-figure figcaption { text-align: center; font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--gold-soft); margin-top: 12px; letter-spacing: .02em; }
+/* banner a todo el ancho para imágenes apaisadas (cabecera de ficha) */
+.entry-banner { position: relative; margin: 0 -36px 24px; height: 340px; overflow: hidden; border-bottom: 1px solid var(--gold-dim); }
+.entry-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.entry-banner::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 -50px 60px rgba(10,10,12,.6); pointer-events: none; }
+.entry-cap { text-align: center; font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--gold-soft); margin: -14px 0 24px; }
 .entry h1 { font-size: 42px; }
 .entry .e-epithet { font-family: var(--font-label); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-soft); margin-top: 10px; }
 .entry .e-tags { margin-top: 16px; }
@@ -390,6 +395,7 @@ img { max-width: 100%; display: block; }
   .view { padding: 28px 18px 60px; }
   .home-hero-img { margin: -28px -18px 24px; height: 260px; }
   .timeline-bg { left: 0; }
+  .entry-banner { margin: 0 -18px 20px; height: 220px; }
   .search { width: 200px; }
   .brand .world-sub { display: none; }
   .entry h1 { font-size: 32px; }

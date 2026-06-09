@@ -81,8 +81,13 @@ Sus vastas **estepas asoladas** se extienden hasta el horizonte, erizadas de
 el sistema.
 
 ## El Sur prohibido
-Todo el hemisferio **sur es inhabitable**: una tierra muerta donde nadie pone el
-pie y de la que nadie habla.
+Todo el hemisferio **sur** parece una tierra muerta y deshabitada de la que nadie
+habla. Pero bajo sus páramos, en un laberinto de **cavernas**, se ocultan
+**poblaciones enteras** de número incalculable.
+
+La mayoría son **mutantes y degenerados**. Aun así, se rumorea que entre ellos
+pervive un **culto de exconvictos** —penados desde los tiempos del dominio de los
+Puños Imperiales— que todavía se mantiene **leal al Emperador**.
 
 ## Cantera de carne y hierro
 Cineris es el principal punto de **reclutamiento y abastecimiento** de los Iron
