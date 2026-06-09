@@ -12,8 +12,13 @@
                     imageCaption: "..." -> pie de foto / placa
                     children: [ ...más nodos ]   (sub-pestañas)
                     kind: "batallas"             (página-registro de partidas)
+                    battle: { fecha, lugar, puntos, bandos:[...], resultado }
+                              (hoja de batalla de una partida; ver plantilla
+                               comentada en la sección Batallas de Cineris)
                     related: [ { to:"ruta/de/ids", label:"..." } ]
      TIMELINE  -> la cronología (eras con eventos, fechas en notación 40k).
+                  Cada evento puede llevar tags: ["Facción", ...] (para los
+                  filtros) y link: "ruta/de/ids" (enlace a una ficha).
 
    Convención: la "quote" de cada ficha es su PRESENTACIÓN, y es siempre una
    voz de los Lok: una anotación del diario de un Rogue Trader (Sir Lok II/III/IV)
@@ -310,7 +315,24 @@ de verdad, y ahí reside su mayor peligro.
         },
         body: `Aquí se inmortaliza cada **partida jugada** en el frente de Cineris:
 asedios, incursiones y guerras por el dominio del sistema.`,
-        children: []   /* ← cada partida que juegues se añade aquí */
+        children: [
+          /* ← cada partida que juegues se añade aquí. PLANTILLA:
+          {
+            id: "asedio-colmena-1",
+            title: "Asedio de la Colmena Primus",
+            icon: "swords",
+            epithet: "Primera sangre en las estepas",
+            battle: {
+              fecha: "012.M42",
+              lugar: "Colmena Primus, Cineris",
+              puntos: "2000 pts",
+              bandos: ["Iron Warriors — jose", "Puños Imperiales — rival"],
+              resultado: "Victoria de los Iron Warriors"
+            },
+            body: `Crónica de la partida: qué pasó, momentos épicos, bajas...`
+          },
+          */
+        ]
       }
     ]
   },
@@ -465,45 +487,45 @@ window.TIMELINE = {
       name: "La Fundación",
       caption: "~M37 · el Libre Mercader Lok",
       events: [
-        { date: "~001.M37", title: "Sir Lok II reclama Cineris", text: "Con las cartas de ruta que heredó para hallar el sistema, el Rogue Trader Sir Lok II lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio." },
-        { date: "M37", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios." }
+        { date: "~001.M37", title: "Sir Lok II reclama Cineris", text: "Con las cartas de ruta que heredó para hallar el sistema, el Rogue Trader Sir Lok II lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio.", tags: ["Dinastía Lok"], link: "cineris" },
+        { date: "M37", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios.", tags: ["Dinastía Lok"] }
       ]
     },
     {
       name: "La Mácula de los Lok",
       caption: "~M38 · el heredero traidor",
       events: [
-        { date: "~001.M38", title: "El tercer heredero, traitor xenos", text: "El tercer heredero de la dinastía Lok es declarado traidor y xenos. La mancha de la herejía cae sobre todo el sistema." },
-        { date: "~015.M38", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris." },
-        { date: "~020.M38", title: "La dinastía Lok huye al Maelstrom", text: "Perseguidos, los Lok huyen al corazón del Maelstrom. No hallan allí grandes glorias: su dinastía se pierde y se desvanece durante milenios." }
+        { date: "~001.M38", title: "El tercer heredero, traitor xenos", text: "El tercer heredero de la dinastía Lok es declarado traidor y xenos. La mancha de la herejía cae sobre todo el sistema.", tags: ["Dinastía Lok"] },
+        { date: "~015.M38", title: "Llegan los Puños Imperiales", text: "Para purgar la mácula, el Imperio envía un capítulo sucesor de los Puños Imperiales, que toma el control de Cineris.", tags: ["Imperio"] },
+        { date: "~020.M38", title: "La dinastía Lok huye al Maelstrom", text: "Perseguidos, los Lok huyen al corazón del Maelstrom. No hallan allí grandes glorias: su dinastía se pierde y se desvanece durante milenios.", tags: ["Dinastía Lok", "Maelstrom"] }
       ]
     },
     {
       name: "El Yugo del Puño",
       caption: "M38 – M41 · tres milenios imperiales",
       events: [
-        { date: "M38 – M41", title: "Pocos marines, larga vigilia", text: "Un puñado de Puños Imperiales sucesores conserva el sistema durante tres milenios, guarneciendo sus fortalezas." },
-        { date: "M39", title: "Las viejas estructuras se consolidan", text: "Pese a la vigilancia imperial, las redes piratescas de los Lok arraigan y se consolidan en las ciudades colmena." }
+        { date: "M38 – M41", title: "Pocos marines, larga vigilia", text: "Un puñado de Puños Imperiales sucesores conserva el sistema durante tres milenios, guarneciendo sus fortalezas.", tags: ["Imperio"] },
+        { date: "M39", title: "Las viejas estructuras se consolidan", text: "Pese a la vigilancia imperial, las redes piratescas de los Lok arraigan y se consolidan en las ciudades colmena.", tags: ["Dinastía Lok"] }
       ]
     },
     {
       name: "La Inmersión y la Caída",
       caption: "~M41 · el retorno de los Lok",
       events: [
-        { date: "~001.M41", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia." },
-        { date: "~001.M41", title: "Reaparece el Gran Señor de los Lok", text: "Del Maelstrom emerge un hechicero del Caos que se proclama Gran Señor de los Lok y reclama el gobierno del sistema. Su campaña dura apenas unos meses." },
-        { date: "~002.M41", title: "Llega el hierro", text: "Tras la campaña del hechicero llegan los Iron Warriors. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal." },
-        { date: "desde M41", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris." }
+        { date: "~001.M41", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia.", tags: ["Maelstrom"] },
+        { date: "~001.M41", title: "Reaparece el Gran Señor de los Lok", text: "Del Maelstrom emerge un hechicero del Caos que se proclama Gran Señor de los Lok y reclama el gobierno del sistema. Su campaña dura apenas unos meses.", tags: ["Dinastía Lok"], link: "cineris/gran-senor-lok" },
+        { date: "~002.M41", title: "Llega el hierro", text: "Tras la campaña del hechicero llegan los Iron Warriors. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal.", tags: ["Iron Warriors", "Imperio"], link: "cineris/iron-warriors" },
+        { date: "desde M41", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris.", tags: ["Imperio", "Maelstrom"] }
       ]
     },
     {
       name: "El Dominio Oculto",
       caption: "M41 – M42 · el presente",
       events: [
-        { date: "001.M42", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo." },
-        { date: "M41 (secreto)", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar." },
-        { date: "M41 (secreto)", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri." },
-        { date: "001.M42", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios." }
+        { date: "001.M42", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo.", tags: ["Dinastía Lok"], link: "cineris/gran-senor-lok" },
+        { date: "M41 (secreto)", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar.", tags: ["Mechanicus Oscuro"], link: "estrella-d31/mechanicus-oscuro" },
+        { date: "M41 (secreto)", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri.", tags: ["Hybri", "Maelstrom"], link: "hybri" },
+        { date: "001.M42", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios.", tags: ["Rebelión"], link: "cineris/rebelion" }
       ]
     }
   ]

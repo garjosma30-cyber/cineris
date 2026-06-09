@@ -4,7 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sector Cineris — Crónicas</title>
-  <meta name="description" content="Archivo de lore y trasfondo del mundo.">
+  <meta name="description" content="Archivo de lore del Sistema Cineris: crónicas de un sistema perdido en el Maelstrom. Facciones, mundos, cronología y batallas.">
+  <meta name="theme-color" content="#0a0a0c">
+
+  <!-- Icono -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Tarjeta al compartir el enlace (Open Graph / Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sector Cineris — Crónicas">
+  <meta property="og:title" content="Sector Cineris — Crónicas">
+  <meta property="og:description" content="Archivo de lore del Sistema Cineris: crónicas de un sistema perdido en el Maelstrom. Que ningún nombre se pierda en la ceniza.">
+  <meta property="og:url" content="https://garjosma30-cyber.github.io/cineris/">
+  <meta property="og:image" content="https://garjosma30-cyber.github.io/cineris/assets/portada.jpg">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sector Cineris — Crónicas">
+  <meta name="twitter:description" content="Archivo de lore del Sistema Cineris: crónicas de un sistema perdido en el Maelstrom.">
+  <meta name="twitter:image" content="https://garjosma30-cyber.github.io/cineris/assets/portada.jpg">
 
   <!-- Tipografías imperiales (si no hay conexión, se usan fuentes del sistema) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,5 +75,12 @@
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    /* modo offline (PWA): solo en https o pruebas locales */
+    if ("serviceWorker" in navigator &&
+        (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+      window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js"); });
+    }
+  </script>
 </body>
 </html>

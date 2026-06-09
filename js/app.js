@@ -39,6 +39,7 @@
     skull:  '<path d="M12 3a8 8 0 0 0-8 8c0 3 1.6 4.8 3 6v3h3v-2h4v2h3v-3c1.4-1.2 3-3 3-6a8 8 0 0 0-8-8z"/><circle cx="9" cy="11.5" r="1.3"/><circle cx="15" cy="11.5" r="1.3"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
     back:   '<path d="M15 5l-7 7 7 7"/>',
+    dice:   '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="9" cy="15" r="1.2"/><circle cx="15" cy="15" r="1.2"/>',
     link:   '<path d="M10 13.8a3.8 3.8 0 0 0 5.4 0l2.8-2.8a3.8 3.8 0 1 0-5.4-5.4l-1.4 1.4"/><path d="M13.6 10.2a3.8 3.8 0 0 0-5.4 0l-2.8 2.8a3.8 3.8 0 1 0 5.4 5.4l1.4-1.4"/>'
   };
   function icon(name, big) { return svg(ICON[name] || ICON.book, big); }
@@ -98,6 +99,37 @@
   }
   function excerpt(src, n) { var t = plain(src); return t.length > n ? t.slice(0, n - 1).trim() + "…" : t; }
 
+  /* normalización sin tildes (mapa 1:1 de índices para poder resaltar) */
+  function nmap(s) {
+    var out = "", i, c;
+    s = String(s == null ? "" : s);
+    for (i = 0; i < s.length; i++) {
+      c = s.charAt(i).toLowerCase();
+      if (c.normalize) c = c.normalize("NFD").replace(/[̀-ͯ]/g, "");
+      out += c.charAt(0) || "";
+    }
+    return out;
+  }
+  /* resalta todas las apariciones de qn (ya normalizado) dentro de text */
+  function hiText(text, qn) {
+    text = String(text == null ? "" : text);
+    if (!qn) return esc(text);
+    var m = nmap(text), out = "", i = 0, idx;
+    while ((idx = m.indexOf(qn, i)) !== -1) {
+      out += esc(text.slice(i, idx)) + "<mark>" + esc(text.slice(idx, idx + qn.length)) + "</mark>";
+      i = idx + qn.length;
+    }
+    return out + esc(text.slice(i));
+  }
+  /* extracto centrado en la primera coincidencia, con resaltado */
+  function snippet(body, qn, n) {
+    var t = plain(body), m = nmap(t), idx = qn ? m.indexOf(qn) : -1;
+    if (idx === -1) return esc(excerpt(body, n));
+    var start = Math.max(0, idx - Math.floor((n - qn.length) / 2));
+    var end = Math.min(t.length, start + n);
+    return (start > 0 ? "…" : "") + hiText(t.slice(start, end), qn) + (end < t.length ? "…" : "");
+  }
+
   /* ------------------------------------------------------------- datos */
   var WORLD = window.WORLD || { name: "Mi Mundo", subtitle: "", intro: "", quote: null };
   var NAV = window.NAV || [];
@@ -140,16 +172,124 @@
     return '<div class="card-grid">' + list.map(function (c) {
       var cp = parentPath + "/" + c.id;
       var thumb = c.image
-        ? '<div class="thumb"><img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" loading="lazy"></div>'
+        ? '<div class="thumb"><img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" loading="lazy" decoding="async"></div>'
         : '<div class="thumb"><span class="ph">' + icon(c.icon || "book") + "</span></div>";
       return '<a class="card" href="#/' + cp + '">' + thumb +
         '<div class="body"><div class="c-title">' + esc(c.title) + "</div>" +
+        (c.battle && c.battle.fecha ? '<div class="c-date">' + esc(c.battle.fecha) + (c.battle.resultado ? " · " + esc(c.battle.resultado) : "") + "</div>" : "") +
         (c.epithet ? '<div class="c-epithet">' + esc(c.epithet) + "</div>" : "") +
         '<div class="c-excerpt">' + esc(excerpt(c.body, 150)) + "</div>" +
         tagsHtml(c.tags, false) + "</div></a>";
     }).join("") + "</div>";
   }
   function subHead(txt) { return '<div class="section-head sub"><h2>' + esc(txt) + "</h2></div>"; }
+
+  /* hoja de batalla (ficha de partida): node.battle = { fecha, lugar, puntos,
+     bandos: ["Ejército — jugador", ...], resultado } */
+  function battleSheet(b) {
+    if (!b) return "";
+    function row(label, val) {
+      return val ? '<div class="bs-row"><span class="bs-label">' + label + '</span><span class="bs-val">' + esc(val) + "</span></div>" : "";
+    }
+    var bandos = (b.bandos && b.bandos.length)
+      ? '<div class="bs-row"><span class="bs-label">Bandos</span><span class="bs-val">' +
+          b.bandos.map(function (x) { return esc(x); }).join('<span class="bs-vs"> · contra · </span>') + "</span></div>"
+      : "";
+    return '<div class="battle-sheet">' +
+      '<div class="bs-head">' + icon("swords") + "Parte de batalla</div>" +
+      row("Fecha", b.fecha) + row("Lugar", b.lugar) + row("Puntos", b.puntos) + bandos +
+      (b.resultado ? '<div class="bs-row result"><span class="bs-label">Resultado</span><span class="bs-val">' + esc(b.resultado) + "</span></div>" : "") +
+    "</div>";
+  }
+
+  /* ------------------------------------------------- carta estelar (mapa) */
+  function starMap() {
+    return '' +
+    '<div class="starmap-wrap">' +
+      '<div class="section-head sub"><h2>Carta Estelar del Sistema</h2></div>' +
+      '<div class="sm-hint">Pulsa sobre un cuerpo celeste para abrir su ficha del archivo.</div>' +
+      '<div class="starmap">' +
+      '<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa del sistema Cineris">' +
+        '<defs>' +
+          '<radialGradient id="sm-sun" cx="50%" cy="50%" r="50%">' +
+            '<stop offset="0%" stop-color="#f3e3a0"/><stop offset="38%" stop-color="#c9a227"/>' +
+            '<stop offset="75%" stop-color="#6b5a22"/><stop offset="100%" stop-color="#6b5a22" stop-opacity="0"/>' +
+          '</radialGradient>' +
+          '<radialGradient id="sm-warp" cx="50%" cy="50%" r="50%">' +
+            '<stop offset="0%" stop-color="#a82c2c"/><stop offset="55%" stop-color="#7c1414"/>' +
+            '<stop offset="100%" stop-color="#7c1414" stop-opacity="0"/>' +
+          '</radialGradient>' +
+        '</defs>' +
+        /* — el Maelstrom: marco de tormenta — */
+        '<g class="sm-maelstrom">' +
+          '<rect x="8" y="8" width="884" height="454" rx="6"/>' +
+          '<path d="M30 80 Q 110 30 200 58" /><path d="M870 120 Q 800 60 700 50"/>' +
+          '<path d="M40 400 Q 120 448 230 430"/><path d="M860 380 Q 790 440 670 425"/>' +
+          '<text class="m-label storm" x="450" y="36" text-anchor="middle">· EL MAELSTROM ·</text>' +
+        '</g>' +
+        /* — órbita de Cineris — */
+        '<ellipse class="sm-orbit" cx="300" cy="225" rx="310" ry="140"/>' +
+        /* — cinturón de asteroides — */
+        '<a href="#/cineris/cinturon-asteroides" aria-label="Cinturón de Asteroides">' +
+          '<g class="sm-belt"><title>Cinturón de Asteroides — el puerto de los amos de hierro</title>' +
+            '<path class="sm-belt-arc" d="M 640 70 A 380 185 0 0 1 700 350"/>' +
+            '<path class="rock" d="M652 96l9-3 7 5 0 8-8 5-9-4z"/>' +
+            '<path class="rock" d="M684 150l8-2 6 5-1 7-8 3-6-5z"/>' +
+            '<path class="rock" d="M702 215l9-3 6 6-2 7-9 3-5-6z"/>' +
+            '<path class="rock" d="M697 282l8-2 6 5-1 7-9 2-5-5z"/>' +
+            '<path class="rock" d="M676 332l8-3 7 5-1 8-9 3-6-6z"/>' +
+            '<text class="m-label" x="760" y="200" text-anchor="middle">CINTURÓN DE</text>' +
+            '<text class="m-label" x="760" y="216" text-anchor="middle">ASTEROIDES</text>' +
+          '</g>' +
+        '</a>' +
+        /* — estrella D31 — */
+        '<a href="#/estrella-d31" aria-label="Estrella D31">' +
+          '<g class="sm-star"><title>Estrella D31 — el sol de Cineris (y lo que oculta)</title>' +
+            '<circle class="m-glow" cx="300" cy="225" r="84" fill="url(#sm-sun)" opacity=".5"/>' +
+            '<circle class="sun-core" cx="300" cy="225" r="40"/>' +
+            '<g class="sun-secret" opacity=".55">' +
+              '<circle cx="300" cy="225" r="11" fill="none"/>' +
+              '<path d="M300 209v6M300 235v6M284 225h6M310 225h6M289 214l4 4M307 232l4 4M311 214l-4 4M293 232l-4 4"/>' +
+            '</g>' +
+            '<text class="m-label big" x="300" y="146" text-anchor="middle">ESTRELLA D31</text>' +
+          '</g>' +
+        '</a>' +
+        /* — planeta Cineris — */
+        '<a href="#/cineris" aria-label="Planeta Cineris">' +
+          '<g class="sm-planet"><title>Planeta Cineris — mundo principal del sistema</title>' +
+            '<circle class="m-glow halo" cx="555" cy="118" r="40" opacity="0"/>' +
+            '<circle class="pl-core" cx="555" cy="118" r="26"/>' +
+            '<path class="pl-detail" d="M535 110q10-7 24-5m-28 16q14 8 34 2m-22 9q8 3 16 0"/>' +
+            '<circle class="hive" cx="548" cy="108" r="2.2"/><circle class="hive" cx="562" cy="115" r="2.2"/><circle class="hive" cx="551" cy="124" r="2.2"/>' +
+            '<text class="m-label big" x="555" y="70" text-anchor="middle">PLANETA CINERIS</text>' +
+          '</g>' +
+        '</a>' +
+        /* — túnel Hybri — */
+        '<path class="sm-link" d="M300 268 Q 300 320 332 352"/>' +
+        '<a href="#/hybri" aria-label="Túnel Hybri">' +
+          '<g class="sm-portal"><title>Túnel Hybri — la garganta de disformidad bajo la estrella</title>' +
+            '<circle class="m-glow" cx="350" cy="370" r="46" fill="url(#sm-warp)" opacity=".35"/>' +
+            '<circle class="vortex v1" cx="350" cy="370" r="24"/>' +
+            '<circle class="vortex v2" cx="350" cy="370" r="15"/>' +
+            '<circle class="vortex v3" cx="350" cy="370" r="6"/>' +
+            '<text class="m-label big warp" x="350" y="436" text-anchor="middle">TÚNEL HYBRI</text>' +
+          '</g>' +
+        '</a>' +
+        /* — mundos de Hybri — */
+        '<path class="sm-link warp" d="M376 372 Q 440 380 470 386"/>' +
+        '<g class="sm-hybri">' +
+          '<a href="#/hybri/hybri-1" aria-label="Hybri 1"><g><title>Hybri 1 — la Casa más antigua</title>' +
+            '<circle class="hy" cx="505" cy="372" r="11"/><path class="hy-mark" d="M505 365v14M498 372h14M500 367l10 10M510 367l-10 10"/>' +
+            '<text class="m-label warp" x="505" y="349" text-anchor="middle">HYBRI 1</text></g></a>' +
+          '<a href="#/hybri/hybri-2" aria-label="Hybri 2"><g><title>Hybri 2 — la Casa más numerosa</title>' +
+            '<circle class="hy" cx="565" cy="400" r="11"/><path class="hy-mark" d="M565 393v14M558 400h14M560 395l10 10M570 395l-10 10"/>' +
+            '<text class="m-label warp" x="565" y="432" text-anchor="middle">HYBRI 2</text></g></a>' +
+          '<a href="#/hybri/hybri-4" aria-label="Hybri 4"><g><title>Hybri 4 — la Casa más temida</title>' +
+            '<circle class="hy" cx="628" cy="370" r="11"/><path class="hy-mark" d="M628 363v14M621 370h14M623 365l10 10M633 365l-10 10"/>' +
+            '<text class="m-label warp" x="628" y="347" text-anchor="middle">HYBRI 4</text></g></a>' +
+        '</g>' +
+      '</svg></div></div>';
+  }
 
   /* --------------------------------------------------------------- vistas */
   function viewHome() {
@@ -161,7 +301,7 @@
         '<div class="hc-count">' + (cc ? cc + (cc === 1 ? " apartado" : " apartados") : "Mundo") + "</div></div></a>";
     }).join("");
     var heroTop = WORLD.image
-      ? '<div class="home-hero-img"><img src="' + esc(WORLD.image) + '" alt="' + esc(WORLD.name) + '">' +
+      ? '<div class="home-hero-img"><img src="' + esc(WORLD.image) + '" alt="' + esc(WORLD.name) + '" fetchpriority="high" decoding="async">' +
           '<div class="hhi-titles"><div class="aquila-sm">' + icon("aquila", true) + "</div>" +
           "<h1>" + esc(WORLD.name) + "</h1>" +
           (WORLD.subtitle ? '<div class="subtitle">' + esc(WORLD.subtitle) + "</div>" : "") +
@@ -176,6 +316,8 @@
     return '<div class="view">' + heroTop +
       (q ? '<div class="banner-quote"><div class="q">«' + esc(q.text) + '»</div>' +
            (q.source ? '<div class="src">' + esc(q.source) + "</div>" : "") + "</div>" : rule()) +
+      starMap() +
+      rule() +
       '<div class="home-grid">' + cards +
         (TIMELINE ? '<a class="home-card" href="#/cronologia">' + icon("hourglass") +
           '<div><div class="hc-title">' + esc(TIMELINE.title) + '</div><div class="hc-count">Línea temporal</div></div></a>' : "") +
@@ -190,11 +332,11 @@
 
     var fig = "", banner = "";
     if (node.image && node.imageContain) {
-      fig = '<figure class="e-figure contain"><div class="e-frame"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' +
+      fig = '<figure class="e-figure contain"><div class="e-frame"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '" decoding="async"></div>' +
               (node.imageCaption ? "<figcaption>" + esc(node.imageCaption) + "</figcaption>" : "") +
             "</figure>";
     } else if (node.image) {
-      banner = '<div class="entry-banner"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '"></div>' +
+      banner = '<div class="entry-banner"><img src="' + esc(node.image) + '" alt="' + esc(node.title) + '" fetchpriority="high" decoding="async"></div>' +
                (node.imageCaption ? '<div class="entry-cap">' + esc(node.imageCaption) + "</div>" : "");
     }
     var pq = node.quote ? '<div class="pull-quote"><div class="q">«' + esc(node.quote.text) + '»</div>' +
@@ -226,49 +368,96 @@
       "<h1>" + esc(node.title) + "</h1>" +
       (node.epithet ? '<div class="e-epithet">' + esc(node.epithet) + "</div>" : "") +
       (node.tags && node.tags.length ? '<div class="e-tags">' + tagsHtml(node.tags, true) + "</div>" : "") +
-      pq + bodyHtml + childrenHtml + related +
+      pq + battleSheet(node.battle) + bodyHtml + childrenHtml + related +
     "</div></div>";
   }
 
+  var TL_FILTER = "";
   function viewTimeline() {
     if (!TIMELINE || !TIMELINE.eras) return viewNotFound();
     var romans = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+    /* recopilar todas las facciones presentes en los eventos */
+    var allTags = [];
+    TIMELINE.eras.forEach(function (era) {
+      (era.events || []).forEach(function (ev) {
+        (ev.tags || []).forEach(function (t) { if (allTags.indexOf(t) === -1) allTags.push(t); });
+      });
+    });
+    allTags.sort();
+    var filters = allTags.length
+      ? '<div class="tl-filters"><span class="tl-flabel">Filtrar:</span>' +
+        '<button class="tl-chip' + (TL_FILTER ? "" : " active") + '" data-tag="">Todo</button>' +
+        allTags.map(function (t) {
+          return '<button class="tl-chip' + (TL_FILTER === t ? " active" : "") + '" data-tag="' + esc(t) + '">' + esc(t) + "</button>";
+        }).join("") + "</div>"
+      : "";
+
+    var shown = 0;
     var eras = TIMELINE.eras.map(function (era, idx) {
-      var events = (era.events || []).map(function (ev) {
+      var evs = (era.events || []).filter(function (ev) {
+        return !TL_FILTER || (ev.tags || []).indexOf(TL_FILTER) !== -1;
+      });
+      if (!evs.length) return "";
+      shown += evs.length;
+      var events = evs.map(function (ev) {
+        var title = ev.link
+          ? '<a class="ev-link" href="#/' + esc(ev.link) + '">' + esc(ev.title) + "</a>"
+          : esc(ev.title);
+        var evTags = (ev.tags || []).length
+          ? '<div class="ev-tags">' + ev.tags.map(function (t) {
+              return '<button class="tl-chip mini" data-tag="' + esc(t) + '">' + esc(t) + "</button>";
+            }).join("") + "</div>"
+          : "";
         return '<div class="event">' + (ev.date ? '<div class="ev-date">' + esc(ev.date) + "</div>" : "") +
-          '<div class="ev-title">' + esc(ev.title) + "</div>" +
-          (ev.text ? '<div class="ev-text">' + esc(ev.text) + "</div>" : "") + "</div>";
+          '<div class="ev-title">' + title + "</div>" +
+          (ev.text ? '<div class="ev-text">' + esc(ev.text) + "</div>" : "") + evTags + "</div>";
       }).join("");
       return '<div class="era"><div class="era-head"><span class="numeral">' + (romans[idx] || idx + 1) + "</span>" +
         "<h2>" + esc(era.name) + "</h2>" + (era.caption ? '<span class="caption">' + esc(era.caption) + "</span>" : "") + "</div>" + events + "</div>";
     }).join("");
-    var bg = TIMELINE.image ? '<div class="timeline-bg"><img src="' + esc(TIMELINE.image) + '" alt=""></div>' : "";
+
+    var bodyTl = shown
+      ? '<div class="timeline">' + eras + "</div>"
+      : emptyBlock("Ningún evento registrado para «" + TL_FILTER + "».");
+    var bg = TIMELINE.image ? '<div class="timeline-bg"><img src="' + esc(TIMELINE.image) + '" alt="" loading="lazy" decoding="async"></div>' : "";
     return bg + '<div class="view timeline-view">' + crumb([["Inicio", "#/"], [TIMELINE.title, null]]) +
       '<div class="section-head"><h1><span class="icon-badge">' + icon("hourglass") + "</span>" + esc(TIMELINE.title) + "</h1>" +
       (TIMELINE.blurb ? '<div class="blurb">' + esc(TIMELINE.blurb) + "</div>" : "") + "</div>" +
-      '<div class="timeline">' + eras + "</div></div>";
+      filters + bodyTl + "</div>";
   }
 
   function viewSearch(query) {
-    var q = (query || "").toLowerCase().trim();
+    var qn = nmap((query || "").trim());
     var results = [];
-    if (q) {
+    if (qn) {
       walk(NAV, [], function (node, t) {
-        var hay = [node.title, node.epithet, (node.tags || []).join(" "), plain(node.body)].join(" ").toLowerCase();
-        if (hay.indexOf(q) !== -1) results.push({ node: node, trail: t });
+        var score = 0;
+        if (nmap(node.title).indexOf(qn) !== -1) score += 8;
+        if (nmap(node.epithet || "").indexOf(qn) !== -1) score += 4;
+        if (nmap((node.tags || []).join(" ")).indexOf(qn) !== -1) score += 4;
+        if (node.quote && nmap(node.quote.text).indexOf(qn) !== -1) score += 2;
+        if (nmap(plain(node.body)).indexOf(qn) !== -1) score += 1;
+        if (score) results.push({ node: node, trail: t, score: score });
       });
+      results.sort(function (a, b) { return b.score - a.score; });
     }
     var body;
-    if (!q) body = emptyBlock("Escribe algo para buscar en todo el archivo.");
+    if (!qn) body = emptyBlock("Escribe algo para buscar en todo el archivo.");
     else if (!results.length) body = emptyBlock("Sin resultados para «" + query + "».");
     else body = '<div class="results-info">' + results.length + (results.length === 1 ? " resultado" : " resultados") +
       " para «" + esc(query) + "»</div>" +
       results.map(function (r) {
         var where = r.trail.slice(0, -1).map(function (n) { return n.title; }).join(" › ") || "Sistema";
+        var tagHits = (r.node.tags || []).filter(function (t) { return nmap(t).indexOf(qn) !== -1; });
         return '<a class="result-row" href="#/' + pathOf(r.trail) + '">' + icon(r.node.icon || "book") +
-          '<div><div class="r-title">' + esc(r.node.title) + "</div>" +
+          '<div><div class="r-title">' + hiText(r.node.title, qn) + "</div>" +
           '<div class="r-where">' + esc(where) + "</div>" +
-          '<div class="r-excerpt">' + esc(excerpt(r.node.body, 160)) + "</div></div></a>";
+          '<div class="r-excerpt">' + snippet(r.node.body, qn, 170) + "</div>" +
+          (tagHits.length ? '<div class="tags">' + tagHits.map(function (t) {
+            return '<span class="tag">' + hiText(t, qn) + "</span>";
+          }).join("") + "</div>" : "") +
+          "</div></a>";
       }).join("");
     return '<div class="view">' + crumb([["Inicio", "#/"], ["Búsqueda", null]]) +
       '<div class="section-head"><h1><span class="icon-badge">' + icon("search") + "</span>Búsqueda</h1></div>" + body + "</div>";
@@ -284,6 +473,7 @@
     var html = '<div class="nav-group-label">Navegación</div>' +
       navLink("$home", "#/", icon("home"), "Inicio", null, false) +
       (TIMELINE ? navLink("$cronologia", "#/cronologia", icon("hourglass"), TIMELINE.title, null, false) : "") +
+      navLink("$azar", "#/azar", icon("dice"), "Página perdida", null, false) +
       '<div class="nav-sep"></div><div class="nav-group-label">Mundos</div>';
     NAV.forEach(function (top) {
       html += navLink(top.id, "#/" + top.id, icon(top.icon), top.title, null, false);
@@ -322,6 +512,14 @@
     var title = WORLD.name;
     if (segs.length === 0) { render(viewHome()); setActiveExact("$home"); }
     else if (segs[0] === "cronologia") { render(viewTimeline()); setActiveExact("$cronologia"); title = (TIMELINE ? TIMELINE.title + " · " : "") + WORLD.name; }
+    else if (segs[0] === "azar") {
+      /* página perdida: ficha aleatoria del archivo */
+      var pool = [];
+      walk(NAV, [], function (node, t) { if (node.body) pool.push(pathOf(t)); });
+      if (pool.length) location.replace("#/" + pool[Math.floor(Math.random() * pool.length)]);
+      else location.replace("#/");
+      return;
+    }
     else if (segs[0] === "buscar") {
       var q = segs[1] ? decodeURIComponent(segs.slice(1).join("/")) : "";
       render(viewSearch(q), false); clearActive();
@@ -351,6 +549,63 @@
     input.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { input.value = ""; location.hash = "#/"; input.blur(); } });
     el("menuBtn").addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
     el("scrim").addEventListener("click", closeNav);
+    /* filtros de la cronología (delegación) */
+    document.addEventListener("click", function (ev) {
+      var b = ev.target && ev.target.closest ? ev.target.closest(".tl-chip") : null;
+      if (!b) return;
+      var t = b.getAttribute("data-tag") || "";
+      TL_FILTER = (TL_FILTER === t) ? "" : t;
+      render(viewTimeline(), false);
+      setActiveExact("$cronologia");
+    });
+  }
+
+  /* ------------------------------------------- tooltips de enlaces internos */
+  function initTooltips() {
+    if (!window.matchMedia || !window.matchMedia("(hover: hover)").matches) return;
+    if (!Element.prototype.closest) return;
+    var tip = document.createElement("div");
+    tip.className = "lore-tip";
+    tip.setAttribute("aria-hidden", "true");
+    document.body.appendChild(tip);
+
+    function linkOf(ev) {
+      var a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#/"]') : null;
+      if (!a || !a.closest("#app")) return null;
+      if (a.closest(".card, .home-card, .result-row, .crumb, .starmap, .back-link")) return null;
+      var path = decodeURIComponent(a.getAttribute("href").slice(2));
+      var segs = path.split("/").filter(Boolean);
+      if (!segs.length || segs[0] === "buscar" || segs[0] === "cronologia" || segs[0] === "azar") return null;
+      var found = findByPath(segs);
+      return found ? { a: a, node: found.node } : null;
+    }
+    function show(a, n) {
+      var media = n.image
+        ? '<div class="lt-img"><img src="' + esc(n.image) + '" alt="" loading="lazy" decoding="async"></div>'
+        : '<div class="lt-ico">' + icon(n.icon || "book") + "</div>";
+      tip.innerHTML = media +
+        '<div class="lt-body"><div class="lt-title">' + esc(n.title) + "</div>" +
+        (n.epithet ? '<div class="lt-epithet">' + esc(n.epithet) + "</div>" : "") +
+        '<div class="lt-excerpt">' + esc(excerpt(n.body, 130)) + "</div></div>";
+      tip.classList.add("show");
+      var r = a.getBoundingClientRect();
+      var w = tip.offsetWidth, h = tip.offsetHeight;
+      var left = Math.max(10, Math.min(r.left, window.innerWidth - w - 10));
+      var top = r.bottom + 10;
+      if (top + h > window.innerHeight - 10) top = r.top - h - 10;
+      tip.style.left = left + "px";
+      tip.style.top = Math.max(10, top) + "px";
+    }
+    function hide() { tip.classList.remove("show"); }
+    document.addEventListener("mouseover", function (ev) {
+      var hit = linkOf(ev);
+      if (hit) show(hit.a, hit.node);
+    });
+    document.addEventListener("mouseout", function (ev) {
+      if (linkOf(ev)) hide();
+    });
+    window.addEventListener("hashchange", hide);
+    window.addEventListener("scroll", hide, { passive: true });
   }
 
   /* ----------------------------------------------------------------- init */
@@ -361,6 +616,7 @@
     }
     initChrome();
     buildNav();
+    initTooltips();
     window.addEventListener("hashchange", router);
     router();
   }

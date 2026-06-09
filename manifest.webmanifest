@@ -1,0 +1,14 @@
+{
+  "name": "Sector Cineris — Crónicas",
+  "short_name": "Cineris",
+  "description": "Archivo de lore del Sistema Cineris: crónicas de un sistema perdido en el Maelstrom.",
+  "lang": "es",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#0a0a0c",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
