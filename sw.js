@@ -2,7 +2,7 @@
    SECTOR CINERIS — Service Worker (modo offline)
    Sube el número de versión cuando cambies archivos para forzar actualización.
    ========================================================================== */
-var VERSION = "cineris-v1";
+var VERSION = "cineris-v2";
 var CORE = [
   "./",
   "index.html",
@@ -15,7 +15,10 @@ var CORE = [
 
 self.addEventListener("install", function (ev) {
   ev.waitUntil(
-    caches.open(VERSION).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); })
+    caches.open(VERSION).then(function (c) {
+      /* "reload": baja los archivos frescos de la red, ignorando cachés viejas */
+      return c.addAll(CORE.map(function (u) { return new Request(u, { cache: "reload" }); }));
+    }).then(function () { return self.skipWaiting(); })
   );
 });
 

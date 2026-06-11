@@ -35,24 +35,22 @@ window.WORLD = {
   subtitle: "Crónicas de un sistema perdido en el Maelstrom",
   image: "assets/portada.jpg",
   intro: `El **Sistema Cineris** nació como una promesa: un **puerto franco**
-fundado por el **Rogue Trader Sir Lok II** en los confines del espacio, lejos de
+fundado por el **Rogue Trader Sir Lok II** en el filo de la galaxia, lejos de
 toda amenaza, lejos del **Maelstrom**.
 
-El tiempo y las mareas de la disformidad traicionaron esa promesa. Hoy Cineris
-yace **completamente sumergido en el Maelstrom**, aislado entre tormentas de
-disformidad.
+La disformidad traicionó esa promesa. Hoy Cineris yace **engullido por el
+Maelstrom**, solo entre tormentas que ninguna nave cruza.
 
-Sus planetas **no son mundos demonio** —no todavía—, pero el sistema guarda más
+Sus planetas **no son mundos demonio** —no todavía—. Pero el sistema guarda más
 de un secreto: una estrella que no es solo una estrella, y un **túnel de
-disformidad** que conduce a mundos malditos.
+disformidad** que desemboca en mundos malditos.
 
-Hace mil años, Cineris fue **bastión de los Puños Imperiales**. Hoy sus
-fortalezas son ruinas: los **Iron Warriors** los expulsaron, y desde entonces el
-**Maelstrom** niega al Imperio toda ruta segura para el contraataque. El sistema
-está solo, y en manos del hierro.
+Hace mil años, Cineris fue **bastión de los Puños Imperiales**. Sus fortalezas
+son hoy ruinas: los **Iron Warriors** los expulsaron, y el Maelstrom niega al
+Imperio toda ruta de regreso. El sistema está solo, y en manos del hierro.
 
-Esta es la crónica de Cineris: de sus mundos, de quienes los dominan y de lo que
-se oculta a plena luz.`,
+Esta es su crónica: la de sus mundos, la de sus amos, y la de lo que se oculta
+a plena luz.`,
   quote: {
     text: "Anoto estas coordenadas con mano temblorosa: he hallado el sistema que mi linaje persiguió. Que nadie más conozca jamás esta ruta.",
     source: "Sir Lok II · Diario de a bordo, Tomo I"
@@ -76,29 +74,26 @@ window.NAV = [
       text: "Un mundo de estepas sin fin y cielos de ceniza. Pobre en belleza, rico en hombres y en metal. Servirá.",
       source: "Sir Lok II · Diario de a bordo, Tomo II"
     },
-    body: `Visto desde la órbita, **Cineris** aún conserva la silueta de lo que un
-día fue: un **puerto independiente**, un punto de paso libre en el filo de la
-galaxia. Pero su superficie cuenta otra historia.
+    body: `Visto desde la órbita, **Cineris** aún conserva la silueta de lo que
+fue: un **puerto franco** en el filo de la galaxia. Su superficie cuenta otra
+historia.
 
 ## Estepas y colmenas
-Sus vastas **estepas asoladas** se extienden hasta el horizonte, erizadas de
-**ciudades colmena**. **Tres grandes colmenas** dominan el planeta, y las tres
-**pagan tributo** al [Gran Señor de los Lok](#/cineris/gran-senor-lok) que gobierna
-el sistema.
+**Estepas asoladas** hasta el horizonte, erizadas de **ciudades colmena**. Tres
+grandes colmenas dominan el planeta, y las tres **pagan tributo** al
+[Gran Señor de los Lok](#/cineris/gran-senor-lok) que gobierna el sistema.
 
 ## El Sur prohibido
-Todo el hemisferio **sur** parece una tierra muerta y deshabitada de la que nadie
-habla. Pero bajo sus páramos, en un laberinto de **cavernas**, se ocultan
-**poblaciones enteras** de número incalculable.
-
-La mayoría son **mutantes y degenerados**. Aun así, se rumorea que entre ellos
-pervive un **culto de exconvictos** —penados desde los tiempos del dominio de los
-Puños Imperiales— que todavía se mantiene **leal al Emperador**.
+El hemisferio **sur** parece tierra muerta de la que nadie habla. Pero bajo sus
+páramos, en un laberinto de **cavernas**, se ocultan **poblaciones enteras** de
+número incalculable: **mutantes y degenerados** en su mayoría... y entre ellos,
+dicen, un **culto de exconvictos** de la era de los Puños Imperiales que aún
+reza al Emperador.
 
 ## Cantera de carne y hierro
-Cineris es el principal punto de **reclutamiento y abastecimiento** de los Iron
-Warriors. Pero bajo su yugo, en lo más hondo de las colmenas, **algo se gesta**:
-una [rebelión en ciernes](#/cineris/rebelion).`,
+Cineris alimenta sin descanso la maquinaria de guerra de los **Iron Warriors**:
+reclutas, metal y tributo. Pero bajo el yugo, en lo más hondo de las colmenas,
+**algo se gesta**: una [rebelión en ciernes](#/cineris/rebelion).`,
     childrenLabel: "En este mundo",
     children: [
       {
@@ -114,20 +109,20 @@ una [rebelión en ciernes](#/cineris/rebelion).`,
           text: "Yo soy el principio y el regreso de esta dinastía. Cineris fue de los Lok, es de los Lok, y de los Lok será mientras el Maelstrom ruja.",
           source: "Primera Soflama del Gran Señor de los Lok"
         },
-        body: `El **Gran Señor de los Lok** es el amo y gobernante de Cineris. No es un
-Marine, sino un **hechicero del Caos** surgido del Maelstrom, que se reclama heredero
-de la perdida dinastía Lok —aunque "Gran Señor de los Lok" suena más a **título** que
-a nombre, y bien podría tratarse de toda una sucesión de ellos.
+        body: `El **Gran Señor de los Lok** es el amo de Cineris. No es un Astartes:
+es un **hechicero del Caos** surgido del Maelstrom que se reclama heredero de la
+perdida dinastía Lok. "Gran Señor de los Lok" suena más a **título** que a nombre
+—y bien podría haber sido toda una sucesión de ellos.
 
 ## El gobierno de los IV
-Gobierna a través de **los IV**: un círculo de **consejeros oscuros y secretos**, una
-**parodia siniestra de los Altos Señores de Terra**. Tras su trono se adivina la mano
-de los Iron Warriors, la IV Legión.
+Gobierna a través de **los IV**: un círculo de **consejeros oscuros y secretos**,
+**parodia siniestra de los Altos Señores de Terra**. Tras su trono se adivina la
+mano de los Iron Warriors, la IV Legión.
 
 ## La cultura del Maelstrom
-Ha traído al sistema la **cultura del Maelstrom**: deja que los **cultos proliferen**
-—o que se extingan— sin reparo alguno, siempre y cuando **paguen su tributo**. Bajo
-esa tolerancia corsaria germinan por igual la riqueza y la herejía.
+Bajo su ley, los **cultos proliferan o se extinguen** sin que nadie mueva un dedo,
+mientras **paguen su tributo**. De esa tolerancia corsaria germinan, por igual, la
+riqueza y la herejía.
 
 *(El Gran Señor de los Lok y los IV aún no tienen nombres propios — dímelos y los
 añado.)*`,
@@ -150,16 +145,16 @@ añado.)*`,
           source: "Ley del Gran Señor de los Lok"
         },
         body: `Una **Gran Compañía de Iron Warriors** ha echado raíces en el sistema
-Cineris y lo gobierna como su feudo particular.
+Cineris y lo gobierna como su feudo.
 
 ## Reclutamiento y guerra
-Del planeta extraen reclutas y suministros sin descanso: las estepas y las
-colmenas de Cineris alimentan su incansable maquinaria de guerra.
+Las estepas y las colmenas alimentan su maquinaria: carne para los reclutadores,
+metal para las forjas, guerra sin fin.
 
 ## Una fortaleza en las sombras
-Mantienen su **puerto** a la vista, en el cinturón de asteroides, pero su **base
-principal es un secreto** celosamente guardado. Pocos —dentro o fuera del
-sistema— saben dónde se ocultan en verdad los señores de Cineris.
+Su **puerto** está a la vista, en el cinturón de asteroides. Su **base principal,
+no**: nadie —dentro o fuera del sistema— sabe dónde se ocultan en verdad los
+señores de Cineris.
 
 > Para el resto de la galaxia, Cineris es un mundo olvidado del Maelstrom. Esa es
 > exactamente la idea.
@@ -183,20 +178,19 @@ aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
               text: "Mi Maestre de Forja no duerme, no perdona y no falla. Temedle como me temeríais a mí.",
               source: "Edicto del Gran Señor de los Lok"
             },
-            body: `Nadie recuerda —o nadie se atreve a pronunciar— su verdadero nombre.
-En Cineris solo se le conoce como el **Herrero Disforme**: el **Maestre de Forja**
-que gobierna a los Iron Warriors del sistema.
+            body: `Nadie recuerda —o nadie osa pronunciar— su verdadero nombre. En
+Cineris se le conoce como el **Herrero Disforme**: el **Maestre de Forja** que
+gobierna a los Iron Warriors del sistema.
 
 ## Fundido con la máquina
-Encerrado en una **armadura de Exterminador** marcada con las franjas de peligro de
-su Legión, hace tiempo que dejó de ser solo un hombre. De su espalda brotan
-**servo-brazos y mecadendritas**, y su rostro es una **máscara mortuoria** de acero
-presidida por un único ojo carmesí.
+Sepultado en una **armadura de Exterminador** con las franjas de peligro de su
+Legión, dejó de ser solo un hombre hace mucho. De su espalda brotan **servo-brazos
+y mecadendritas**; su rostro es una **máscara mortuoria** de acero con un único
+ojo carmesí.
 
 ## El señor de hierro
-Empuña un **martillo de asedio** capaz de derribar murallas y carga cadenas y
-cráneos como trofeos. Bajo su mando, Cineris es a un tiempo fortaleza y cantera de
-guerra.`,
+Empuña un **martillo de asedio** que derriba murallas, y carga cadenas y cráneos
+como trofeos. Bajo su mando, Cineris es a la vez fortaleza y cantera de guerra.`,
             related: [
               { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
             ]
@@ -219,14 +213,12 @@ guerra.`,
 por **cadenas colosales** y erizadas de cañones.
 
 ## El rostro visible del poder
-Aquí atracan las naves de guerra, se acumula el botín y fluye el abastecimiento
-del sistema. Baluartes de hierro con franjas de peligro vigilan cada aproximación:
-nada entra ni sale sin que los amos de Cineris lo permitan.
+Aquí atracan las naves de guerra, se amontona el botín y fluye el diezmo del
+sistema. Nada entra ni sale sin que los amos de hierro lo permitan.
 
 ## Lo que el puerto oculta
 Por imponente que parezca, esto es solo lo que los Iron Warriors **dejan ver**.
-Su verdadera fortaleza —la base principal— permanece en secreto, lejos de estas
-rocas.
+Su verdadera fortaleza permanece en secreto, lejos de estas rocas.
 
 > Cadenas para unir mundos. Cañones para recordarte de quién son.`,
         related: [
@@ -249,30 +241,49 @@ rocas.
 seguidores vagan por los páramos y las cavernas como **nómadas del desierto**:
 enmascarados contra el aire muerto, harapientos, armados con rifles remendados.
 
+## La Máscara
+En el Sur, la máscara no es un disfraz: es ley de supervivencia... y bandera.
+Todo paria la viste, y bajo ella **todos son uno**: el recaudador no distingue,
+el delator no señala, y la bala que busca a un rebelde **nunca sabe a cuál ha
+matado**.
+
 ## Una sola cara, dos almas
-Desde fuera todos parecen lo mismo —parias del desierto—, y **nadie sabe quién es de
-un bando y quién del otro**. Pero bajo esas máscaras conviven **dos rebeliones muy
-distintas**: una aún leal al Emperador, otra entregada a los demonios.`,
+Porque bajo esas máscaras conviven **dos rebeliones** que se odian tanto como
+odian al Lok: una aún **leal al Emperador**, otra entregada a los **demonios**.
+Comparten agua, túneles y enemigo —y la certeza de que, el día que caigan las
+máscaras, habrá **una guerra debajo de la guerra**.`,
         childrenLabel: "Las dos rebeliones",
         children: [
           {
             id: "habitantes-cavernas",
             title: "Los Habitantes de las Cavernas",
             icon: "aquila",
-            epithet: "Exconvictos leales al Emperador",
-            tags: ["Rebelión", "Leales", "El Sur"],
+            epithet: "Los Penitentes del Muro · exconvictos leales al Emperador",
+            tags: ["Rebelión", "Leales", "El Sur", "Penitentes del Muro"],
             quote: {
               text: "Bajo el Sur se pudren unos fieles de un dios muerto. Dejadlos pudrirse: su fe no da de comer ni paga tributo.",
               source: "Soflama del Gran Señor de los Lok"
             },
-            body: `En las **cavernas** de los páramos del Sur pervive un pueblo
-descendiente de los **penados** de la era de los Puños Imperiales: presos y exiliados
-que jamás renegaron de su fe.
+            body: `En las **cavernas** del Sur pervive un pueblo descendiente de los
+**penados** de la era de los Puños Imperiales: presos, exiliados, y las mil
+generaciones que nacieron de ellos. Se llaman a sí mismos **los Penitentes del
+Muro**.
 
-## Fieles en la oscuridad
-Generación tras generación, estos **exconvictos** se mantienen **leales al Emperador**
-de la Humanidad, custodiando una llama de devoción en el mundo que los abandonó. Son
-toscos, supersticiosos y desconfiados, pero su fe es de hierro.`,
+## La condena como fe
+Sus antepasados fueron encarcelados por los Puños... y de sus carceleros heredaron
+la fe. Hoy cumplen una condena que nadie recuerda haber dictado: cada generación
+nace presa y muere fiel, convencida de que su cautiverio es **penitencia por la
+caída del sistema** —y de que el perdón llegará el día que el Imperio regrese.
+
+## El Alcaide y la Última Piedra
+Los guía el **Alcaide**, un título que pasa de padres a hijos desde el último
+carcelero imperial. Custodia las **llaves de una prisión cuyos muros ya no
+existen** y la **Última Piedra**: un sillar de la fortaleza caída de los Puños,
+ante el que se jura en silencio. Son toscos, supersticiosos y desconfiados —pero
+su fe es de hierro, y saben esperar.
+
+> Rezan a oscuras para que nadie vea sus lágrimas. Y afilan a oscuras para que
+> nadie cuente sus cuchillos.`,
             related: [
               { to: "cineris/rebelion/cultistas-demoniacos", label: "Los Cultistas Demoníacos" }
             ]
@@ -281,22 +292,28 @@ toscos, supersticiosos y desconfiados, pero su fe es de hierro.`,
             id: "cultistas-demoniacos",
             title: "Los Cultistas Demoníacos",
             icon: "chaosstar",
-            epithet: "El culto que convoca demonios",
-            tags: ["Rebelión", "Caos", "Demonios", "Herejía"],
+            epithet: "El Credo Hueco · el culto que convoca demonios",
+            tags: ["Rebelión", "Caos", "Demonios", "Herejía", "Credo Hueco"],
             quote: {
               text: "Convocad lo que oséis convocar. Pero recordad: en Cineris, el único demonio con trono soy yo.",
               source: "Edicto del Gran Señor de los Lok"
             },
-            body: `En lo más hondo de las colmenas y los páramos se oculta un **culto
-esotérico** que se proclama leal al antiguo Emperador... pero cuyos ritos han derivado
-en algo monstruoso.
+            body: `En lo más hondo de las colmenas y los páramos se esconde un culto
+que se proclama leal al antiguo Emperador. Sus fieles lo llaman la verdadera fe.
+Los demonios lo llaman **el Credo Hueco**.
 
-## La puerta que no debió abrirse
-Entre símbolos imposibles y plegarias corrompidas, practican la **convocación de
-demonios**. Se camuflan entre los parias del desierto, indistinguibles de los fieles
-de verdad, y ahí reside su mayor peligro.
+## La plegaria torcida
+Rezan las viejas letanías imperiales... pero generaciones de aislamiento y de
+susurros del Maelstrom las han **torcido palabra a palabra**. Hoy sus salmos están
+huecos, y **otra cosa** anida dentro: cada plegaria es una puerta, y cada puerta
+se abre.
 
-*(Este culto aún no tiene nombre propio — dímelo y lo añado.)*`,
+## Santos de ceniza
+Sus ritos **convocan demonios** que acuden vestidos de santos y de mártires,
+coronados de una luz falsa. Los fieles ven ángeles del Emperador; el resto del
+Sur ve abominaciones. Y como se camuflan entre los parias del desierto,
+indistinguibles de los leales de verdad, **nadie sabe cuántos son** —ni quién
+reza a qué.`,
             related: [
               { to: "cineris/rebelion/habitantes-cavernas", label: "Los Habitantes de las Cavernas" }
             ]

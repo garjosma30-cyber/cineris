@@ -39,6 +39,8 @@
     skull:  '<path d="M12 3a8 8 0 0 0-8 8c0 3 1.6 4.8 3 6v3h3v-2h4v2h3v-3c1.4-1.2 3-3 3-6a8 8 0 0 0-8-8z"/><circle cx="9" cy="11.5" r="1.3"/><circle cx="15" cy="11.5" r="1.3"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
     back:   '<path d="M15 5l-7 7 7 7"/>',
+    forward:'<path d="M9 5l7 7-7 7"/>',
+    print:  '<path d="M6 9V3h12v6"/><path d="M6 18H4.5A1.5 1.5 0 0 1 3 16.5v-6A1.5 1.5 0 0 1 4.5 9h15A1.5 1.5 0 0 1 21 10.5v6a1.5 1.5 0 0 1-1.5 1.5H18"/><path d="M6 14h12v7H6z"/>',
     dice:   '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.2"/><circle cx="15" cy="9" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="9" cy="15" r="1.2"/><circle cx="15" cy="15" r="1.2"/>',
     link:   '<path d="M10 13.8a3.8 3.8 0 0 0 5.4 0l2.8-2.8a3.8 3.8 0 1 0-5.4-5.4l-1.4 1.4"/><path d="M13.6 10.2a3.8 3.8 0 0 0-5.4 0l-2.8 2.8a3.8 3.8 0 1 0 5.4 5.4l1.4-1.4"/>'
   };
@@ -149,6 +151,9 @@
     }
     return node ? { node: node, trail: trail } : null;
   }
+  /* orden de lectura de todas las fichas (para "anterior / siguiente") */
+  var ORDER = [];
+  walk(NAV, [], function (n, t) { ORDER.push(pathOf(t)); });
 
   /* ------------------------------------------------------- componentes HTML */
   function tagsHtml(tags, clickable) {
@@ -183,6 +188,9 @@
     }).join("") + "</div>";
   }
   function subHead(txt) { return '<div class="section-head sub"><h2>' + esc(txt) + "</h2></div>"; }
+  function printBtn() {
+    return '<button class="print-btn" type="button" title="Imprimir o guardar en PDF">' + icon("print") + "Imprimir</button>";
+  }
 
   /* hoja de batalla (ficha de partida): node.battle = { fecha, lugar, puntos,
      bandos: ["Ejército — jugador", ...], resultado } */
@@ -232,6 +240,7 @@
         /* — cinturón de asteroides — */
         '<a href="#/cineris/cinturon-asteroides" aria-label="Cinturón de Asteroides">' +
           '<g class="sm-belt"><title>Cinturón de Asteroides — el puerto de los amos de hierro</title>' +
+            '<path class="sm-hit-stroke" d="M 640 70 A 380 185 0 0 1 700 350"/>' +
             '<path class="sm-belt-arc" d="M 640 70 A 380 185 0 0 1 700 350"/>' +
             '<path class="rock" d="M652 96l9-3 7 5 0 8-8 5-9-4z"/>' +
             '<path class="rock" d="M684 150l8-2 6 5-1 7-8 3-6-5z"/>' +
@@ -245,6 +254,7 @@
         /* — estrella D31 — */
         '<a href="#/estrella-d31" aria-label="Estrella D31">' +
           '<g class="sm-star"><title>Estrella D31 — el sol de Cineris (y lo que oculta)</title>' +
+            '<circle class="sm-hit" cx="300" cy="225" r="92"/>' +
             '<circle class="m-glow" cx="300" cy="225" r="84" fill="url(#sm-sun)" opacity=".5"/>' +
             '<circle class="sun-core" cx="300" cy="225" r="40"/>' +
             '<g class="sun-secret" opacity=".55">' +
@@ -257,6 +267,7 @@
         /* — planeta Cineris — */
         '<a href="#/cineris" aria-label="Planeta Cineris">' +
           '<g class="sm-planet"><title>Planeta Cineris — mundo principal del sistema</title>' +
+            '<circle class="sm-hit" cx="555" cy="118" r="54"/>' +
             '<circle class="m-glow halo" cx="555" cy="118" r="40" opacity="0"/>' +
             '<circle class="pl-core" cx="555" cy="118" r="26"/>' +
             '<path class="pl-detail" d="M535 110q10-7 24-5m-28 16q14 8 34 2m-22 9q8 3 16 0"/>' +
@@ -268,6 +279,7 @@
         '<path class="sm-link" d="M300 268 Q 300 320 332 352"/>' +
         '<a href="#/hybri" aria-label="Túnel Hybri">' +
           '<g class="sm-portal"><title>Túnel Hybri — la garganta de disformidad bajo la estrella</title>' +
+            '<circle class="sm-hit" cx="350" cy="370" r="54"/>' +
             '<circle class="m-glow" cx="350" cy="370" r="46" fill="url(#sm-warp)" opacity=".35"/>' +
             '<circle class="vortex v1" cx="350" cy="370" r="24"/>' +
             '<circle class="vortex v2" cx="350" cy="370" r="15"/>' +
@@ -279,12 +291,15 @@
         '<path class="sm-link warp" d="M376 372 Q 440 380 470 386"/>' +
         '<g class="sm-hybri">' +
           '<a href="#/hybri/hybri-1" aria-label="Hybri 1"><g><title>Hybri 1 — la Casa más antigua</title>' +
+            '<circle class="sm-hit" cx="505" cy="372" r="28"/>' +
             '<circle class="hy" cx="505" cy="372" r="11"/><path class="hy-mark" d="M505 365v14M498 372h14M500 367l10 10M510 367l-10 10"/>' +
             '<text class="m-label warp" x="505" y="349" text-anchor="middle">HYBRI 1</text></g></a>' +
           '<a href="#/hybri/hybri-2" aria-label="Hybri 2"><g><title>Hybri 2 — la Casa más numerosa</title>' +
+            '<circle class="sm-hit" cx="565" cy="400" r="28"/>' +
             '<circle class="hy" cx="565" cy="400" r="11"/><path class="hy-mark" d="M565 393v14M558 400h14M560 395l10 10M570 395l-10 10"/>' +
             '<text class="m-label warp" x="565" y="432" text-anchor="middle">HYBRI 2</text></g></a>' +
           '<a href="#/hybri/hybri-4" aria-label="Hybri 4"><g><title>Hybri 4 — la Casa más temida</title>' +
+            '<circle class="sm-hit" cx="628" cy="370" r="28"/>' +
             '<circle class="hy" cx="628" cy="370" r="11"/><path class="hy-mark" d="M628 363v14M621 370h14M623 365l10 10M633 365l-10 10"/>' +
             '<text class="m-label warp" x="628" y="347" text-anchor="middle">HYBRI 4</text></g></a>' +
         '</g>' +
@@ -362,13 +377,45 @@
         }).join("") + "</div></div>";
     }
 
-    return '<div class="view">' + crumb(crumbs) + banner + '<div class="entry">' +
+    /* apariciones de esta ficha en la cronología */
+    var hits = [];
+    if (TIMELINE && TIMELINE.eras) {
+      TIMELINE.eras.forEach(function (era) {
+        (era.events || []).forEach(function (ev) { if (ev.link === path) hits.push({ era: era, ev: ev }); });
+      });
+    }
+    var inTimeline = hits.length
+      ? '<div class="tl-hits"><div class="th-label">En la cronología</div>' +
+        hits.map(function (h) {
+          return '<a class="tl-hit" href="#/cronologia">' +
+            (h.ev.date ? '<span class="th-date">' + esc(h.ev.date) + "</span>" : "") +
+            '<span class="th-title">' + esc(h.ev.title) + "</span>" +
+            '<span class="th-era">' + esc(h.era.name) + "</span></a>";
+        }).join("") + "</div>"
+      : "";
+
+    /* hojear el archivo: ficha anterior / siguiente */
+    var idx = ORDER.indexOf(path);
+    function pgLink(p, dir) {
+      var f = findByPath(p.split("/"));
+      if (!f) return "";
+      return '<a class="pg ' + dir + '" href="#/' + p + '">' +
+        '<span class="pg-label">' + (dir === "prev" ? icon("back") + "<span>Anterior</span>" : "<span>Siguiente</span>" + icon("forward")) + "</span>" +
+        '<span class="pg-title">' + esc(f.node.title) + "</span></a>";
+    }
+    var prevP = idx > 0 ? ORDER[idx - 1] : null;
+    var nextP = idx !== -1 && idx < ORDER.length - 1 ? ORDER[idx + 1] : null;
+    var pager = (prevP || nextP)
+      ? '<nav class="pager">' + (prevP ? pgLink(prevP, "prev") : "") + (nextP ? pgLink(nextP, "next") : "") + "</nav>"
+      : "";
+
+    return '<div class="view">' + printBtn() + crumb(crumbs) + banner + '<div class="entry">' +
       (parent.length ? '<a class="back-link" href="#/' + pathOf(parent) + '">' + icon("back") + "Volver a " + esc(parent[parent.length - 1].title) + "</a>" : "") +
       fig +
       "<h1>" + esc(node.title) + "</h1>" +
       (node.epithet ? '<div class="e-epithet">' + esc(node.epithet) + "</div>" : "") +
       (node.tags && node.tags.length ? '<div class="e-tags">' + tagsHtml(node.tags, true) + "</div>" : "") +
-      pq + battleSheet(node.battle) + bodyHtml + childrenHtml + related +
+      pq + battleSheet(node.battle) + bodyHtml + childrenHtml + related + inTimeline + pager +
     "</div></div>";
   }
 
@@ -421,7 +468,7 @@
       ? '<div class="timeline">' + eras + "</div>"
       : emptyBlock("Ningún evento registrado para «" + TL_FILTER + "».");
     var bg = TIMELINE.image ? '<div class="timeline-bg"><img src="' + esc(TIMELINE.image) + '" alt="" loading="lazy" decoding="async"></div>' : "";
-    return bg + '<div class="view timeline-view">' + crumb([["Inicio", "#/"], [TIMELINE.title, null]]) +
+    return bg + '<div class="view timeline-view">' + printBtn() + crumb([["Inicio", "#/"], [TIMELINE.title, null]]) +
       '<div class="section-head"><h1><span class="icon-badge">' + icon("hourglass") + "</span>" + esc(TIMELINE.title) + "</h1>" +
       (TIMELINE.blurb ? '<div class="blurb">' + esc(TIMELINE.blurb) + "</div>" : "") + "</div>" +
       filters + bodyTl + "</div>";
@@ -510,6 +557,8 @@
     var hash = location.hash.replace(/^#/, "");
     var segs = hash.split("/").filter(Boolean);
     var title = WORLD.name;
+    /* al salir de la búsqueda, recoger el buscador desplegado (móvil) */
+    if (segs[0] !== "buscar") document.body.classList.remove("search-open");
     if (segs.length === 0) { render(viewHome()); setActiveExact("$home"); }
     else if (segs[0] === "cronologia") { render(viewTimeline()); setActiveExact("$cronologia"); title = (TIMELINE ? TIMELINE.title + " · " : "") + WORLD.name; }
     else if (segs[0] === "azar") {
@@ -546,9 +595,19 @@
       if (location.hash !== target) history.replaceState(null, "", target);
       router();
     });
-    input.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { input.value = ""; location.hash = "#/"; input.blur(); } });
+    input.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { input.value = ""; location.hash = "#/"; input.blur(); document.body.classList.remove("search-open"); } });
+    var sBtn = el("searchBtn");
+    if (sBtn) sBtn.addEventListener("click", function () {
+      var open = document.body.classList.toggle("search-open");
+      if (open) input.focus();
+    });
     el("menuBtn").addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
     el("scrim").addEventListener("click", closeNav);
+    /* botón imprimir (delegación) */
+    document.addEventListener("click", function (ev) {
+      var p = ev.target && ev.target.closest ? ev.target.closest(".print-btn") : null;
+      if (p) window.print();
+    });
     /* filtros de la cronología (delegación) */
     document.addEventListener("click", function (ev) {
       var b = ev.target && ev.target.closest ? ev.target.closest(".tl-chip") : null;
@@ -608,6 +667,27 @@
     window.addEventListener("scroll", hide, { passive: true });
   }
 
+  /* ------------------------------------ visor de imágenes (pantalla completa) */
+  function initLightbox() {
+    var lb = document.createElement("div");
+    lb.className = "lightbox";
+    lb.innerHTML = '<img alt=""><div class="lb-cap"></div><div class="lb-hint">Pulsa en cualquier sitio para cerrar</div>';
+    document.body.appendChild(lb);
+    var img = lb.querySelector("img"), cap = lb.querySelector(".lb-cap");
+    document.addEventListener("click", function (ev) {
+      if (lb.classList.contains("show")) { lb.classList.remove("show"); return; }
+      var t = ev.target;
+      if (!t || t.tagName !== "IMG" || !t.closest) return;
+      var wrap = t.closest(".entry-banner, .e-figure");
+      if (!wrap) return;
+      img.src = t.src; img.alt = t.alt || "";
+      var fc = wrap.querySelector("figcaption") || document.querySelector(".entry-cap");
+      cap.textContent = (fc ? fc.textContent : "") || t.alt || "";
+      lb.classList.add("show");
+    });
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") lb.classList.remove("show"); });
+  }
+
   /* ----------------------------------------------------------------- init */
   function start() {
     if (!window.NAV) {
@@ -617,6 +697,7 @@
     initChrome();
     buildNav();
     initTooltips();
+    initLightbox();
     window.addEventListener("hashchange", router);
     router();
   }
