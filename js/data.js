@@ -90,6 +90,9 @@ número incalculable: **mutantes y degenerados** en su mayoría... y entre ellos
 dicen, un **culto de exconvictos** de la era de los Puños Imperiales que aún
 reza al Emperador.
 
+Y esas cavernas no son solo del Sur: una red de [galerías volcánicas](#/cineris/cavernas-volcanicas)
+—ruinas antiquísimas que parecen naturales— horada el planeta entero.
+
 ## Cantera de carne y hierro
 Cineris alimenta sin descanso la maquinaria de guerra de los **Iron Warriors**:
 reclutas, metal y tributo. Pero bajo el yugo, en lo más hondo de las colmenas,
@@ -113,6 +116,21 @@ reclutas, metal y tributo. Pero bajo el yugo, en lo más hondo de las colmenas,
 es un **hechicero del Caos** surgido del Maelstrom que se reclama heredero de la
 perdida dinastía Lok. "Gran Señor de los Lok" suena más a **título** que a nombre
 —y bien podría haber sido toda una sucesión de ellos.
+
+## El atentado y el sarcófago
+Rondaba los **setenta años** cuando un **asesino imperial** estuvo a un aliento de
+borrarlo de la galaxia. Sobrevivió; su carne, no. Desde aquel día vive
+**confinado en una armadura-sarcófago**, mausoleo andante del que ya no sale. De
+esa herida nació su **obsesión por los implantes**: donde la carne traiciona, que
+reine el hierro.
+
+## La condena de carne
+Su castigo predilecto no es la muerte, sino el **servidor** (*servitor*). Pero el
+Lok prohíbe que **atomicen la consciencia** del penado: ordena conservarla
+intacta. Así el condenado **sigue dentro**, despierto, mientras su propio cuerpo
+ejecuta rutinas que él no ha elegido. Ve sus manos obedecer a través de sus
+nervios sin que un solo gesto sea suyo: una eternidad de espectador, preso en la
+cárcel de su propia carne.
 
 ## El gobierno de los IV
 Gobierna a través de **los IV**: un círculo de **consejeros oscuros y secretos**,
@@ -159,10 +177,22 @@ señores de Cineris.
 > Para el resto de la galaxia, Cineris es un mundo olvidado del Maelstrom. Esa es
 > exactamente la idea.
 
+## El hierro recuerda
+Lo que el resto del sistema ignora, ellos lo saben bien: **Cineris ya fue suya**. En
+la era de la Gran Cruzada, cuando el hierro aún era leal, sus antepasados labraron
+en esta roca una fortaleza y la hundieron en la piedra hasta hacerla parecer obra de
+la naturaleza. Las [cavernas](#/cineris/cavernas-volcanicas) que horadan el planeta
+son su herencia.
+
+Por eso vinieron. No fue solo el azar del Maelstrom quien los trajo a Cineris, sino
+la **memoria**: regresar al primer muro que alzó su Legión y reclamarlo —una deuda
+de hierro que diez mil años no han borrado.
+
 A su mando está el **Herrero Disforme**, su Maestre de Forja. *(La Gran Compañía
 aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
         related: [
           { to: "cineris/cinturon-asteroides", label: "El Cinturón de Asteroides" },
+          { to: "cineris/cavernas-volcanicas", label: "Las Cavernas Volcánicas" },
           { to: "cineris/batallas", label: "Batallas en Cineris" }
         ],
         childrenLabel: "Señores de hierro",
@@ -318,6 +348,78 @@ reza a qué.`,
               { to: "cineris/rebelion/habitantes-cavernas", label: "Los Habitantes de las Cavernas" }
             ]
           }
+        ]
+      },
+      {
+        id: "cavernas-volcanicas",
+        title: "Las Cavernas Volcánicas",
+        icon: "claw",
+        epithet: "Ruinas antiquísimas que horadan el planeta entero",
+        tags: ["Localización", "Ruinas", "Misterio", "El Sur"],
+        quote: {
+          text: "Mis sondas no tocan fondo. El planeta está hueco, y lo que lo vació no fue el fuego: fue una mano, hace mucho, con un plan que no alcanzo a leer.",
+          source: "Sir Lok II · Diario de a bordo, Tomo III"
+        },
+        body: `Cineris está **horadado de cavernas**. No solo el Sur: bajo cada
+estepa, bajo cada colmena, una red de **galerías volcánicas** se hunde en la roca,
+y nadie ha hallado su fondo.
+
+## ¿Naturales? No todas
+A primera vista parecen obra del fuego y del tiempo. Pero **algunas no engañan**:
+muros demasiado rectos, bóvedas demasiado iguales, salas que recuerdan a un
+**antiguo reino-fortaleza** labrado en la piedra viva. Alguien las construyó —y se
+esmeró en que pareciesen naturales.
+
+## El primer hierro
+Quien sabe leer una fortaleza reconoce la mano: bastiones angulares, corredores
+trazados para matar, una **geometría de asedio** que solo domina quien ha hecho de
+la fortificación una **fe**. Es obra de **maestros del hierro** de la era de la
+**Gran Cruzada** —diez mil años atrás, cuando ese hierro aún servía al Emperador—.
+
+Pocos atan los cabos, y ninguno en voz alta: que **Cineris fue suya antes de ser
+de nadie**, y que los actuales amos de hierro del sistema han vuelto, sin saberlo o
+sin decirlo, a pisar los muros que **levantaron sus padres leales**.
+
+## Tesoros y escaramuzas
+Sus entrañas rebosan **recursos**: minerales, reliquias y máquinas dormidas;
+**naturales, artificiales... y antinaturales**. Por ellos se libra una guerra menuda
+y sin tregua —tribus, bandas y héroes del yermo se adentran a saquear—, y muy pocos
+de los que bajan demasiado vuelven a contar lo que vieron.`,
+        related: [
+          { to: "cineris/rebelion", label: "La Rebelión en Ciernes" },
+          { to: "cineris/inquisidor-tibus", label: "El Inquisidor Lok" }
+        ]
+      },
+      {
+        id: "inquisidor-tibus",
+        title: "Inquisidor Tibus Magnus Araneo Lok",
+        icon: "eye",
+        epithet: "El Lok que sirve al Trono · oculto en la capital",
+        tags: ["Personaje", "Imperio", "Inquisición", "Dinastía Lok", "Secreto"],
+        quote: {
+          text: "Ningún enemigo del Trono puede alcanzarme aquí. El Maelstrom es mi muralla, y tras ella soy intocable.",
+          source: "Soflama del Gran Señor de los Lok"
+        },
+        body: `Lo que el Gran Señor no sabe es que el Imperio **ya ha cruzado su
+muralla**. Una nave comerciante atracó en la capital de Cineris y, entre su carga,
+camuflado, viajaba un **inquisidor**: **Tibus Magnus Araneo Lok**.
+
+## Sangre de la dinastía
+Su apellido no es casualidad. Tibus lleva la **sangre y el nombre de los Lok** —la
+dinastía perdida que el hechicero del Caos dice encarnar—. Donde el Gran Señor
+**reclama** el linaje, el inquisidor lo **porta de verdad**: el último Lok fiel al
+Trono, regresado al feudo de su sangre para arrancarlo de manos del impostor.
+
+## El cazador en la sombra
+Viaja sin séquito visible, confundido entre mercaderes y estibadores. Observa las
+colmenas, los cultos, el tributo y a los IV; anota cada herejía y mide cada fuerza.
+No ha venido a juzgar a un hombre, sino a **pesar un sistema entero** —y a decidir
+si Cineris se purga, se vuelve... o se quema.
+
+> Dos Lok en un mismo mundo: uno en su trono de hierro, otro entre la multitud. Solo
+> uno sabe que el otro existe.`,
+        related: [
+          { to: "cineris/gran-senor-lok", label: "El Gran Señor de los Lok" }
         ]
       },
       {
@@ -540,9 +642,12 @@ window.TIMELINE = {
       caption: "M41 – M42 · el presente",
       events: [
         { date: "001.M42", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo.", tags: ["Dinastía Lok"], link: "cineris/gran-senor-lok" },
+        { date: "M41", title: "El atentado del asesino imperial", text: "Un asesino del Imperio estuvo a un aliento de matar al Gran Señor de los Lok. Sobrevivió, pero su carne quedó deshecha: desde entonces gobierna confinado en una armadura-sarcófago, obsesionado con los implantes y aficionado a condenar a sus reos a una eternidad de consciencia presa en cuerpo de servidor.", tags: ["Imperio", "Dinastía Lok"], link: "cineris/gran-senor-lok" },
         { date: "M41 (secreto)", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar.", tags: ["Mechanicus Oscuro"], link: "estrella-d31/mechanicus-oscuro" },
         { date: "M41 (secreto)", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri.", tags: ["Hybri", "Maelstrom"], link: "hybri" },
-        { date: "001.M42", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios.", tags: ["Rebelión"], link: "cineris/rebelion" }
+        { date: "001.M42", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios.", tags: ["Rebelión"], link: "cineris/rebelion" },
+        { date: "001.M42", title: "Guerra por las cavernas volcánicas", text: "Por las estepas y los páramos se arremolinan tribus y bandas —demonistas y leales por igual—, y de entre ellas surgen guías y héroes. Sus escaramuzas se adentran en las cavernas volcánicas que horadan el planeta entero, para arrancarles sus tesoros: recursos naturales, artificiales... y antinaturales.", tags: ["Rebelión"], link: "cineris/cavernas-volcanicas" },
+        { date: "001.M42 (secreto)", title: "Un inquisidor en la capital", text: "Una nave comerciante atraca en la capital. En sus bodegas, camuflado entre la mercancía, viaja un inquisidor: Tibus Magnus Araneo Lok —que lleva la sangre y el nombre de la dinastía que el hechicero dice encarnar—. Nadie en Cineris sospecha aún que el Imperio ha puesto un pie en el sistema.", tags: ["Imperio", "Dinastía Lok"], link: "cineris" }
       ]
     }
   ]
