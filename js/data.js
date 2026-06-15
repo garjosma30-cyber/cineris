@@ -25,6 +25,8 @@
    o una ley/soflama del actual Gran Señor de los Lok.
 
    Año actual del setting: 001.M42.
+   (Lore añadida: Tribus de las Estepas, Los Denitios, y Squats Pálidos +
+    Señores Estelares en Melito.)
 
    Iconos: planet, sun, shield, swords, gem, cog, portal, chaosstar, asteroid,
      eye, crown, aquila, person, book, claw, banner, helm, hourglass, skull, home.
@@ -308,6 +310,14 @@ y cuerno, y hasta **squats** llegados de quién sabe qué refugio del Maelstrom.
 y abhumanos que en cualquier otro puerto arderían en la pira, aquí **comercian a
 plena luz**.
 
+## Esclavistas pálidos y señores del vacío
+Dos presencias destacan incluso en semejante feria. Unos extraños
+[squats de piel pálida](#/cineris/melito/squats-palidos), blancos como la cera, que
+practican sin descanso el **esclavismo** —comprar y vender hombres es su oficio y su
+credo—. Y, atracadas en los muelles más viejos,
+[antiguas naves del vacío](#/cineris/melito/senores-estelares) tripuladas por
+**reptiloides** que se autodenominan «**grandes señores estelares**».
+
 ## La costumbre más vieja del puerto
 Que esto se permita no es capricho del Lok: es la **tradición más antigua de
 Cineris**, más vieja que el propio Imperio. Antes del hierro, una
@@ -327,6 +337,69 @@ herejes... y, quizá, [algún pasajero que no dice su nombre](#/cineris/inquisid
           { to: "cineris/tirania-xenos", label: "La Tiranía Xenos" },
           { to: "cineris/inquisidor-tibus", label: "El Inquisidor Lok" },
           { to: "cineris/rebelion", label: "La Rebelión en Ciernes" }
+        ],
+        childrenLabel: "Rarezas del puerto",
+        children: [
+          {
+            id: "squats-palidos",
+            title: "Squats Pálidos",
+            icon: "person",
+            epithet: "Abhumanos esclavistas de piel de cera",
+            tags: ["Xenos", "Abhumanos", "Squats", "Esclavistas", "Melito"],
+            quote: {
+              text: "Squats blancos como larvas, que compran y venden hombres como quien cambia tornillos. Su oro es bueno; lo que hagan con su carne, asunto suyo.",
+              source: "Edicto del Gran Señor de los Lok"
+            },
+            body: `Entre la fauna que abarrota [Melito](#/cineris/melito), pocos
+inquietan tanto como los **squats de piel pálida**: una estirpe de abhumanos blancos
+como la cera, llegados de quién sabe qué refugio perdido del Maelstrom.
+
+## El esclavismo por oficio
+Para ellos el comercio de **esclavos** no es un negocio más: es su forma de vida.
+Compran, venden y transportan **carne encadenada** sin descanso, y rara vez se les ve
+sin una recua de cautivos a remolque. En un puerto donde todo se vende, son los amos
+indiscutidos del mercado más viejo y más sucio.
+
+> Pálidos, callados y siempre con cadenas de sobra. Donde hay un squat blanco, hay un
+> hombre que acaba de dejar de ser libre.
+
+*(De dónde vienen y cómo es su pueblo aún no está en la crónica — cuéntamelo y lo
+detallo.)*`,
+            related: [
+              { to: "cineris/melito", label: "El Espaciopuerto Melito" }
+            ]
+          },
+          {
+            id: "senores-estelares",
+            title: "Los Señores Estelares",
+            icon: "crown",
+            epithet: "Reptiloides de las antiguas naves del vacío",
+            tags: ["Xenos", "Reptiloides", "Naves del vacío", "Melito", "Misterio"],
+            quote: {
+              text: "Se dicen señores de las estrellas y atracan en mi puerto como mendigos con corona. Que naveguen y que paguen: el único señor de Cineris tiene nombre, y no es un reptil.",
+              source: "Edicto del Gran Señor de los Lok"
+            },
+            body: `En los muelles más antiguos de [Melito](#/cineris/melito) atracan, de
+tanto en tanto, **naves del vacío** de una vejez imposible: cascos arcaicos que
+parecen llevar surcando la oscuridad desde antes de que el Hombre soñara con las
+estrellas.
+
+## Los reptiloides
+Las tripulan criaturas **reptiloides** de porte solemne que, según juran los
+estibadores, se autodenominan «**grandes señores estelares**». De dónde vienen, qué
+buscan en Cineris y si su título esconde algo más que arrogancia, nadie en el puerto
+lo sabe con certeza.
+
+> Se proclaman señores de las estrellas. En Cineris, eso solo les compra un sitio
+> donde atracar y una factura que pagar.
+
+*(Su origen y su verdadera naturaleza aún no están en la crónica — cuéntamelos y los
+detallo.)*`,
+            related: [
+              { to: "cineris/melito", label: "El Espaciopuerto Melito" },
+              { to: "cineris/tirania-xenos", label: "La Tiranía Xenos" }
+            ]
+          }
         ]
       },
       {
