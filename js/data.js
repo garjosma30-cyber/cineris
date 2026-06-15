@@ -34,9 +34,11 @@ window.WORLD = {
   name: "SISTEMA CINERIS",
   subtitle: "Crónicas de un sistema perdido en el Maelstrom",
   image: "assets/portada.jpg",
-  intro: `El **Sistema Cineris** nació como una promesa: un **puerto franco**
-fundado por el **Rogue Trader Sir Lok II** en el filo de la galaxia, lejos de
-toda amenaza, lejos del **Maelstrom**.
+  intro: `El **Sistema Cineris** nació como una promesa mucho antes que el Imperio:
+un **puerto franco** donde **toda raza** comerciaba, en el filo de la galaxia, lejos
+de toda amenaza, lejos del **Maelstrom**. El **Rogue Trader Sir Lok II** no lo fundó
+—lo **redescubrió**, siguiendo un extraño mensaje astropático que llegó a su nave con
+la ruta exacta.
 
 La disformidad traicionó esa promesa. Hoy Cineris yace **engullido por el
 Maelstrom**, solo entre tormentas que ninguna nave cruza.
@@ -188,6 +190,26 @@ Por eso vinieron. No fue solo el azar del Maelstrom quien los trajo a Cineris, s
 la **memoria**: regresar al primer muro que alzó su Legión y reclamarlo —una deuda
 de hierro que diez mil años no han borrado.
 
+## El búnker de los cuatro durmientes
+En una **caverna olvidada**, en las galerías más hondas —allí donde la roca se
+acerca al **núcleo maldito** de Cineris—, el hierro halló lo que la piedra llevaba
+diez mil años guardando. No fue un descenso fácil: para llegar, la Gran Compañía
+tuvo que abrirse paso a través de **incontables criaturas inmundas**, cosas sin
+nombre nacidas de la oscuridad y del susurro del Maelstrom, que defendían el camino
+como si algo allá abajo mereciera ser defendido.
+
+Al final del túnel los esperaba un **búnker antiquísimo**, sellado desde la era de
+la **Gran Cruzada**: un sagrario de adamantio labrado por las mismas manos leales
+que horadaron el planeta. Y dentro, intactos, **cuatro antiguos marines en
+estasis** —hermanos de un tiempo en que el hierro aún servía al Emperador—,
+dormidos a la espera de una orden que nunca llegó.
+
+> Cuatro durmientes bajo el mundo. ¿A quién jurarán cuando abran los ojos: al Trono
+> que un día sirvieron, o al hierro que hoy reina en Cineris?
+>
+> *(Aún no sé quiénes son los Cuatro Durmientes ni qué custodian — cuéntamelo y lo
+> detallo.)*
+
 A su mando está el **Herrero Disforme**, su Maestre de Forja. *(La Gran Compañía
 aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
         related: [
@@ -253,6 +275,58 @@ Su verdadera fortaleza permanece en secreto, lejos de estas rocas.
 > Cadenas para unir mundos. Cañones para recordarte de quién son.`,
         related: [
           { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
+        ]
+      },
+      {
+        id: "melito",
+        title: "Espaciopuerto Melito",
+        icon: "gem",
+        epithet: "El bazar inmundo de la capital · Colmena Mélida",
+        tags: ["Localización", "Capital", "Colmena Mélida", "Mercado", "Xenos"],
+        quote: {
+          text: "Que atraque quien pague. No pregunto de qué mundo vienes ni de qué especie eres: pregunto cuánto diezmas. En Melito, el oro no tiene raza.",
+          source: "Edicto del Gran Señor de los Lok"
+        },
+        body: `En el corazón de la **capital** de Cineris, encaramado a la **Colmena
+Mélida**, se abre **Melito**: el **espaciopuerto** del planeta y la única boca por
+la que el sistema respira hacia la galaxia... y la única por la que la galaxia se
+cuela en Cineris.
+
+## Un mercado en decadencia
+Lo que fue muelle de carga no tardó en pudrirse en algo mayor. Hoy Melito es un
+**mercado abundante y corrupto** abrazado a la colmena: un bazar sin ley donde se
+compra y se vende cualquier cosa que deje diezmo. Bajo la tolerancia corsaria del
+Lok —que no pregunta de dónde vienes mientras pagues—, el puerto prospera en plena
+**decadencia**: licores, reliquias robadas, carne, secretos y armas cambian de
+manos al amparo del hierro.
+
+## El zoco de las rarezas inmundas
+Por sus pasarelas se arrastra una fauna que ningún mundo imperial toleraría:
+**ogretes** brutales alquilados como músculo, **mutantes** de mil deformidades,
+**zoats** que regatean en lenguas que nadie más habla, **hombres bestia** de pezuña
+y cuerno, y hasta **squats** llegados de quién sabe qué refugio del Maelstrom. Xenos
+y abhumanos que en cualquier otro puerto arderían en la pira, aquí **comercian a
+plena luz**.
+
+## La costumbre más vieja del puerto
+Que esto se permita no es capricho del Lok: es la **tradición más antigua de
+Cineris**, más vieja que el propio Imperio. Antes del hierro, una
+[civilización alienígena](#/cineris/tirania-xenos) hizo del sistema un **mercado
+total**, abierto a toda raza. Aquel pueblo se extinguió, pero su costumbre
+**sobrevivió a sus amos**: cada poder que ha pisado Cineris —incluso los Iron
+Warriors en su caída— ha terminado por consentir el viejo trato. En Melito, el
+comercio pesa más que la fe.
+
+## La puerta que nadie vigila del todo
+Tanta mezcla tiene su precio. Entre tanto rostro extraño **nadie destaca**, y por
+esa misma grieta se cuela lo que el hierro querría dejar fuera: contrabando, espías,
+herejes... y, quizá, [algún pasajero que no dice su nombre](#/cineris/inquisidor-tibus).
+
+> En Melito todo se vende. Hasta el silencio. Sobre todo el silencio.`,
+        related: [
+          { to: "cineris/tirania-xenos", label: "La Tiranía Xenos" },
+          { to: "cineris/inquisidor-tibus", label: "El Inquisidor Lok" },
+          { to: "cineris/rebelion", label: "La Rebelión en Ciernes" }
         ]
       },
       {
@@ -387,7 +461,193 @@ y sin tregua —tribus, bandas y héroes del yermo se adentran a saquear—, y m
 de los que bajan demasiado vuelven a contar lo que vieron.`,
         related: [
           { to: "cineris/rebelion", label: "La Rebelión en Ciernes" },
-          { to: "cineris/inquisidor-tibus", label: "El Inquisidor Lok" }
+          { to: "cineris/inquisidor-tibus", label: "El Inquisidor Lok" },
+          { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
+        ]
+      },
+      {
+        id: "tribus-estepas",
+        title: "Tribus de las Estepas",
+        icon: "skull",
+        epithet: "Bandas del yermo · peaje de carne y dioses extraños",
+        tags: ["Facción", "Tribus", "Estepas", "Cultos", "El Yermo"],
+        quote: {
+          text: "Que las tribus cobren su peaje y degüellen a quien quieran en sus llanuras. Mientras la caravana siga llegando a mis colmenas, sus dioses no son asunto mío.",
+          source: "Edicto del Gran Señor de los Lok"
+        },
+        body: `Más allá de las colmenas, las **estepas** de Cineris no conocen más ley
+que la del más fuerte. Enormes franjas del yermo están en manos de **bandas y
+tribus** que las gobiernan a su antojo —territorios en **constante cambio** que
+mudan de dueño con las estaciones—.
+
+## El peaje de carne
+La mayoría exige un tributo para cruzar sus llanuras: la **entrega de algunos de
+los viajeros** que pretenden pasar. Su destino suele ser el **sacrificio ritual**
+a dioses extraños, así que no sorprende ver a las caravanas avanzar con **jaulas
+de esclavos** reservados para el pago.
+
+## Señores del yermo
+Entre los **cientos** de bandas que se reparten las estepas, tres nombres se
+repiten en boca de los caravaneros: los **sorbetuétanos de Teriator**, los
+**despellejacráneos de Lupel** y los **redentores del águila bicéfala**.
+
+> Cien banderas, cien dioses, un solo yermo. Mañana serán otras cien.`,
+        related: [
+          { to: "cineris/cavernas-volcanicas", label: "Las Cavernas Volcánicas" },
+          { to: "cineris/rebelion", label: "La Rebelión en Ciernes" },
+          { to: "cineris/denitios", label: "Los Denitios" }
+        ],
+        childrenLabel: "Bandas y tribus",
+        children: [
+          {
+            id: "sorbetuetanos-teriator",
+            title: "Sorbetuétanos de Teriator",
+            icon: "skull",
+            epithet: "Banda de las estepas",
+            tags: ["Tribu", "Estepas", "El Yermo"],
+            quote: {
+              text: "Otra bandera en el polvo, otro dios con hambre. Pagadles su carne y seguid camino.",
+              source: "Sir Lok III · Diario de a bordo, Tomo IV"
+            },
+            body: `Una de las bandas que imponen su ley en las estepas de Cineris,
+cobrando en carne el paso por sus llanuras.
+
+*(Su historia, sus ritos y la figura de Teriator aún no están en la crónica —
+cuéntamelos y los detallo.)*`,
+            related: [
+              { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
+            ]
+          },
+          {
+            id: "despellejacraneos-lupel",
+            title: "Despellejacráneos de Lupel",
+            icon: "skull",
+            epithet: "Banda de las estepas",
+            tags: ["Tribu", "Estepas", "El Yermo"],
+            quote: {
+              text: "Dicen que desuellan el cráneo del que cae. Que recen como gusten: a mí solo me debe llegar el tributo.",
+              source: "Edicto del Gran Señor de los Lok"
+            },
+            body: `Banda del yermo conocida por la marca atroz que da nombre a su
+estandarte. Como tantas otras, exige su diezmo de carne a quien cruza su feudo.
+
+*(Su historia, sus ritos y la figura de Lupel aún no están en la crónica —
+cuéntamelos y los detallo.)*`,
+            related: [
+              { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
+            ]
+          },
+          {
+            id: "redentores-aguila",
+            title: "Redentores del Águila Bicéfala",
+            icon: "chaosstar",
+            epithet: "El culto que llama a su dios con agonía",
+            tags: ["Tribu", "Culto", "Estepas", "Herejía", "El Yermo"],
+            quote: {
+              text: "Aúllan a un dios alado para que cambie el mundo. Que aúllen: el único cambio que verán es el de amo, y su amo soy yo.",
+              source: "Edicto del Gran Señor de los Lok"
+            },
+            body: `De entre todas las tribus de las estepas, ninguna inquieta tanto
+como los **redentores del águila bicéfala**.
+
+## La plegaria agónica
+Pretenden **invocar a su dios** mediante **mensajes agónicos astrato-telepáticos**:
+plegarias arrancadas del dolor de sus víctimas y proyectadas a través del vacío.
+Cada sacrificio es, para ellos, una llamada.
+
+## El cambio perpetuo
+Creen que, cuando su dios acuda al fin, **extenderá sus alas sobre el planeta** y
+desatará un **cambio perpetuo** —una transformación sin retorno de Cineris entero—.
+
+> Rezan con la voz de los que mueren, esperando que el cielo les conteste con un
+> batir de alas.`,
+            related: [
+              { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "denitios",
+        title: "Los Denitios",
+        icon: "home",
+        epithet: "Las grutas del bioalimento · feudo de la casta de Notle",
+        tags: ["Localización", "Bioalimento", "Casta sacerdotal", "Notle", "Cavernas"],
+        quote: {
+          text: "Que los Denitios recen a su Notle cuanto quieran. Mientras la gruta siga pariendo alimento para mis colmenas, su dios y yo nos llevaremos de maravilla.",
+          source: "Edicto del Gran Señor de los Lok"
+        },
+        body: `Una de las mayores **fábricas de bioalimento** del planeta no está en
+la superficie, sino bajo ella: una **gruta colosal** llamada los **Denitios**.
+
+## Millones en la oscuridad
+Allí, varios **millones de recolecultores** podan sin descanso las extrañas plantas
+que tapizan la roca —en realidad, distintas **cepas de hongos** que prosperan en la
+oscuridad—. De esa cosecha sin fin se alimentan las colmenas del sistema.
+
+## La casta de Notle
+Sobre esa muchedumbre obrera reina una **casta dirigente y sacerdotal** que vigila
+la producción mientras reza al **dios de la vida, Notle**. Sus señores patrullan las
+bóvedas a lomos de **corceles alados**: **buitres de la lejana Terra** que escupen su
+característico **aliento ácido**.
+
+## Castas y gremios
+Los Denitios son una rareza social en Cineris. Aquí pervive el viejo **sistema de
+castas**, mientras que el resto de las ciudades del planeta lo ha sustituido por un
+**sistema moderno de clases y gremios**. Bajo tierra se reza y se obedece; en la
+superficie se compra, se vende y se asciende.
+
+> El hambre de las colmenas se sacia en lo hondo, podando hongos a la sombra de un
+> dios alado.`,
+        related: [
+          { to: "cineris", label: "Planeta Cineris" },
+          { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
+        ]
+      },
+      {
+        id: "tirania-xenos",
+        title: "La Tiranía Xenos",
+        icon: "claw",
+        epithet: "La civilización alienígena que precedió al hierro · extinta",
+        tags: ["Historia", "Xenos", "Extinta", "Comercio", "Gran Cruzada"],
+        quote: {
+          text: "Bajo el polvo de Cineris hallé los huesos de un imperio que no era humano. Vendían de todo, a todos. Por eso el hierro los borró... y por eso el sistema sigue oliendo a su mercado.",
+          source: "Sir Lok II · Diario de a bordo, Tomo III"
+        },
+        body: `Mucho antes de que el Imperio conociera estas estrellas, Cineris ya tenía
+amos: una **civilización xenos** —hoy **extinta**— que gobernaba el sistema y lo había
+convertido en lo que sigue siendo en su esencia: un **puerto comerciante** abierto a
+toda raza.
+
+## El mercado total
+Bajo aquella tiranía, Cineris fue un **mercado sin límites**. Sus muelles acogían a
+cuanta especie surcaba el vacío; se traficaba con todo, sin credo ni bandera, en un
+comercio total que no preguntaba de dónde venía la mercancía ni quién la traía. De ese
+tiempo nace la **costumbre más vieja del sistema**, la que aún late en
+[Melito](#/cineris/melito).
+
+## La ofrenda mal interpretada
+Cuando, en plena **Gran Cruzada**, los [Iron Warriors](#/cineris/iron-warriors)
+alcanzaron el sistema y fueron descubiertos, los xenos hicieron lo único que sabían
+hacer ante un recién llegado: una **ofrenda**, un gesto de su comercio total, una mano
+tendida en forma de tributo. La **IV Legión la leyó como afrenta** —o quiso leerla
+así—. La respuesta del hierro fue el **exterminio**.
+
+## Unos pocos años, un imperio borrado
+En apenas unos años, los Iron Warriors **tomaron el sistema entero** y apagaron para
+siempre a la civilización que lo regía. Pero no pudieron matar su legado: la tradición
+del puerto **sobrevivió a sus dueños**. Hoy, diez mil años después, esa costumbre
+extinta sigue gobernando Cineris desde la tumba —cada vez que un xeno regatea en Melito,
+la tiranía vuelve a respirar.
+
+> Los borraron del sistema, pero no de su forma de comerciar. Algunos imperios no
+> mueren: solo cambian de manos su mercado.
+
+*(Esta civilización aún no tiene nombre ni forma en la crónica — dime cómo eran y los
+detallo.)*`,
+        related: [
+          { to: "cineris/melito", label: "El Espaciopuerto Melito" },
+          { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
         ]
       },
       {
@@ -603,10 +863,34 @@ window.TIMELINE = {
   image: "assets/fondo-cronologia.jpg",
   eras: [
     {
-      name: "La Fundación",
+      name: "El Puerto de los Xenos",
+      caption: "tiempos ignotos · antes del Imperio",
+      events: [
+        { date: "Tiempos ignotos", title: "El puerto que precede al Imperio", text: "Mucho antes de que el Hombre alcanzara estas estrellas, una civilización xenos —hoy extinta— gobierna Cineris y abre sus muelles a toda raza: un mercado total donde se trafica con cuanto la galaxia puede ofrecer, sin credo ni bandera.", tags: ["Xenos", "Comercio"], link: "cineris/tirania-xenos" }
+      ]
+    },
+    {
+      name: "La Conquista de Hierro",
+      caption: "~M30 – M31 · la Gran Cruzada",
+      events: [
+        { date: "~M30", title: "Llega la IV Legión", text: "En plena Gran Cruzada, los Iron Warriors alcanzan Cineris y chocan con la tiranía xenos que lo gobierna. Al ser descubiertos, los alienígenas les hacen una ofrenda —un gesto de su comercio total— que la IV Legión interpreta como afrenta. La respuesta es el exterminio.", tags: ["Iron Warriors", "Xenos"], link: "cineris/tirania-xenos" },
+        { date: "~M30", title: "El sistema cae bajo el hierro", text: "En apenas unos años, los Iron Warriors toman el sistema entero y apagan a la civilización que lo regía. Labran fortalezas en la piedra viva de Cineris y las hunden hasta hacerlas parecer obra de la naturaleza.", tags: ["Iron Warriors"], link: "cineris/cavernas-volcanicas" },
+        { date: "~M30 – M31", title: "Unas décadas de hierro leal", text: "Mientras el hierro aún sirve al Emperador, los Iron Warriors gobiernan Cineris durante unas décadas. Luego el mando pasa a los Puños Imperiales, cuya administración del díscolo puerto resulta tosca e imperfecta.", tags: ["Iron Warriors", "Imperio"] }
+      ]
+    },
+    {
+      name: "La Herejía y el Abandono",
+      caption: "~M31 · la caída de Horus",
+      events: [
+        { date: "~M31", title: "La Herejía torna el hierro", text: "Cuando estalla la Herejía de Horus, los Iron Warriors caen con su primarca. El sistema vuelve a manos del hierro —ya traidor— y, con él, se reabre el comercio con los alienígenas: la vieja tradición xenos del puerto renace bajo bandera del Caos.", tags: ["Iron Warriors", "Caos"] },
+        { date: "~014.M31", title: "Abandonado a la muerte de Horus", text: "Con la muerte de Horus y el fin de la Herejía, los Iron Warriors abandonan Cineris. El sistema queda desierto, dejado a la deriva y poblado solo por criaturas extrañas durante milenios.", tags: ["Iron Warriors", "Maelstrom"] }
+      ]
+    },
+    {
+      name: "El Redescubrimiento",
       caption: "~M37 · el Libre Mercader Lok",
       events: [
-        { date: "~001.M37", title: "Sir Lok II reclama Cineris", text: "Con las cartas de ruta que heredó para hallar el sistema, el Rogue Trader Sir Lok II lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio.", tags: ["Dinastía Lok"], link: "cineris" },
+        { date: "~001.M37", title: "Sir Lok II redescubre Cineris", text: "El linaje de los Lok llevaba generaciones persiguiendo el rumor de un sistema perdido. Un extraño mensaje astropático llega por fin a la nave del Rogue Trader Sir Lok II con la ruta exacta. Lo redescubre desierto, lo asienta sin derecho legal a gobernarlo y empieza a pagar tributo al Imperio.", tags: ["Dinastía Lok"], link: "cineris" },
         { date: "M37", title: "Cimientos corsarios", text: "Bajo los Lok, Cineris crece a la sombra de la ley: un asentamiento próspero levantado sobre estructuras piratescas que perdurarán milenios.", tags: ["Dinastía Lok"] }
       ]
     },
@@ -633,7 +917,7 @@ window.TIMELINE = {
       events: [
         { date: "~001.M41", title: "El Maelstrom engulle el sistema", text: "Las corrientes de la disformidad crecen hasta tragarse a Cineris. El sistema queda aislado, sin refuerzos, olvidado por la galaxia.", tags: ["Maelstrom"] },
         { date: "~001.M41", title: "Reaparece el Gran Señor de los Lok", text: "Del Maelstrom emerge un hechicero del Caos que se proclama Gran Señor de los Lok y reclama el gobierno del sistema. Su campaña dura apenas unos meses.", tags: ["Dinastía Lok"], link: "cineris/gran-senor-lok" },
-        { date: "~002.M41", title: "Llega el hierro", text: "Tras la campaña del hechicero llegan los Iron Warriors. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal.", tags: ["Iron Warriors", "Imperio"], link: "cineris/iron-warriors" },
+        { date: "~002.M41", title: "El hierro regresa", text: "Tras la campaña del hechicero, los Iron Warriors regresan al sistema que ya conquistaron en la Gran Cruzada. Juntos arrebatan Cineris a los Puños Imperiales y los expulsan tras una guerra brutal: el hierro vuelve a su primer muro.", tags: ["Iron Warriors", "Imperio"], link: "cineris/iron-warriors" },
         { date: "desde M41", title: "Un contraataque imposible", text: "El Maelstrom niega al Imperio toda ruta segura: ningún contraataque de envergadura ha logrado reconquistar Cineris.", tags: ["Imperio", "Maelstrom"] }
       ]
     },
