@@ -25,8 +25,9 @@
    o una ley/soflama del actual Gran Señor de los Lok.
 
    Año actual del setting: 001.M42.
-   (Lore añadida: Tribus de las Estepas, Los Denitios, y Squats Pálidos +
-    Señores Estelares en Melito.)
+   (Lore añadida: Tribus de las Estepas, Los Denitios, Cinturón Sangrante,
+    Humungorgones, Logias Arcanotecnologistas, Corsarios de Ararat, y
+    Squats Pálidos + Señores Estelares en Melito.)
 
    Iconos: planet, sun, shield, swords, gem, cog, portal, chaosstar, asteroid,
      eye, crown, aquila, person, book, claw, banner, helm, hourglass, skull, home.
@@ -100,7 +101,12 @@ Y esas cavernas no son solo del Sur: una red de [galerías volcánicas](#/cineri
 ## Cantera de carne y hierro
 Cineris alimenta sin descanso la maquinaria de guerra de los **Iron Warriors**:
 reclutas, metal y tributo. Pero bajo el yugo, en lo más hondo de las colmenas,
-**algo se gesta**: una [rebelión en ciernes](#/cineris/rebelion).`,
+**algo se gesta**: una [rebelión en ciernes](#/cineris/rebelion).
+
+Y entre colmena y yermo, ocultas en talleres sellados, criptas industriales y
+bóvedas de prueba, prosperan las [Logias Arcanotecnologistas](#/cineris/logias-arcanotecnologistas):
+sociedades donde el hierro, la inteligencia prohibida y la disformidad aprenden a
+compartir el mismo cuerpo.`,
     childrenLabel: "En este mundo",
     children: [
       {
@@ -173,6 +179,18 @@ Cineris y lo gobierna como su feudo.
 Las estepas y las colmenas alimentan su maquinaria: carne para los reclutadores,
 metal para las forjas, guerra sin fin.
 
+Cada ciclo, **millones de ciudadanos** son expulsados de las colmenas: sobrantes,
+deudores, clanes vencidos, obreros inválidos para la cuota o simples multitudes
+que los alguaciles de los Lok ya no quieren contar. No todos mueren en el polvo.
+Los que sobreviven engrosan las **bandas y pandillas de los desiertos**, donde la
+crueldad se vuelve oficio y la resistencia, moneda.
+
+De esa cantera humana extraen los Iron Warriors a sus candidatos. Durante las
+**cuatro noches del [Cinturón Sangrante](#/cineris/cinturon-asteroides)**, los
+Selectores de Forja recorren el yermo y arrancan de las tribus a los más hábiles,
+feroces y despiadados. No preguntan bandera ni dios: solo cuánto castigo puede
+soportar un cuerpo antes de romperse.
+
 ## Una fortaleza en las sombras
 Su **puerto** está a la vista, en el cinturón de asteroides. Su **base principal,
 no**: nadie —dentro o fuera del sistema— sabe dónde se ocultan en verdad los
@@ -206,17 +224,36 @@ que horadaron el planeta. Y dentro, intactos, **cuatro antiguos marines en
 estasis** —hermanos de un tiempo en que el hierro aún servía al Emperador—,
 dormidos a la espera de una orden que nunca llegó.
 
+La cámara guardaba además otra blasfemia de hierro: **dos androides enormes**,
+tan altos y deformes como brutos infernales, pero sin sarcófago, sin piloto y sin
+marine agonizante en su interior. Sus vientres no eran tumbas, sino hornos mudos;
+sus miembros, máquinas de asedio plegadas en reposo. Ningún sello imperial los
+nombraba. Ningún juramento de la Legión explicaba por qué habían sido encerrados
+junto a los cuatro durmientes.
+
 > Cuatro durmientes bajo el mundo. ¿A quién jurarán cuando abran los ojos: al Trono
 > que un día sirvieron, o al hierro que hoy reina en Cineris?
 >
 > *(Aún no sé quiénes son los Cuatro Durmientes ni qué custodian — cuéntamelo y lo
 > detallo.)*
 
+## La alianza corsaria
+Los Iron Warriors gobiernan la piedra, los astilleros y las fortalezas. El cielo
+lo cierran sus aliados: los [Corsarios de Ararat](#/estrella-d31/corsarios-ararat),
+una flota pirata que merodea en torno a D31 y convierte cada batalla naval en un
+asalto de abordaje.
+
+No son vasallos dóciles. Son una herramienta con hambre propia. Mientras corten
+rutas, cacen refuerzos imperiales y entreguen botín útil, los señores de hierro
+les permiten ocupar el espacio aéreo del sistema.
+
 A su mando está el **Herrero Disforme**, su Maestre de Forja. *(La Gran Compañía
 aún no tiene nombre en la crónica — dímelo y lo añado.)*`,
         related: [
           { to: "cineris/cinturon-asteroides", label: "El Cinturón de Asteroides" },
+          { to: "estrella-d31/corsarios-ararat", label: "Los Corsarios de Ararat" },
           { to: "cineris/cavernas-volcanicas", label: "Las Cavernas Volcánicas" },
+          { to: "cineris/logias-arcanotecnologistas", label: "Logias Arcanotecnologistas" },
           { to: "cineris/batallas", label: "Batallas en Cineris" }
         ],
         childrenLabel: "Señores de hierro",
@@ -244,9 +281,17 @@ ojo carmesí.
 
 ## El señor de hierro
 Empuña un **martillo de asedio** que derriba murallas, y carga cadenas y cráneos
-como trofeos. Bajo su mando, Cineris es a la vez fortaleza y cantera de guerra.`,
+como trofeos. Bajo su mando, Cineris es a la vez fortaleza y cantera de guerra.
+
+## Patrono de las logias
+Su autoridad pesa sobre las [Logias Arcanotecnologistas](#/cineris/logias-arcanotecnologistas),
+aunque cada una finja autonomía ritual. Allí los herreros disformes pactan con
+archimagos y séquitos del Mechanicus Oscuro para producir armas que todavía no
+tienen nombre: máquinas que sueñan, demonios con chasis y servidores que obedecen
+órdenes que nadie ha pronunciado.`,
             related: [
-              { to: "cineris/iron-warriors", label: "Los Iron Warriors" }
+              { to: "cineris/iron-warriors", label: "Los Iron Warriors" },
+              { to: "cineris/logias-arcanotecnologistas", label: "Logias Arcanotecnologistas" }
             ]
           }
         ]
@@ -270,6 +315,17 @@ por **cadenas colosales** y erizadas de cañones.
 Aquí atracan las naves de guerra, se amontona el botín y fluye el diezmo del
 sistema. Nada entra ni sale sin que los amos de hierro lo permitan.
 
+## Las cuatro noches del Cinturón Sangrante
+Cuatro noches al año, por el reflejo de la estrella, el cinturón de asteroides
+—cadáver de una antigua luna— parece descender sobre Cineris: más cercano, más
+grande, teñido de rojo sobre el cielo de ceniza.
+
+En esas noches los **Selectores de Forja** bajan al yermo. Sus naves no anuncian
+reclutamiento, sino caza. Bandas enteras se dispersan, los señores tribales ocultan
+a sus mejores asesinos y las colmenas cierran compuertas, porque todo joven capaz
+de sobrevivir a la captura puede acabar encadenado a las pruebas de los Iron
+Warriors.
+
 ## Lo que el puerto oculta
 Por imponente que parezca, esto es solo lo que los Iron Warriors **dejan ver**.
 Su verdadera fortaleza permanece en secreto, lejos de estas rocas.
@@ -283,6 +339,8 @@ Su verdadera fortaleza permanece en secreto, lejos de estas rocas.
         id: "melito",
         title: "Espaciopuerto Melito",
         icon: "gem",
+        image: "assets/melito-zoat.jpg",
+        imageCaption: "Zoco xenos de Melito · Colmena Mélida",
         epithet: "El bazar inmundo de la capital · Colmena Mélida",
         tags: ["Localización", "Capital", "Colmena Mélida", "Mercado", "Xenos"],
         quote: {
@@ -531,17 +589,74 @@ sin decirlo, a pisar los muros que **levantaron sus padres leales**.
 Sus entrañas rebosan **recursos**: minerales, reliquias y máquinas dormidas;
 **naturales, artificiales... y antinaturales**. Por ellos se libra una guerra menuda
 y sin tregua —tribus, bandas y héroes del yermo se adentran a saquear—, y muy pocos
-de los que bajan demasiado vuelven a contar lo que vieron.`,
+de los que bajan demasiado vuelven a contar lo que vieron.
+
+Algunas galerías acaban sirviendo de salas de prueba para las
+[Logias Arcanotecnologistas](#/cineris/logias-arcanotecnologistas). Cuando una de
+sus criaturas sobrevive demasiado bien, los túneles aprenden un nuevo ruido.`,
         related: [
           { to: "cineris/rebelion", label: "La Rebelión en Ciernes" },
           { to: "cineris/inquisidor-tibus", label: "El Inquisidor Lok" },
-          { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
+          { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" },
+          { to: "cineris/logias-arcanotecnologistas", label: "Logias Arcanotecnologistas" }
+        ]
+      },
+      {
+        id: "logias-arcanotecnologistas",
+        title: "Logias Arcanotecnologistas",
+        icon: "cog",
+        image: "assets/logias-servoarana.jpg",
+        imageContain: true,
+        imageCaption: "Cianarántula autómata · material no recuperado",
+        epithet: "Sociedades de forja impía · máquinas, abominaciones y demonios",
+        tags: ["Facción", "Tecnoherejía", "Mechanicus Oscuro", "Forja", "Demonios"],
+        quote: {
+          text: "No preguntéis qué camina por el campo después de la prueba. Si vuelve a la logia, era un arma. Si no vuelve, era naturaleza.",
+          source: "Máxima atribuida a los arcanotecnologistas de Cineris"
+        },
+        body: `En todo Cineris existen **Logias Arcanotecnologistas**: pequeñas
+asociaciones de **herreros disformes**, **archimagos** y séquitos del
+**Mechanicus Oscuro** (*Mechanicus Oscurus*). No son templos públicos ni gremios
+legales, sino pactos sellados entre forjas rivales, capillas mecánicas y
+laboratorios que nadie admite haber construido.
+
+## El oficio imposible
+En sus cámaras se experimenta con fusiones que ninguna doctrina imperial podría
+nombrar sin condenarlas: **máquinas injertadas con demonios**, inteligencias
+abominables encerradas en chasis de guerra, espíritus de la máquina forzados a
+compartir circuitos con hambre disforme. Cada logia guarda sus fórmulas como si
+fueran reliquias y sus fracasos como si fueran pecados.
+
+## Campos de prueba
+Sus criaturas no se prueban en simuladores. Se sueltan contra las **tribus y
+bandas de las estepas**, contra caravanas marcadas de antemano o incluso contra
+barrios enteros de las colmenas cuando el tributo humano sobra y los registros
+pueden corregirse después. Para las logias, una matanza es solo una tabla de
+resultados escrita en carne.
+
+## La naturaleza que queda
+Las creaciones que no superan las pruebas —por demasiado inestables, por torpes
+para la guerra meticulosamente organizada o por culminar su ensayo **matando a sus
+creadores**— rara vez son destruidas. Muchas quedan libres, abandonadas en campos
+de batalla, galerías volcánicas y llanuras de ceniza.
+
+Así nace la poca naturaleza salvaje que aún queda en Cineris: no bosques, ni
+bestias antiguas, sino restos de laboratorio que aprendieron a cazar sin órdenes.
+Los habitantes del yermo los llaman de mil maneras. Las logias, con menos poesía,
+los archivan como material no recuperado.`,
+        related: [
+          { to: "cineris/iron-warriors/herrero-disforme", label: "El Herrero Disforme" },
+          { to: "estrella-d31/mechanicus-oscuro", label: "Mechanicus Oscuro" },
+          { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" },
+          { to: "cineris/cavernas-volcanicas", label: "Las Cavernas Volcánicas" }
         ]
       },
       {
         id: "tribus-estepas",
         title: "Tribus de las Estepas",
         icon: "skull",
+        image: "assets/tribus-estepas.jpg",
+        imageCaption: "Jefaturas móviles del yermo · archivo de caravana",
         epithet: "Bandas del yermo · peaje de carne y dioses extraños",
         tags: ["Facción", "Tribus", "Estepas", "Cultos", "El Yermo"],
         quote: {
@@ -559,15 +674,43 @@ los viajeros** que pretenden pasar. Su destino suele ser el **sacrificio ritual*
 a dioses extraños, así que no sorprende ver a las caravanas avanzar con **jaulas
 de esclavos** reservados para el pago.
 
+## Exiliados de las colmenas
+Cada ciclo, las ciudades colmena expulsan **millones de ciudadanos** hacia las
+estepas: una purga administrativa disfrazada de necesidad. Los débiles mueren
+pronto; los útiles son vendidos; los peores, los más listos y los más hambrientos
+terminan formando nuevas pandillas o alimentando a las viejas.
+
+De ahí nace la paradoja del yermo: cuanto más limpian las colmenas sus entrañas,
+más crecen las tribus que las asedian. Y de entre esas tribus, durante las
+**cuatro noches del [Cinturón Sangrante](#/cineris/cinturon-asteroides)**, los
+Iron Warriors roban candidatos para su propia guerra.
+
+## La naturaleza artificial
+El yermo no conserva mucha vida salvaje que no haya sido tocada por el hambre, la
+disformidad o la industria. Lo que queda de naturaleza suele venir de otro lugar:
+criaturas abandonadas por las [Logias Arcanotecnologistas](#/cineris/logias-arcanotecnologistas),
+máquinas-demonio defectuosas, inteligencias abominables que escaparon de sus
+pruebas o bestias de guerra que celebraron su primer éxito matando a quienes las
+crearon.
+
+Las tribus las evitan, las veneran o las cazan para arrancarles piezas. Algunas
+bandas incluso siguen sus rastros, porque donde una creación de logia sigue viva
+suele haber cerca un campo de pruebas, un laboratorio roto o una guerra que nadie
+ha declarado todavía.
+
 ## Señores del yermo
 Entre los **cientos** de bandas que se reparten las estepas, tres nombres se
 repiten en boca de los caravaneros: los **sorbetuétanos de Teriator**, los
-**despellejacráneos de Lupel** y los **redentores del águila bicéfala**.
+**despellejacráneos de Lupel**, los **redentores del águila bicéfala** y los
+**Humungorgones**.
 
 > Cien banderas, cien dioses, un solo yermo. Mañana serán otras cien.`,
         related: [
           { to: "cineris/cavernas-volcanicas", label: "Las Cavernas Volcánicas" },
           { to: "cineris/rebelion", label: "La Rebelión en Ciernes" },
+          { to: "cineris/iron-warriors", label: "Los Iron Warriors" },
+          { to: "cineris/cinturon-asteroides", label: "El Cinturón de Asteroides" },
+          { to: "cineris/logias-arcanotecnologistas", label: "Logias Arcanotecnologistas" },
           { to: "cineris/denitios", label: "Los Denitios" }
         ],
         childrenLabel: "Bandas y tribus",
@@ -637,6 +780,41 @@ desatará un **cambio perpetuo** —una transformación sin retorno de Cineris e
             related: [
               { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" }
             ]
+          },
+          {
+            id: "humungorgones",
+            title: "Humungorgones",
+            icon: "claw",
+            epithet: "La tribu que el hierro rechaza",
+            tags: ["Tribu", "Mutación", "Estepas", "El Yermo", "Reclutamiento"],
+            quote: {
+              text: "No todo salvaje sirve para el hierro. Algunos solo saben arder, morder y mutar hasta que ni el dolor puede enseñarles obediencia.",
+              source: "Anotación atribuida a un Selector de Forja"
+            },
+            body: `Los **Humungorgones** son una de las tribus más temidas de las
+estepas y una de las pocas que los **Selectores de Forja** han empezado a evitar.
+
+## Demasiado inestables para el hierro
+Los Iron Warriors no distinguen entre bandas cuando llegan las noches de secuestro:
+un asesino útil puede nacer bajo cualquier estandarte. Pero los Humungorgones han
+demostrado ser una mala veta. Sus mejores guerreros sobreviven a heridas que
+matarían a otros candidatos, sí, pero esa resistencia viene acompañada de una
+inestabilidad que ni la disciplina, ni el dolor, ni la cirugía consiguen dominar.
+
+## La marca roja
+Entre ellos son frecuentes las **mutaciones de cuernos enormes, zarpas óseas y
+piel rojiza**, rasgos que se agravan con la edad y con la exposición al combate.
+Cuando entran en frenesí pierden toda autocontención: no obedecen retirada, no
+respetan jerarquía y no distinguen enemigo de aliado mientras quede algo vivo a
+su alcance.
+
+Para las tribus vecinas, esa furia es bendición. Para los Iron Warriors, es
+material defectuoso: carne fuerte, pero incapaz de convertirse en muro.`,
+            related: [
+              { to: "cineris/tribus-estepas", label: "Las Tribus de las Estepas" },
+              { to: "cineris/iron-warriors", label: "Los Iron Warriors" },
+              { to: "cineris/cinturon-asteroides", label: "El Cinturón Sangrante" }
+            ]
           }
         ]
       },
@@ -644,6 +822,8 @@ desatará un **cambio perpetuo** —una transformación sin retorno de Cineris e
         id: "denitios",
         title: "Los Denitios",
         icon: "home",
+        image: "assets/denitios-setas.jpg",
+        imageCaption: "Grutas micóticas de bioalimento · los Denitios",
         epithet: "Las grutas del bioalimento · feudo de la casta de Notle",
         tags: ["Localización", "Bioalimento", "Casta sacerdotal", "Notle", "Cavernas"],
         quote: {
@@ -804,10 +984,11 @@ asedios, incursiones y guerras por el dominio del sistema.`,
 sistema Cineris. Para los millones que pueblan las colmenas no es más que el sol
 pálido que asoma sobre las estepas.
 
-Pero D31 guarda **dos secretos**. En su seno arde una herejía oculta. Y bajo
-ella se abre el **Túnel Hybri**, una garganta de disformidad que lleva a los
-mundos malditos de [Hybri](#/hybri).`,
-    childrenLabel: "Lo que oculta la estrella",
+Pero D31 guarda más que luz. En su seno arde una herejía oculta. Bajo ella se
+abre el **Túnel Hybri**, una garganta de disformidad que lleva a los mundos
+malditos de [Hybri](#/hybri). Y alrededor de su corona navega una flota que ha
+convertido el espacio aéreo de Cineris en aguas piratas.`,
+    childrenLabel: "Lo que rodea la estrella",
     children: [
       {
         id: "mechanicus-oscuro",
@@ -828,8 +1009,130 @@ En su seno, el **Mechanicus Oscuro** (*Mechanicus Oscurus*) ha establecido una
 **base**. A plena luz, a la vista de todo el sistema y aun así invisible, los
 tecnoherejes obran sus designios sin que nadie sospeche su existencia.
 
+## Séquitos bajo el planeta
+Su mano no se limita al fuego de D31. Archimagos menores, tecnosacerdotes renegados
+y cohortes de servidores bajan a Cineris para alimentar las
+[Logias Arcanotecnologistas](#/cineris/logias-arcanotecnologistas): círculos de
+investigación donde el Mechanicus Oscuro presta saber prohibido a cambio de datos,
+material de guerra y resultados que puedan sobrevivir fuera del laboratorio.
+
 > "Levantaron su templo en el único lugar donde nadie osaría mirar: dentro del
-> sol."`
+> sol."`,
+        related: [
+          { to: "cineris/logias-arcanotecnologistas", label: "Logias Arcanotecnologistas" },
+          { to: "estrella-d31/corsarios-ararat", label: "Los Corsarios de Ararat" },
+          { to: "cineris/iron-warriors/herrero-disforme", label: "El Herrero Disforme" }
+        ]
+      },
+      {
+        id: "corsarios-ararat",
+        title: "Corsarios de Ararat",
+        icon: "banner",
+        image: "assets/cinturon-asteroides.jpg",
+        epithet: "La Flota Keraunita",
+        tags: ["Facción", "Piratas", "Iron Warriors", "Mechanicus Oscuro", "Secreto"],
+        quote: {
+          text: "Creímos que eran perros del hierro. Luego vimos qué se llevaban de los muertos.",
+          source: "Fragmento atribuido a un prisionero de abordaje"
+        },
+        body: `En los márgenes interiores del sistema, allí donde la luz de **D31**
+arde como una fragua sobre pecios, estaciones muertas y campos de chatarra, navega
+una flota que no figura en ningún registro legítimo del Imperio.
+
+Los **Corsarios de Ararat**, también llamados **la Flota Keraunita** o **los Hijos
+del Primer Hierro**, dominan el espacio aéreo de Cineris como una corona de naves
+piratas. Son aliados de los [Iron Warriors](#/cineris/iron-warriors), pero no una
+compañía de la Legión. Su pacto es simple: los señores de hierro retienen los
+bastiones, los astilleros y la guerra de tierra; Ararat cierra el cielo, rompe
+bloqueos y convierte las batallas navales en mataderos de abordaje.
+
+## Una flota de abordaje
+Sus cruceros se esconden entre llamaradas solares, anillos de escombros y
+estaciones mineras calcinadas. Atacan convoyes, interceptan refuerzos, toman
+plataformas de defensa y encadenan cascos enemigos con arpones magnéticos antes de
+vomitar guerreros por las brechas.
+
+No buscan duelos limpios. Ciegan sensores, cortan motores, fuerzan la colisión y
+entran con sierras, combiarmas, escudos de brecha y servidores quirúrgicos. Cuando
+los Corsarios de Ararat abordan una nave, los supervivientes aprenden demasiado
+tarde que el saqueo no es su único propósito.
+
+## El falso Warsmith
+La banda dice servir a un antiguo señor de asedio, un **Warsmith** preservado por
+tecnología heretek y más viejo que casi todos los traidores del sistema. La máscara
+funciona: su armadura negra y amarilla, su desprecio del Imperio, su doctrina de
+asedio y su crueldad encajan demasiado bien con la leyenda de los Iron Warriors.
+
+La verdad es más antigua que Perturabo.
+
+Bajo las ruinas inferiores de Cineris, en una cripta sellada anterior a la Gran
+Cruzada, el [Mechanicus Oscuro](#/estrella-d31/mechanicus-oscuro) encontró un
+superviviente de la **IV Cataegis**: un **Guerrero Trueno** de los antiguos Iron
+Lords, una de las armas humanas que conquistaron Terra antes de que existieran los
+Astartes.
+
+No posee semilla genética. No es hijo de Perturabo. No es un Iron Warrior. Es una
+reliquia del primer hierro: gene-alquimia brutal, memoria quebrada y un odio que
+todavía recuerda Ararat.
+
+## Keraunos-Mortis
+La estasis lo conservó, pero no lo curó. Su cuerpo Cataegis se deshace con cada
+ciclo: órganos que necrosan, músculos que crecen mal, huesos que se engrosan como
+metal enfermo y recuerdos que vuelven en ráfagas de purga, ceniza y traición.
+
+Para seguir vivo hizo un pacto con los tecnoherejes de D31. Él les entrega
+cadáveres Astartes, prisioneros, progenoides, tejido Primaris y órganos completos.
+Ellos le fabrican injertos, biónica, sangre artificial y sistemas de soporte.
+
+El procedimiento recibe dos nombres en los laboratorios de la flota: **Protocolo
+Keraunos-Mortis** y **Rito de Sustitución del Primer Hierro**.
+
+No crea Marines. No lo convierte en Astartes. Solo mantiene en marcha a un señor
+moribundo hecho de órganos robados.
+
+## La caza de Marines
+Los Corsarios ya no matan Marines solo por odio. Los matan porque su amo los
+necesita. Cada Astartes abatido es medicina. Cada Primaris capturado es una
+promesa de semanas o meses más de vida. Cada glándula progenoide es materia prima
+para el Mechanicus Oscuro.
+
+Por eso sus abordajes dejan un patrón imposible de confundir: apotecarios
+descuartizados, criptas genéticas vacías, cadáveres abiertos con precisión y
+cuerpos desaparecidos antes de que las municiones de la batalla se enfríen.
+
+## La corte de Ararat
+A su alrededor se han reunido Iron Warriors renegados, Marines sin señor, piratas
+humanos, skitarii heretek, servidores de extracción orgánica, esclavos quirúrgicos,
+mutantes de cubierta y apóstatas del Mechanicus Oscuro. Algunos conocen la verdad.
+La mayoría cree servir a un Warsmith antiguo, tocado por la disformidad y preservado
+por máquinas prohibidas.
+
+El Señor de Ararat permite esa mentira. Pronunciar la palabra **Cataegis** demasiado
+alto atraería a Custodes, Inquisición, Mechanicus leal y a todos los cazadores de
+reliquias del Imperio.
+
+## Lo que quiere
+No pretende conquistar la galaxia. Quiere no morir. Quiere cobrar la traición del
+Emperador. Y quiere demostrar que el primer hierro era superior al segundo.
+
+Para él, los Astartes no son hermanos. Son repuestos. Los Primaris no son evolución.
+Son piezas nuevas. Los Iron Warriors no son sus señores. Son descendientes
+ideológicos de una doctrina que él encarnó antes que ellos.
+
+> "No soy hijo de Perturabo. No soy esclavo de Horus. No soy creación de Cawl. Soy
+> Cataegis. Soy el hierro que conquistó Terra antes de que vuestros primarcas
+> aprendieran a respirar."
+
+Hoy, la Flota Keraunita orbita en torno al sol de Cineris como una corona de
+chatarra armada. Nada entra ni sale del sistema sin arriesgarse a sus garras.
+
+**Ararat no ha terminado.**`,
+        related: [
+          { to: "cineris/iron-warriors", label: "Los Iron Warriors" },
+          { to: "estrella-d31/mechanicus-oscuro", label: "Mechanicus Oscuro" },
+          { to: "cineris/cinturon-asteroides", label: "El Cinturón de Asteroides" },
+          { to: "cineris/batallas", label: "Batallas en Cineris" }
+        ]
       }
     ]
   },
@@ -1001,6 +1304,9 @@ window.TIMELINE = {
         { date: "001.M42", title: "El gobierno del Gran Señor de los Lok", text: "El Gran Señor de los Lok gobierna el sistema a través de los IV, sus consejeros secretos. Trajo la cultura del Maelstrom: cultos y vicios proliferan libres mientras las tres colmenas paguen su tributo.", tags: ["Dinastía Lok"], link: "cineris/gran-senor-lok" },
         { date: "M41", title: "El atentado del asesino imperial", text: "Un asesino del Imperio estuvo a un aliento de matar al Gran Señor de los Lok. Sobrevivió, pero su carne quedó deshecha: desde entonces gobierna confinado en una armadura-sarcófago, obsesionado con los implantes y aficionado a condenar a sus reos a una eternidad de consciencia presa en cuerpo de servidor.", tags: ["Imperio", "Dinastía Lok"], link: "cineris/gran-senor-lok" },
         { date: "M41 (secreto)", title: "El fuego en el corazón de la estrella", text: "En lo más profundo de D31, el Mechanicus Oscuro obra en una base que nadie llega a sospechar.", tags: ["Mechanicus Oscuro"], link: "estrella-d31/mechanicus-oscuro" },
+        { date: "M41 (secreto)", title: "La cripta del Primer Hierro", text: "Bajo las ruinas inferiores de Cineris, una cripta anterior a la Gran Cruzada entrega al Mechanicus Oscuro un superviviente de la IV Cataegis: un Guerrero Trueno que recuerda Ararat.", tags: ["Cataegis", "Mechanicus Oscuro"], link: "estrella-d31/corsarios-ararat" },
+        { date: "M41 – M42", title: "Nace la Flota Keraunita", text: "El falso Warsmith reúne renegados, piratas, skitarii heretek y servidores quirúrgicos. Aliado con los Iron Warriors, cierra el espacio aéreo de Cineris y convierte los abordajes en cacerías de órganos Astartes.", tags: ["Piratas", "Iron Warriors", "Mechanicus Oscuro"], link: "estrella-d31/corsarios-ararat" },
+        { date: "M41 – M42", title: "Las logias se extienden por Cineris", text: "Herreros disformes, archimagos y séquitos del Mechanicus Oscuro fundan logias arcanotecnologistas por todo el planeta. Sus criaturas son probadas contra tribus, bandas y ciudadanos de las colmenas; las que fracasan quedan libres en los campos de batalla.", tags: ["Mechanicus Oscuro", "Tecnoherejía"], link: "cineris/logias-arcanotecnologistas" },
         { date: "M41 (secreto)", title: "Se abre el Túnel Hybri", text: "Bajo la estrella, una garganta de disformidad conecta Cineris con los mundos caballero del Caos de Hybri.", tags: ["Hybri", "Maelstrom"], link: "hybri" },
         { date: "001.M42", title: "La rebelión que se gesta", text: "En las colmenas crece un culto que se dice leal al antiguo Emperador, pero cuyos ritos esotéricos convocan a los demonios.", tags: ["Rebelión"], link: "cineris/rebelion" },
         { date: "001.M42", title: "Guerra por las cavernas volcánicas", text: "Por las estepas y los páramos se arremolinan tribus y bandas —demonistas y leales por igual—, y de entre ellas surgen guías y héroes. Sus escaramuzas se adentran en las cavernas volcánicas que horadan el planeta entero, para arrancarles sus tesoros: recursos naturales, artificiales... y antinaturales.", tags: ["Rebelión"], link: "cineris/cavernas-volcanicas" },

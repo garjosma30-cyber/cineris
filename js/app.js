@@ -101,6 +101,21 @@
   }
   function excerpt(src, n) { var t = plain(src); return t.length > n ? t.slice(0, n - 1).trim() + "…" : t; }
 
+  /* color de acento por facción, deducido de las tags del nodo (sin tocar data.js) */
+  function accentFor(tags) {
+    if (!tags || !tags.length) return null;
+    function has(t) { return tags.indexOf(t) !== -1; }
+    if (has("Mechanicus Oscuro") || has("Tecnoherejía")) return "#3f7a6a";
+    if (has("Xenos")) return "#6a4c8c";
+    if (has("Caos") || has("Demonios") || has("Herejía") || has("Credo Hueco")) return "#8c2450";
+    if (has("Iron Warriors") || has("Marines del Caos")) return "#a8541c";
+    return null;
+  }
+  function accentAttr(tags) {
+    var c = accentFor(tags);
+    return c ? ' style="--accent:' + c + '"' : "";
+  }
+
   /* normalización sin tildes (mapa 1:1 de índices para poder resaltar) */
   function nmap(s) {
     var out = "", i, c;
@@ -173,18 +188,28 @@
   function emptyBlock(msg, extra) {
     return '<div class="empty">' + icon("skull") + '<div class="big">' + esc(msg) + "</div>" + (extra || "") + "</div>";
   }
+  /* tarjeta: si hay imagen, el título va SOBRE ella (degradado de legibilidad);
+     si no, el título va en el cuerpo como siempre */
+  function cardHtml(href, c, showTags) {
+    var titleHtml = '<div class="c-title">' + esc(c.title) + "</div>" +
+      (c.epithet ? '<div class="c-epithet">' + esc(c.epithet) + "</div>" : "");
+    var thumb, bodyTop = "";
+    if (c.image) {
+      thumb = '<div class="thumb"><img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" loading="lazy" decoding="async">' +
+        '<div class="thumb-cap">' + titleHtml + "</div></div>";
+    } else {
+      thumb = '<div class="thumb"><span class="ph">' + icon(c.icon || "book") + "</span></div>";
+      bodyTop = titleHtml;
+    }
+    return '<a class="card" href="' + href + '"' + accentAttr(c.tags) + '>' + thumb +
+      '<div class="body">' + bodyTop +
+      (c.battle && c.battle.fecha ? '<div class="c-date">' + esc(c.battle.fecha) + (c.battle.resultado ? " · " + esc(c.battle.resultado) : "") + "</div>" : "") +
+      (c.body ? '<div class="c-excerpt">' + esc(excerpt(c.body, 150)) + "</div>" : "") +
+      (showTags !== false ? tagsHtml(c.tags, false) : "") + "</div></a>";
+  }
   function cardsOf(list, parentPath) {
     return '<div class="card-grid">' + list.map(function (c) {
-      var cp = parentPath + "/" + c.id;
-      var thumb = c.image
-        ? '<div class="thumb"><img src="' + esc(c.image) + '" alt="' + esc(c.title) + '" loading="lazy" decoding="async"></div>'
-        : '<div class="thumb"><span class="ph">' + icon(c.icon || "book") + "</span></div>";
-      return '<a class="card" href="#/' + cp + '">' + thumb +
-        '<div class="body"><div class="c-title">' + esc(c.title) + "</div>" +
-        (c.battle && c.battle.fecha ? '<div class="c-date">' + esc(c.battle.fecha) + (c.battle.resultado ? " · " + esc(c.battle.resultado) : "") + "</div>" : "") +
-        (c.epithet ? '<div class="c-epithet">' + esc(c.epithet) + "</div>" : "") +
-        '<div class="c-excerpt">' + esc(excerpt(c.body, 150)) + "</div>" +
-        tagsHtml(c.tags, false) + "</div></a>";
+      return cardHtml("#/" + parentPath + "/" + c.id, c, true);
     }).join("") + "</div>";
   }
   function subHead(txt) { return '<div class="section-head sub"><h2>' + esc(txt) + "</h2></div>"; }
@@ -212,6 +237,12 @@
 
   /* ------------------------------------------------- carta estelar (mapa) */
   function starMap() {
+    /* fondo de estrellas titilantes (posiciones pseudoaleatorias estables) */
+    var stars = "";
+    for (var i = 0; i < 26; i++) {
+      var sx = (i * 137 + 61) % 880 + 10, sy = (i * 211 + 47) % 430 + 20;
+      stars += '<circle cx="' + sx + '" cy="' + sy + '" r="' + (i % 3 ? 1 : 1.5) + '"/>';
+    }
     return '' +
     '<div class="starmap-wrap">' +
       '<div class="section-head sub"><h2>Carta Estelar del Sistema</h2></div>' +
@@ -228,6 +259,7 @@
             '<stop offset="100%" stop-color="#7c1414" stop-opacity="0"/>' +
           '</radialGradient>' +
         '</defs>' +
+        '<g class="sm-stars">' + stars + '</g>' +
         /* — el Maelstrom: marco de tormenta — */
         '<g class="sm-maelstrom">' +
           '<rect x="8" y="8" width="884" height="454" rx="6"/>' +
@@ -307,36 +339,47 @@
   }
 
   /* --------------------------------------------------------------- vistas */
+  function homeCards() {
+    var items = NAV.map(function (n) {
+      var cc = (n.children || []).length;
+      return {
+        href: "#/" + n.id, icon: n.icon, image: n.image, title: n.title, tags: n.tags, body: n.body,
+        epithet: cc ? cc + (cc === 1 ? " apartado" : " apartados") : "Mundo"
+      };
+    });
+    if (TIMELINE) items.push({
+      href: "#/cronologia", icon: "hourglass", image: TIMELINE.image, title: TIMELINE.title,
+      tags: [], body: TIMELINE.blurb || "", epithet: "Línea temporal"
+    });
+    return '<div class="card-grid home-grid">' + items.map(function (c) {
+      return cardHtml(c.href, c, false);
+    }).join("") + "</div>";
+  }
   function viewHome() {
     var q = WORLD.quote;
-    var cards = NAV.map(function (n) {
-      var cc = (n.children || []).length;
-      return '<a class="home-card" href="#/' + n.id + '">' + icon(n.icon) +
-        '<div><div class="hc-title">' + esc(n.title) + '</div>' +
-        '<div class="hc-count">' + (cc ? cc + (cc === 1 ? " apartado" : " apartados") : "Mundo") + "</div></div></a>";
-    }).join("");
     var heroTop = WORLD.image
       ? '<div class="home-hero-img"><img src="' + esc(WORLD.image) + '" alt="' + esc(WORLD.name) + '" fetchpriority="high" decoding="async">' +
           '<div class="hhi-titles"><div class="aquila-sm">' + icon("aquila", true) + "</div>" +
           "<h1>" + esc(WORLD.name) + "</h1>" +
           (WORLD.subtitle ? '<div class="subtitle">' + esc(WORLD.subtitle) + "</div>" : "") +
-          "</div></div>" +
-          (WORLD.intro ? '<div class="hero hero-intro"><div class="intro prose">' + md(WORLD.intro) + "</div></div>" : "")
+          "</div></div>"
       : '<div class="hero">' +
           '<div class="aquila-big">' + icon("aquila", true) + "</div>" +
           "<h1>" + esc(WORLD.name) + "</h1>" +
           (WORLD.subtitle ? '<div class="subtitle">' + esc(WORLD.subtitle) + "</div>" : "") +
-          (WORLD.intro ? '<div class="intro prose">' + md(WORLD.intro) + "</div>" : "") +
         "</div>";
+    var loreMore = WORLD.intro
+      ? '<details class="lore-more"><summary><span class="icon-badge">' + icon("book") + "</span>Leer la crónica completa</summary>" +
+          '<div class="prose">' + md(WORLD.intro) + "</div></details>"
+      : "";
     return '<div class="view">' + heroTop +
       (q ? '<div class="banner-quote"><div class="q">«' + esc(q.text) + '»</div>' +
            (q.source ? '<div class="src">' + esc(q.source) + "</div>" : "") + "</div>" : rule()) +
       starMap() +
       rule() +
-      '<div class="home-grid">' + cards +
-        (TIMELINE ? '<a class="home-card" href="#/cronologia">' + icon("hourglass") +
-          '<div><div class="hc-title">' + esc(TIMELINE.title) + '</div><div class="hc-count">Línea temporal</div></div></a>' : "") +
-      "</div></div>";
+      homeCards() +
+      loreMore +
+    "</div>";
   }
 
   function viewNode(node, trail) {
@@ -409,7 +452,7 @@
       ? '<nav class="pager">' + (prevP ? pgLink(prevP, "prev") : "") + (nextP ? pgLink(nextP, "next") : "") + "</nav>"
       : "";
 
-    return '<div class="view">' + printBtn() + crumb(crumbs) + banner + '<div class="entry">' +
+    return '<div class="view"' + accentAttr(node.tags) + '>' + printBtn() + crumb(crumbs) + banner + '<div class="entry">' +
       (parent.length ? '<a class="back-link" href="#/' + pathOf(parent) + '">' + icon("back") + "Volver a " + esc(parent[parent.length - 1].title) + "</a>" : "") +
       fig +
       "<h1>" + esc(node.title) + "</h1>" +
@@ -551,8 +594,84 @@
     }
   }
 
+  /* ---------------------------------------- efectos ambientales (dinamismo) */
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var HERO_TITLES = null; /* títulos del hero, para el parallax al hacer scroll */
+
+  /* brasas y ceniza flotando sobre la portada y las cabeceras de ficha */
+  function spawnEmbers(host) {
+    var canvas = document.createElement("canvas");
+    canvas.className = "embers";
+    host.appendChild(canvas);
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    function fit() { canvas.width = host.clientWidth; canvas.height = host.clientHeight; }
+    fit();
+    var P = [], N = Math.max(14, Math.round(canvas.width / 40));
+    function reset(p, anyY) {
+      p.x = Math.random() * canvas.width;
+      p.y = anyY ? Math.random() * canvas.height : canvas.height + 6;
+      p.r = .7 + Math.random() * 1.7;
+      p.s = .2 + Math.random() * .55;
+      p.w = Math.random() * 6.28;
+      p.a = .12 + Math.random() * .45;
+      return p;
+    }
+    for (var i = 0; i < N; i++) P.push(reset({}, true));
+    function tick() {
+      if (!canvas.isConnected) return; /* la vista cambió: parar el bucle */
+      if (canvas.width !== host.clientWidth) fit();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+        p.y -= p.s; p.w += .02; p.x += Math.sin(p.w) * .35;
+        if (p.y < -8) reset(p, false);
+        ctx.globalAlpha = p.a * (.55 + .45 * Math.sin(p.w * 2));
+        ctx.fillStyle = "#e6b13d";
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.284); ctx.fill();
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function initFx() {
+    HERO_TITLES = document.querySelector(".hhi-titles");
+    if (HERO_TITLES) { HERO_TITLES.style.transform = ""; HERO_TITLES.style.opacity = ""; }
+    if (REDUCED) return;
+    [].forEach.call(document.querySelectorAll(".home-hero-img, .entry-banner"), spawnEmbers);
+  }
+
+  /* ------------------------------------------- aparición progresiva (scroll) */
+  function initReveal() {
+    if (!window.IntersectionObserver) return;
+    var root = el("app");
+    var targets = root.querySelectorAll(
+      ".card, .event, .battle-sheet, .pull-quote, .related, .tl-hits, .pager .pg, " +
+      ".prose > h2, .prose > p, .prose > blockquote, .prose > ul, .result-row"
+    );
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("in"); io.unobserve(entry.target); }
+      });
+    }, { threshold: .1, rootMargin: "0px 0px -30px 0px" });
+    [].forEach.call(targets, function (t, i) {
+      t.classList.add("reveal");
+      t.style.transitionDelay = (i % 8) * 55 + "ms";
+      io.observe(t);
+    });
+    var tl = root.querySelector(".timeline");
+    if (tl) {
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add("tl-in"); io2.unobserve(entry.target); }
+        });
+      }, { threshold: .05 });
+      io2.observe(tl);
+    }
+  }
+
   /* --------------------------------------------------------------- router */
-  function render(html, scroll) { el("app").innerHTML = html; if (scroll !== false) window.scrollTo(0, 0); closeNav(); }
+  function render(html, scroll) { el("app").innerHTML = html; if (scroll !== false) window.scrollTo(0, 0); closeNav(); initReveal(); initFx(); }
   function router() {
     var hash = location.hash.replace(/^#/, "");
     var segs = hash.split("/").filter(Boolean);
@@ -603,6 +722,35 @@
     });
     el("menuBtn").addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
     el("scrim").addEventListener("click", closeNav);
+    /* barra de progreso de lectura + botón "volver arriba" + parallax del hero */
+    var progress = document.createElement("div");
+    progress.className = "scroll-progress";
+    document.body.appendChild(progress);
+    var toTop = document.createElement("button");
+    toTop.className = "to-top";
+    toTop.setAttribute("aria-label", "Volver arriba");
+    toTop.innerHTML = svg('<path d="M6 14l6-6 6 6"/>');
+    document.body.appendChild(toTop);
+    toTop.addEventListener("click", function () {
+      window.scrollTo(REDUCED ? { top: 0 } : { top: 0, behavior: "smooth" });
+    });
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var y = window.scrollY || document.documentElement.scrollTop || 0;
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
+        toTop.classList.toggle("show", y > 600);
+        if (HERO_TITLES && !REDUCED && HERO_TITLES.isConnected) {
+          HERO_TITLES.style.transform = "translateY(" + (y * .22).toFixed(1) + "px)";
+          HERO_TITLES.style.opacity = Math.max(0, 1 - y / 420).toFixed(2);
+        }
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
     /* botón imprimir (delegación) */
     document.addEventListener("click", function (ev) {
       var p = ev.target && ev.target.closest ? ev.target.closest(".print-btn") : null;
